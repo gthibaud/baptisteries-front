@@ -11,6 +11,9 @@
 # production
 /build
 
+# secu
+/src/data/api_key.json
+
 # misc
 .DS_Store
 .env.local
