@@ -18,8 +18,12 @@ const BaptistereContextProvider = (props) => {
         setBaptistere(baptistere);
     }
 
+    const detachBaptistere = () => {
+        setBaptistere({});
+    }
+
     return (
-        <BaptistereContext.Provider value={{ baptistere, updateBaptistere }}>
+        <BaptistereContext.Provider value={{ baptistere, updateBaptistere, detachBaptistere }}>
             {props.children}
         </BaptistereContext.Provider>
     );

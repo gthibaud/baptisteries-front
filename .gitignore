@@ -14,6 +14,9 @@
 # secu
 /src/data/api_key.json
 
+# firebase
+.firebase
+
 # misc
 .DS_Store
 .env.local
