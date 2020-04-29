@@ -1,11 +1,11 @@
-import React, { useContext } from 'react'
-import { Marker, Popup } from 'react-leaflet'
-import { BaptistereContext } from '../contexts/BaptistereContext';
+import React, {useContext} from 'react'
+import {Marker, Popup} from 'react-leaflet'
+import {BaptistereContext} from '../contexts/BaptistereContext';
 
 const Point = (props) => {
-    const { data } = props;
+    const {data} = props;
 
-    const { updateBaptistere } = useContext(BaptistereContext);
+    const {updateBaptistere} = useContext(BaptistereContext);
 
     const long = parseFloat(data.longitude.replace(',', '.'));
     const lat = parseFloat(data.latitude.replace(',', '.'));
@@ -16,9 +16,8 @@ const Point = (props) => {
                 <h3>{data.name}</h3>
             </Popup>
         </Marker>
-    ) : (
-            <></>
-        );
-}
+    ) : null;
+};
 
 export default Point;
+
