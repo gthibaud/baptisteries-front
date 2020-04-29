@@ -1,7 +1,7 @@
-import React, { useState, createContext } from 'react';
+import React, {useState, createContext} from 'react';
 import data from './../data/data.json';
 
-export const BaptistereContext = createContext();
+export const BaptistereContext = createContext(null);
 
 const BaptistereContextProvider = (props) => {
 
@@ -16,17 +16,17 @@ const BaptistereContextProvider = (props) => {
         // baptistere.buildingCategory = data.buildingCategories.filter(buildingCategory => buildingCategory.id === baptistere.buildingCategoryId)[0].name;
         baptistere.settlementContext = data.settlementContextes.filter(settlementContext => settlementContext.id === baptistere.settlementContextId)[0].name;
         setBaptistere(baptistere);
-    }
+    };
 
     const detachBaptistere = () => {
         setBaptistere({});
-    }
+    };
 
     return (
-        <BaptistereContext.Provider value={{ baptistere, updateBaptistere, detachBaptistere }}>
+        <BaptistereContext.Provider value={{baptistere, updateBaptistere, detachBaptistere}}>
             {props.children}
         </BaptistereContext.Provider>
     );
-}
+};
 
 export default BaptistereContextProvider;
