@@ -11,7 +11,7 @@ const Point = (props) => {
     const lat = parseFloat(data.latitude.replace(',', '.'));
 
     return long && lat && data.name ? (
-        <Marker position={[long, lat]} onClick={() => updateBaptistere(data)}>
+        <Marker position={[lat, long]} onClick={() => updateBaptistere(data)}>
             <Popup>
                 <h3>{data.name}</h3>
             </Popup>
