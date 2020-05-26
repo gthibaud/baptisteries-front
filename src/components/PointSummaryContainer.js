@@ -25,7 +25,7 @@ const PointSummaryContainer = () => {
                             <h4>Usage dates</h4>
                             <p>Starting year : {currentBaptistere.startingYear}</p>
                             <p>Final year : {currentBaptistere.finalYear}</p>
-                            {/* <p>Building category : {currentBaptistere.buildingCategory}</p> */}
+                            <p>Building category : {currentBaptistere.buildingCategory}</p>
                             <h4>Technical specifications</h4>
                             <p>Settlement context : {currentBaptistere.settlementContext}</p>
                             <p>Number of additional basins : {currentBaptistere.numberOfAdditionalBasins}</p>
