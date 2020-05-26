@@ -39,13 +39,13 @@ const BaptistereContextProvider = (props) => {
 
     // Sets the current baptistere that is focused and map
     const setCurrentFocusedBaptistere = (baptistere) => {
-        baptistere.region = state.regions.filter(region => region.id === baptistere.regionId)[0].name;
-        baptistere.ecclesiasticalDiocese = state.ecclesiasticalDioceses.filter(ecclesiasticalDiocese => ecclesiasticalDiocese.id === baptistere.ecclesiasticalDioceseId)[0].name;
-        baptistere.civilDiocese = state.civilDioceses.filter(civilDiocese => civilDiocese.id === baptistere.civilDioceseId)[0].name;
-        baptistere.patriarchy = state.patriarchies.filter(patriarchy => patriarchy.id === baptistere.patriarchyId)[0].name;
-        baptistere.province = state.provinces.filter(province => province.id === baptistere.provinceId)[0].name;
-        // baptistere.buildingCategory = state.buildingCategories.filter(buildingCategory => buildingCategory.id === baptistere.buildingCategoryId)[0].name;
-        //baptistere.settlementContext = state.settlementContexts.filter(settlementContext => settlementContext.id === baptistere.settlementContextId)[0].name;
+        baptistere.region = state.regions.find(region => region.id === baptistere.regionId).name;
+        baptistere.ecclesiasticalDiocese = state.ecclesiasticalDioceses.find(ecclesiasticalDiocese => ecclesiasticalDiocese.id === baptistere.ecclesiasticalDioceseId).name;
+        baptistere.civilDiocese = state.civilDioceses.find(civilDiocese => civilDiocese.id === baptistere.civilDioceseId).name;
+        baptistere.patriarchy = state.patriarchies.find(patriarchy => patriarchy.id === baptistere.patriarchyId).name;
+        baptistere.province = state.provinces.find(province => province.id === baptistere.provinceId).name;
+        // baptistere.buildingCategory = state.buildingCategories.find(buildingCategory => buildingCategory.id === baptistere.buildingCategoryId).name;
+        //baptistere.settlementContext = state.settlementContexts.find(settlementContext => settlementContext.id === baptistere.settlementContextId).name;
         dispatch({currentBaptistere: baptistere});
     };
 
