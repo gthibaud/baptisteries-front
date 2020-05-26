@@ -1,12 +1,12 @@
 import React from "react";
-import Menu from "./Menu";
+import PointSummaryContainer from "./PointSummaryContainer";
 import Card from "./Card";
 
 export default function HomePage() {
 
     return (
         <React.Fragment>
-            <Menu/>
+            <PointSummaryContainer/>
             <Card/>
         </React.Fragment>
     );
