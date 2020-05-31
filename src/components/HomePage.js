@@ -6,7 +6,7 @@ import PageLayout from "./PageLayout";
 export default function HomePage() {
   return (
     <PageLayout>
-        <PointSummaryContainer/>
+      <PointSummaryContainer />
       <Card />
     </PageLayout>
   );
