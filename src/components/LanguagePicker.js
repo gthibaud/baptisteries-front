@@ -8,10 +8,10 @@ import { Popper } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  popper: {
     zIndex: 1001,
   },
-  popper: {
+  popperContent: {
     backgroundColor: "white",
     padding: theme.spacing(2),
     boxShadow: "0px 8px 8px RGBa(0, 0, 0, 0.25)",
@@ -38,7 +38,7 @@ const getLanguageImage = (language) => {
 
 export default function LanguagePicker() {
   const { language, setLanguage } = useContext(GlobalContext);
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const classes = useStyles();
 
   const countryCodes = ["it", "en", "fr"];
@@ -84,8 +84,13 @@ export default function LanguagePicker() {
         />
         <ExpandMoreIcon />
       </div>
-      <Popper className={classes.root} id={id} open={open} anchorEl={anchorEl}>
-        <div className={classes.popper}>{countriesList}</div>
+      <Popper
+        className={classes.popper}
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+      >
+        <div className={classes.popperContent}>{countriesList}</div>
       </Popper>
     </React.Fragment>
   );

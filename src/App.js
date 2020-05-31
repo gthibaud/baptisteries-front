@@ -11,7 +11,7 @@ function App() {
         <BrowserRouter>
           <Switch>
             <Route exact path={"/"}>
-              <HomePage />
+              <HomePage isOnCardView={true} />
             </Route>
           </Switch>
         </BrowserRouter>
