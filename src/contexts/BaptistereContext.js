@@ -8,7 +8,7 @@ function stateReducer(state, action) {
   return { ...state, ...action };
 }
 
-const BaptistereContextProvider = (props) => {
+const BaptistereContextProvider = ({ children }) => {
   const initState = {
     baptisteriesData: {},
     baptisteriesList: [],
@@ -117,7 +117,7 @@ const BaptistereContextProvider = (props) => {
         detachBaptistere,
       }}
     >
-      {props.children}
+      {children}
     </BaptistereContext.Provider>
   );
 };
