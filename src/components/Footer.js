@@ -1,5 +1,5 @@
 import React from "react";
-import { Paper } from "@material-ui/core";
+import { Grid, Paper, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -9,10 +9,41 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(3),
     paddingRight: theme.spacing(3),
   },
+  smallNote: {
+    fontSize: "14px",
+    fontWeight: 600,
+    color: "#a3a3a3",
+    textDecoration: "none",
+  },
+  copyright: {
+    fontWeight: 600,
+  },
 }));
 
 export default function Footer() {
   const classes = useStyles();
 
-  return <Paper className={classes.root}>Footer</Paper>;
+  return (
+    <Paper className={classes.root}>
+      <Grid container justify={"space-between"} alignItems={"center"}>
+        <Grid item>
+          <Typography className={classes.copyright} variant={"body1"}>
+            © Lucia Orlandi - 2020
+          </Typography>
+        </Grid>
+        <Grid item>
+          <Typography variant={"body1"}>
+            <a
+              className={classes.smallNote}
+              href={"https://www.luciaorlandi.it"}
+              target={"_blank"}
+              rel="noopener noreferrer"
+            >
+              luciaorlandi.it
+            </a>
+          </Typography>
+        </Grid>
+      </Grid>
+    </Paper>
+  );
 }
