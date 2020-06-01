@@ -9,3 +9,15 @@ export const labelListPage = {
   it: "",
   en: "",
 };
+
+export const labelBaptiseteryPreview = {
+  fr: "Aperçu",
+  it: "",
+  en: "",
+};
+
+export const labelBaptisteryDates = {
+  fr: "Dates",
+  it: "",
+  en: ""
+}

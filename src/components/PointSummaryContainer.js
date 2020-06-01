@@ -1,11 +1,14 @@
 import React, { useContext } from "react";
 import { BaptistereContext } from "../contexts/BaptistereContext";
 import { makeStyles } from "@material-ui/core/styles";
+import { Button } from "@material-ui/core";
+import l from '../constants/locales';
+import { GlobalContext } from "../contexts/GlobalContext";
 
 const useStyles = makeStyles((theme) => ({
   menu: {
     backgroundColor: "white",
-    borderRadius: theme.spacing(0.9),
+    borderRadius: theme.spacing(0.6),
     position: "absolute",
     width: "360px",
     top: theme.spacing(9.3),
@@ -31,74 +34,32 @@ const useStyles = makeStyles((theme) => ({
     color: "#a3a3a3",
     marginBottom: 0,
   },
+  button: {
+    marginTop: 24,
+    width: "100%",
+    height: 42
+  }
 }));
 
 const PointSummaryContainer = () => {
+  const { language } = useContext(GlobalContext);
   const { currentBaptistere } = useContext(BaptistereContext);
   const classes = useStyles();
 
-  return (
+  return currentBaptistere.id ? (
     <div className={classes.menu}>
       <div className={classes.menuBox}>
-        <div>
-          {/* <h2>Cartographie</h2> */}
-          <h1>Map of Paleochristian Baptisteries in the Mediterranean Sea</h1>
-          <h2>
-            You can move, zoom and click on any pin on the map to access
-            baptistery details.
-          </h2>
-          {currentBaptistere.id && (
-            <div className={classes.baptistere}>
-              <h3>{currentBaptistere.name}</h3>
-              <h4>Location information</h4>
-              <p>
-                Lon : {currentBaptistere.longitude} — Lat :{" "}
-                {currentBaptistere.latitude}
-              </p>
-              <p>Region : {currentBaptistere.region}</p>
-              <p>Province : {currentBaptistere.province}</p>
-              <p>Civil diocese : {currentBaptistere.civilDiocese}</p>
-              <p>
-                Ecclesiastical diocese :{" "}
-                {currentBaptistere.ecclesiasticalDiocese}
-              </p>
-              <p>Patriarchy diocese : {currentBaptistere.patriarchy}</p>
-              <h4>Usage dates</h4>
-              <p>Starting year : {currentBaptistere.startingYear}</p>
-              <p>Final year : {currentBaptistere.finalYear}</p>
-              <p>Building category : {currentBaptistere.buildingCategory}</p>
-              <h4>Technical specifications</h4>
-              <p>Settlement context : {currentBaptistere.settlementContext}</p>
-              <p>
-                Number of additional basins :{" "}
-                {currentBaptistere.numberOfAdditionalBasins}
-              </p>
-              <p>Maximum depth : {currentBaptistere.maximumDepth}</p>
-              <p>
-                Maximum preserved depth :{" "}
-                {currentBaptistere.maximumPreservedDepth}
-              </p>
-              <p>
-                Description of main font dimensions :{" "}
-                {currentBaptistere.descriptionOfMainFontDimensions}
-              </p>
-              <p>
-                Description of adjoining rooms :{" "}
-                {currentBaptistere.adjoiningRoomsDescription}
-              </p>
-              <p>
-                Exclusively from historical sources :{" "}
-                {currentBaptistere.exclusivelyFromHistoricalSources}
-              </p>
-            </div>
-          )}
-          <p className={classes.smallNote}>
-            © Lucia Orlandi — {new Date().getFullYear()}
-          </p>
+        <div className={classes.baptistere}>
+          <h3>{currentBaptistere.name}</h3>
+          <h4>{l('labelBaptisteryPreview', language)}</h4>
+          <p>{`${l('labelBaptisteryDates', language)} : ${currentBaptistere.startingYear} - ${currentBaptistere.finalYear}`}</p>
+          <p>{`${l('labelBaptisteryProvince', language)} : ${currentBaptistere.province}`}</p>
+          <p>{`${l('labelBaptisteryDiocese', language)} : ${currentBaptistere.ecclesiasticalDiocese}`}</p>
+          <Button variant="contained" disableElevation className={classes.button}>{l('buttonMoreInformation', 'fr')}</Button>
         </div>
       </div>
     </div>
-  );
+  ) : null;
 };
 
 export default PointSummaryContainer;

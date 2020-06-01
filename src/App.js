@@ -8,13 +8,13 @@ function App() {
   return (
     <GlobalContextProvider>
       <BaptistereContextProvider>
-        <BrowserRouter>
-          <Switch>
-            <Route exact path={"/"}>
-              <HomePage isOnCardView={true} />
-            </Route>
-          </Switch>
-        </BrowserRouter>
+          <BrowserRouter>
+            <Switch>
+              <Route exact path={"/"}>
+                <HomePage isOnCardView={true} />
+              </Route>
+            </Switch>
+          </BrowserRouter>
       </BaptistereContextProvider>
     </GlobalContextProvider>
   );
