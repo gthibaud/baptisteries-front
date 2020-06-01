@@ -1,14 +1,13 @@
 import React from "react";
-import PointSummaryContainer from "./PointSummaryContainer";
 import Card from "./Card";
+import PointSummaryContainer from "./PointSummaryContainer";
+import PageLayout from "./PageLayout";
 
-export default function HomePage() {
-
-    return (
-        <React.Fragment>
-            <PointSummaryContainer/>
-            <Card/>
-        </React.Fragment>
-    );
-};
-
+export default function HomePage({ isOnCardView }) {
+  return (
+    <PageLayout isOnCardView={isOnCardView}>
+      <PointSummaryContainer />
+      <Card />
+    </PageLayout>
+  );
+}
