@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { Marker, Popup } from 'react-leaflet';
-import styled from "styled-components";
 import L from 'leaflet';
 import { BaptistereContext } from '../contexts/BaptistereContext';
 import Diamond from '../images/Diamond';
@@ -59,7 +58,6 @@ const Point = ({ data }) => {
     return long && lat && data.name ? (
         <Marker icon={pointIcon} position={[lat, long]} onClick={() => setCurrentFocusedBaptistere(data)}>
             <Popup>
-                {/* {console.log(data)} */}
                 <h3>{data.name}</h3>
             </Popup>
         </Marker>

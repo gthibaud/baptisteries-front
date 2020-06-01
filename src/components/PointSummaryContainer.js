@@ -4,13 +4,14 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import l from '../constants/locales';
 import { GlobalContext } from "../contexts/GlobalContext";
+import Baptistery from "./Baptistery";
 
 const useStyles = makeStyles((theme) => ({
   menu: {
     backgroundColor: "white",
     borderRadius: theme.spacing(0.6),
     position: "absolute",
-    width: "360px",
+    width: "300px",
     top: theme.spacing(9.3),
     left: theme.spacing(2),
     zIndex: "1000",
@@ -37,7 +38,9 @@ const useStyles = makeStyles((theme) => ({
   button: {
     marginTop: 24,
     width: "100%",
-    height: 42
+    height: 42,
+    textTransform: "none",
+    fontSize: 17
   }
 }));
 
@@ -45,6 +48,16 @@ const PointSummaryContainer = () => {
   const { language } = useContext(GlobalContext);
   const { currentBaptistere } = useContext(BaptistereContext);
   const classes = useStyles();
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (value) => {
+    setOpen(false);
+  };
 
   return currentBaptistere.id ? (
     <div className={classes.menu}>
@@ -55,7 +68,8 @@ const PointSummaryContainer = () => {
           <p>{`${l('labelBaptisteryDates', language)} : ${currentBaptistere.startingYear} - ${currentBaptistere.finalYear}`}</p>
           <p>{`${l('labelBaptisteryProvince', language)} : ${currentBaptistere.province}`}</p>
           <p>{`${l('labelBaptisteryDiocese', language)} : ${currentBaptistere.ecclesiasticalDiocese}`}</p>
-          <Button variant="contained" disableElevation className={classes.button}>{l('buttonMoreInformation', 'fr')}</Button>
+          <Button variant="contained" disableElevation className={classes.button} onClick={handleClickOpen}>{l('buttonMoreInformation', 'fr')}</Button>
+          <Baptistery open={open} onClose={handleClose} />
         </div>
       </div>
     </div>
