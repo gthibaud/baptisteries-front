@@ -1,80 +1,57 @@
 body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif !important;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-   /*  -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none; 
-    -ms-user-select: none; 
-    user-select: none;  */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
-html, body, #root, .leaflet-container {
-    width: 100%;
-    height: 100%;
-}
-
-.menu {
-    background-color: white;
-    border-radius: 6px;
-    position: absolute;
-    width: 360px;
-    top: 12px;
-    left: 12px;
-    z-index: 1000;
-    box-shadow: 0px 0px 8px RGBa(0,0,0,0.25);
-    max-width: 100%;
-    max-height: 95%;
-    overflow: scroll;
-}
-
-.menu-box {
-    margin: 32px;
-}
-
-.baptistere p {
-    margin-top: 0;
-    margin-bottom: 4px;
+.leaflet-container {
+  width: 100%;
+  height: 90vh;
 }
 
 h2 {
-    padding: 0;
-    margin: 0;
-    margin-bottom: 12px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #A3A3A3;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #a3a3a3;
 }
 
 h1 {
-    padding: 0;
-    margin: 0;
-    margin-bottom: 12px;
-    font-weight: 700;
-    font-size: 22px;
-    color: #0F0F0F;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 12px;
+  font-weight: 700;
+  font-size: 22px;
+  color: #0f0f0f;
 }
 
 h4 {
-    color: #A3A3A3;
-    margin-top: 16px;
-    margin-bottom: 4px;
-    font-size: 17px;
-    font-weight: 700;
+  color: #a3a3a3;
+  margin-top: 16px;
+  margin-bottom: 4px;
+  font-size: 17px;
+  font-weight: 700;
 }
 
 p {
-    font-size: 17px;
-    font-weight: 500;
+  font-size: 17px;
+  font-weight: 500;
 }
 
 .small-note {
