@@ -3,6 +3,7 @@ import { Map, ZoomControl, TileLayer } from "react-leaflet";
 import Point from "./Point";
 import api_key from "./../data/api_key.json";
 import { BaptistereContext } from "../contexts/BaptistereContext";
+import MapLegend from "./MapLegend";
 
 const Card = () => {
   const { detachBaptistere, baptisteriesList } = useContext(BaptistereContext);
@@ -23,6 +24,8 @@ const Card = () => {
       {baptisteriesList.map((baptistere) => (
         <Point data={baptistere} key={baptistere.id} />
       ))}
+
+      <MapLegend />
     </Map>
   );
 };
