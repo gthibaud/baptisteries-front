@@ -71,3 +71,7 @@ p {
     background-color: green;
 }
 
+.leaflet-bar {
+  right: 334px;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.40);
+}

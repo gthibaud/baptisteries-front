@@ -173,6 +173,36 @@ const locales = {
         fr: "certaine",
         en: "",
         it: ""
+    },
+    labelLegendSource: {
+        fr: "Source",
+        en: "",
+        it: ""
+    },
+    labelLegendExclusivelyFromHistoricalSources: {
+        fr: "basé uniquement sur des sources historiques",
+        en: "",
+        it: ""
+    },
+    labelLegendRadiusExact: {
+        fr: "exacte",
+        en: "",
+        it: ""
+    },
+    labelLegendRadiusMid: {
+        fr: "rayon < 500 m",
+        en: "",
+        it: ""
+    },
+    labelLegendRadiusLarge: {
+        fr: "rayon < 1 Km",
+        en: "",
+        it: ""
+    },
+    labelLegendRadiusVeryLarge: {
+        fr: "rayon < 10 Km",
+        en: "",
+        it: ""
     }
 }
 

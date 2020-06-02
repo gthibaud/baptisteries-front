@@ -6,15 +6,16 @@ import Diamond from '../images/Diamond';
 import Circle from '../images/Circle';
 import Rectangle from '../images/Rectangle';
 import Dot from '../images/Dot';
+import Halo from '../images/Halo';
 
 const useStyles = makeStyles((theme) => ({
     legend: {
         backgroundColor: "white",
         borderRadius: theme.spacing(0.6),
         position: "absolute",
-        width: "300px",
-        top: theme.spacing(9.3),
-        right: theme.spacing(2),
+        width: "260px",
+        top: theme.spacing(1.25),
+        right: theme.spacing(1.2),
         zIndex: "1000",
         boxShadow: "0px 0px 8px RGBa(0, 0, 0, 0.25)",
         maxWidth: "100%",
@@ -63,10 +64,16 @@ const useStyles = makeStyles((theme) => ({
     },
     description: {
         marginTop: 2,
-        marginBottom: 2
+        marginBottom: 2,
+        textAlign: "right"
     },
     svg: {
         opacity: 0.8
+    },
+    dot: {
+        marginTop: "auto",
+        marginBottom: "auto",
+        marginRight: 24,
     }
 }));
 
@@ -99,6 +106,13 @@ const MapLegend = () => {
                     <div className={classes.colorGold} />
                     <p className={classes.description}>{l('labelLegendPreciseInterval4', language)}</p>
                 </div>
+                <h4>{l('labelLegendSource', language)}</h4>
+                <div className={classes.legendItem}>
+                    <div className={classes.dot}>
+                        <Dot color="true" size={12} className={classes.dot} />
+                    </div>
+                    <p className={classes.description}>{l('labelLegendExclusivelyFromHistoricalSources', language)}</p>
+                </div>
                 <h4>{l('labelLegendFiability', language)}</h4>
                 <div className={classes.legendItem}>
                     <Diamond color="true" size={24} className={classes.svg} />
@@ -114,7 +128,20 @@ const MapLegend = () => {
                 </div>
                 <h4>{l('labelLegendAccurency', language)}</h4>
                 <div className={classes.legendItem}>
-                    <p>TODO</p>
+                    <Halo type={0} className={classes.svg} />
+                    <p className={classes.description}>{l('labelLegendRadiusExact', language)}</p>
+                </div>
+                <div className={classes.legendItem}>
+                    <Halo type={1} className={classes.svg} />
+                    <p className={classes.description}>{l('labelLegendRadiusMid', language)}</p>
+                </div>
+                <div className={classes.legendItem}>
+                    <Halo type={2} className={classes.svg} />
+                    <p className={classes.description}>{l('labelLegendRadiusLarge', language)}</p>
+                </div>
+                <div className={classes.legendItem}>
+                    <Halo type={3} className={classes.svg} />
+                    <p className={classes.description}>{l('labelLegendRadiusVeryLarge', language)}</p>
                 </div>
             </div>
         </div>
