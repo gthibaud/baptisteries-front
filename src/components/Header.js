@@ -3,6 +3,7 @@ import { Paper, Grid, Typography } from "@material-ui/core";
 import LanguagePicker from "./LanguagePicker";
 import { makeStyles } from "@material-ui/core/styles";
 import { labelHomePage, labelListPage } from "../constants/vocabulary";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     fontSize: "22px",
+    color: "black",
   },
 }));
 
@@ -39,9 +41,13 @@ export default function Header({ isOnCardView }) {
           >
             <Grid item>
               {isOnCardView ? (
-                <i className={"fa fa-list-ul " + classes.icon} />
+                <Link to={"/list"}>
+                  <i className={"fa fa-list-ul " + classes.icon} />
+                </Link>
               ) : (
-                <i className={"fa fa-map-marked-alt " + classes.icon} />
+                <Link to={"/"}>
+                  <i className={"fa fa-map-marked-alt " + classes.icon} />
+                </Link>
               )}
             </Grid>
             <Grid item>
