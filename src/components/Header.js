@@ -2,7 +2,7 @@ import React from "react";
 import { Paper, Grid, Typography } from "@material-ui/core";
 import LanguagePicker from "./LanguagePicker";
 import { makeStyles } from "@material-ui/core/styles";
-import { labelHomePage, labelListPage } from "../constants/vocabulary";
+import { labelHomePage, labelListPage } from "../constants/locales";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({

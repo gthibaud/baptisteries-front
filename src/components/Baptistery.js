@@ -25,9 +25,9 @@ const Baptistery = (props) => {
     };
 
     const capitalize = (str) => {
-        str = str || "  "
+        str = str || "  ";
         return str.charAt(0).toUpperCase() + str.slice(1);
-    }
+    };
 
     return (
         <Dialog aria-labelledby="simple-dialog-title" open={open} onClose={handleClose}>
@@ -41,7 +41,7 @@ const Baptistery = (props) => {
                 <p>{`${l('labelBaptisteryProvince', language)} : ${currentBaptistere.province}`}</p>
                 <p>{`${l('labelBaptisteryDioceseCivil', language)} : ${currentBaptistere.civilDiocese}`}</p>
                 <p>{`${l('labelBaptisteryDiocese', language)} : ${currentBaptistere.ecclesiasticalDiocese}`}</p>
-                <p>{`${l('labelBaptisteryDiocesePatriarchial', language)} : ${currentBaptistere.patriarchy}`}</p>
+                <p>{`${l('labelBaptisteryPatriarchy', language)} : ${currentBaptistere.patriarchy}`}</p>
                 <h4>{l('labelBaptisteryTechnicalSpecifications', language)}</h4>
                 <p>{`${l('labelBaptisteryNumberBasins', language)} : ${currentBaptistere.numberOfAdditionalBasins}`}</p>
                 <p>{`${l('labelBaptisteryMaximumDepth', language)} : ${currentBaptistere.maximumDepth}`}</p>

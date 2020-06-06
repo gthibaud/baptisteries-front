@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { BaptistereContext } from "../contexts/BaptistereContext";
 import { makeStyles } from "@material-ui/core/styles";
 import { GlobalContext } from "../contexts/GlobalContext";
-import { baptistereLabels } from "../constants/vocabulary";
+import { locales } from "../constants/locales";
 import "react-virtualized/styles.css";
 
 import { AutoSizer, Column, Table } from "react-virtualized";
@@ -59,27 +59,27 @@ export default function ListContainer() {
           >
             <Column
               className={classes.cell}
-              label={baptistereLabels.name[language]}
+              label={locales.labelBaptisteryName[language]}
               dataKey={"name"}
             />
             <Column
               className={classes.cell}
-              label={baptistereLabels.region[language]}
+              label={locales.labelBaptisteryRegion[language]}
               dataKey={"region"}
             />
             <Column
               className={classes.cell}
-              label={baptistereLabels.civilDiocese[language]}
+              label={locales.labelBaptisteryDioceseCivil[language]}
               dataKey={"civilDiocese"}
             />
             <Column
               className={classes.cell}
-              label={baptistereLabels.startingYear[language]}
+              label={locales.labelBaptisteryStartingYear[language]}
               dataKey={"startingYear"}
             />
             <Column
               className={classes.cell}
-              label={baptistereLabels.finalYear[language]}
+              label={locales.labelBaptisteryFinalYear[language]}
               dataKey={"finalYear"}
             />
           </Table>
