@@ -270,7 +270,6 @@ export const locales = {
 };
 
 const l = (value, langage) => {
-  console.log(value + " == " + locales[value][langage]);
   return locales[value][langage] || locales[value].en;
 };
 

@@ -17,7 +17,7 @@ const Point = ({ data }) => {
 
     const markerSize = () => {
         if (data.exclusivelyFromHistoricalSources) {
-            return 12
+            return 12;
         }
         switch (data.coordinatesAccuracy) {
             case 0:
