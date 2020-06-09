@@ -12,12 +12,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Baptistery = (props) => {
+const Baptistery = ({ onClose, open, currentBaptistere }) => {
   const { language } = useContext(GlobalContext);
-  const { currentBaptistere } = useContext(BaptistereContext);
   const classes = useStyles();
-
-  const { onClose, open } = props;
 
   const handleClose = () => {
     onClose();
@@ -27,7 +24,6 @@ const Baptistery = (props) => {
     str = str || "  ";
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
-  console.log(currentBaptistere);
 
   return (
     <Dialog

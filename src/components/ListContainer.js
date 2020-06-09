@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useReducer } from "react";
 import { BaptistereContext } from "../contexts/BaptistereContext";
 import { makeStyles } from "@material-ui/core/styles";
 import { GlobalContext } from "../contexts/GlobalContext";
@@ -7,6 +7,7 @@ import "react-virtualized/styles.css";
 
 import { AutoSizer, Column, Table } from "react-virtualized";
 import { Paper } from "@material-ui/core";
+import Baptistery from "./Baptistery";
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -27,15 +28,38 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0, 1),
     borderBottom: "solid 1px",
     borderBottomColor: "#90a4ae",
+    "&:hover": {
+      cursor: "pointer",
+    },
     "&.ReactVirtualized__Table__headerRow": {
       backgroundColor: "#f3f3f3",
       borderBottom: "none",
+      "&:hover": {
+        cursor: "auto",
+      },
     },
   },
 }));
 
+function stateReducer(state, action) {
+  return { ...state, ...action };
+}
+
 export default function ListContainer() {
   const classes = useStyles();
+
+  const [state, dispatch] = useReducer(stateReducer, {
+    open: false,
+    currentBaptistere: {},
+  });
+
+  const handleClickOpen = (selectedBaptistere) => {
+    dispatch({ open: true, currentBaptistere: selectedBaptistere });
+  };
+
+  const handleClose = () => {
+    dispatch({ open: false, currentBaptistere: {} });
+  };
 
   const { baptisteriesList } = useContext(BaptistereContext);
   const { language } = useContext(GlobalContext);
@@ -58,6 +82,7 @@ export default function ListContainer() {
             rowGetter={getData}
             headerClassName={classes.header}
             rowClassName={classes.row}
+            onRowClick={(row) => handleClickOpen(row.rowData)}
           >
             <Column
               className={classes.cell}
@@ -111,6 +136,11 @@ export default function ListContainer() {
           </Table>
         )}
       </AutoSizer>
+      <Baptistery
+        open={state.open}
+        onClose={handleClose}
+        currentBaptistere={state.currentBaptistere}
+      />
     </Paper>
   );
 }
