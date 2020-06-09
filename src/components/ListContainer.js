@@ -6,7 +6,7 @@ import { locales } from "../constants/locales";
 import "react-virtualized/styles.css";
 
 import { AutoSizer, Column, Table } from "react-virtualized";
-import Paper from "@material-ui/core/Paper";
+import { Paper } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -18,14 +18,19 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
   },
   header: {
-    padding: theme.spacing(2),
     width: "100%",
   },
   column: {
     textTransform: "none",
   },
   row: {
-    borderBottom: "solid black 1px",
+    padding: theme.spacing(0, 1),
+    borderBottom: "solid 1px",
+    borderBottomColor: "#90a4ae",
+    "&.ReactVirtualized__Table__headerRow": {
+      backgroundColor: "#f3f3f3",
+      borderBottom: "none",
+    },
   },
 }));
 
@@ -38,17 +43,7 @@ export default function ListContainer() {
 
   if (nbBaptisteries === 0) return <></>;
 
-  const baptisteriesInfo = baptisteriesList.map((baptistere) => {
-    return {
-      name: baptistere.name,
-      region: baptistere.region,
-      civilDiocese: baptistere.civilDiocese,
-      startingYear: baptistere.startingYear,
-      finalYear: baptistere.finalYear,
-    };
-  });
-
-  const getData = ({ index }) => baptisteriesInfo[index];
+  const getData = ({ index }) => baptisteriesList[index];
 
   return (
     <Paper className={classes.body}>
@@ -57,7 +52,7 @@ export default function ListContainer() {
           <Table
             height={height}
             width={width}
-            headerHeight={80}
+            headerHeight={60}
             rowCount={nbBaptisteries}
             rowHeight={60}
             rowGetter={getData}
@@ -78,8 +73,26 @@ export default function ListContainer() {
             />
             <Column
               className={classes.cell}
-              label={locales.labelBaptisteryDioceseCivil[language]}
-              dataKey={"civilDiocese"}
+              label={locales.labelBaptisteryProvince[language]}
+              dataKey={"province"}
+              headerClassName={classes.column}
+            />
+            <Column
+              className={classes.cell}
+              label={locales.labelBaptisteryDiocese[language]}
+              dataKey={"ecclesiasticalDiocese"}
+              headerClassName={classes.column}
+            />
+            <Column
+              className={classes.cell}
+              label={locales.labelBaptisteryPatriarchy[language]}
+              dataKey={"patriarchy"}
+              headerClassName={classes.column}
+            />
+            <Column
+              className={classes.cell}
+              label={locales.labelBaptisterySettlementContext[language]}
+              dataKey={"settlementContext"}
               headerClassName={classes.column}
             />
             <Column
@@ -88,6 +101,7 @@ export default function ListContainer() {
               dataKey={"startingYear"}
               headerClassName={classes.column}
             />
+
             <Column
               className={classes.cell}
               label={locales.labelBaptisteryFinalYear[language]}

@@ -106,6 +106,14 @@ const Baptistery = (props) => {
 
         <h4>{l("labelBaptisteryTechnicalSpecifications", language)}</h4>
 
+        {currentBaptistere.labelBaptisterySettlementContext && (
+          <p>
+            {`${l("labelBaptisterySettlementContext", language)} : ${
+              currentBaptistere.settlementContext
+            }`}
+          </p>
+        )}
+
         {currentBaptistere.numberOfAdditionalBasins !== undefined && (
           <p>
             {`${l("labelBaptisteryNumberBasins", language)} : ${
@@ -124,7 +132,7 @@ const Baptistery = (props) => {
 
         {currentBaptistere.maximumPreservedDepth && (
           <p>
-            {`${l("labelBaptisterymaximumPreservedDepth", language)} : ${
+            {`${l("labelBaptisteryMaximumPreservedDepth", language)} : ${
               currentBaptistere.maximumPreservedDepth
             }`}
           </p>

@@ -111,7 +111,7 @@ export const locales = {
     it: "Categoria edificio",
     en: "Religious building category",
   },
-  labelSettlementContext: {
+  labelBaptisterySettlementContext: {
     fr: "Contexte de l’habitat",
     it: "Contesto",
     en: "Settlement context",
