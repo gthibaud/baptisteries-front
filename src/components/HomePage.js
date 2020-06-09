@@ -3,9 +3,9 @@ import Card from "./Card";
 import PointSummaryContainer from "./PointSummaryContainer";
 import PageLayout from "./PageLayout";
 
-export default function HomePage({ isOnCardView }) {
+export default function HomePage() {
   return (
-    <PageLayout isOnCardView={isOnCardView}>
+    <PageLayout isOnCardView={true}>
       <PointSummaryContainer />
       <Card />
     </PageLayout>

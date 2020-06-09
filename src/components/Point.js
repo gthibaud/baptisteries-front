@@ -17,7 +17,7 @@ const Point = ({ data }) => {
 
     const markerSize = () => {
         if (data.exclusivelyFromHistoricalSources) {
-            return 12
+            return 12;
         }
         switch (data.coordinatesAccuracy) {
             case 0:
@@ -29,7 +29,7 @@ const Point = ({ data }) => {
             case 3:
                 return 60;
         }
-    }
+    };
 
     const pointSize = markerSize();
 
@@ -45,7 +45,7 @@ const Point = ({ data }) => {
             case 3:
                 return ReactDOMServer.renderToString(<Rectangle color="true" size={pointSize} />);
         }
-    }
+    };
 
     const pointIcon = L.divIcon({
         className: "test",

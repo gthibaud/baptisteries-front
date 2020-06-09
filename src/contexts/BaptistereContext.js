@@ -37,30 +37,6 @@ const BaptistereContextProvider = ({ children }) => {
 
   // Sets the current baptistere that is focused and map
   const setCurrentFocusedBaptistere = (baptistere) => {
-    baptistere.region = state.regions.find(
-      (region) => region.id === baptistere.regionId
-    )?.name;
-    baptistere.ecclesiasticalDiocese = state.ecclesiasticalDioceses.find(
-      (ecclesiasticalDiocese) =>
-        ecclesiasticalDiocese.id === baptistere.ecclesiasticalDioceseId
-    )?.name;
-    baptistere.civilDiocese = state.civilDioceses.find(
-      (civilDiocese) => civilDiocese.id === baptistere.civilDioceseId
-    )?.name;
-    baptistere.patriarchy = state.patriarchies.find(
-      (patriarchy) => patriarchy.id === baptistere.patriarchyId
-    )?.name;
-    baptistere.province = state.provinces.find(
-      (province) => province.id === baptistere.provinceId
-    )?.name;
-    baptistere.buildingCategory = state.buildingCategories.find(
-      (buildingCategory) =>
-        buildingCategory.id === baptistere.buildingCategoryId
-    )?.name;
-    baptistere.settlementContext = state.settlementContexts.find(
-      (settlementContext) =>
-        settlementContext.id === baptistere.settlementContextId
-    )?.name;
     dispatch({ currentBaptistere: baptistere });
   };
 
@@ -72,15 +48,54 @@ const BaptistereContextProvider = ({ children }) => {
   // Updates the lists after data have changed
   const updateBaptisteriesList = () => {
     const { baptisteriesData } = state;
+
+    const baptisteriesList = baptisteriesData.baptisteries || [];
+    const regions = baptisteriesData.regions || [];
+    const ecclesiasticalDioceses =
+      baptisteriesData.ecclesiasticalDioceses || [];
+    const civilDioceses = baptisteriesData.civilDioceses || [];
+    const patriarchies = baptisteriesData.patriarchies || [];
+    const provinces = baptisteriesData.provinces || [];
+    const buildingCategories = baptisteriesData.buildingCategories || [];
+    const settlementContexts = baptisteriesData.settlementContexts || [];
+
+    const baptisteriesFormatted = baptisteriesList.map((baptistere) => {
+      baptistere.region = regions.find(
+        (region) => region.id === baptistere.regionId
+      )?.name;
+      baptistere.ecclesiasticalDiocese = ecclesiasticalDioceses.find(
+        (ecclesiasticalDiocese) =>
+          ecclesiasticalDiocese.id === baptistere.ecclesiasticalDioceseId
+      )?.name;
+      baptistere.civilDiocese = civilDioceses.find(
+        (civilDiocese) => civilDiocese.id === baptistere.civilDioceseId
+      )?.name;
+      baptistere.patriarchy = patriarchies.find(
+        (patriarchy) => patriarchy.id === baptistere.patriarchyId
+      )?.name;
+      baptistere.province = provinces.find(
+        (province) => province.id === baptistere.provinceId
+      )?.name;
+      baptistere.buildingCategory = buildingCategories.find(
+        (buildingCategory) =>
+          buildingCategory.id === baptistere.buildingCategoryId
+      )?.name;
+      baptistere.settlementContext = settlementContexts.find(
+        (settlementContext) =>
+          settlementContext.id === baptistere.settlementContextId
+      )?.name;
+      return baptistere;
+    });
+
     dispatch({
-      baptisteriesList: baptisteriesData.baptisteries || [],
-      regions: baptisteriesData.regions || [],
-      ecclesiasticalDioceses: baptisteriesData.ecclesiasticalDioceses || [],
-      civilDioceses: baptisteriesData.civilDioceses || [],
-      patriarchies: baptisteriesData.patriarchies || [],
-      provinces: baptisteriesData.provinces || [],
-      buildingCategories: baptisteriesData.buildingCategories || [],
-      settlementContexts: baptisteriesData.settlementContexts || [],
+      baptisteriesList: baptisteriesFormatted,
+      regions,
+      ecclesiasticalDioceses,
+      civilDioceses,
+      patriarchies,
+      provinces,
+      buildingCategories,
+      settlementContexts,
     });
   };
 

@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(1.5),
     paddingLeft: theme.spacing(3),
     paddingRight: theme.spacing(3),
+    marginTop: "auto",
   },
   smallNote: {
     fontSize: "14px",
