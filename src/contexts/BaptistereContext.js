@@ -99,7 +99,6 @@ const BaptistereContextProvider = ({ children }) => {
     });
   };
 
-  // TODO : verify why these calls are fused + move this in a service file
   const fetchBaptisteres = () => {
     axios
       .get("http://localhost:3003/baptisteries-cache")
@@ -109,7 +108,6 @@ const BaptistereContextProvider = ({ children }) => {
         axios
           .get("http://localhost:3003/baptisteries-update")
           .then((res) => {
-            // TODO marche pas
             if (res.data.status === "updated") {
               dispatch({ baptisteriesData: res.data.data });
             }

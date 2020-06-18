@@ -80,7 +80,7 @@ const PointSummaryContainer = () => {
             className={classes.button}
             onClick={handleClickOpen}
           >
-            {l("buttonMoreInformation", "fr")}
+            {l("buttonMoreInformation", language)}
           </Button>
           <Baptistery
             open={open}

@@ -1,13 +1,13 @@
-import React, { useContext, useReducer } from "react";
-import { BaptistereContext } from "../contexts/BaptistereContext";
+import React, { useContext, useEffect, useReducer } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { GlobalContext } from "../contexts/GlobalContext";
 import { locales } from "../constants/locales";
 import "react-virtualized/styles.css";
-
 import { AutoSizer, Column, Table } from "react-virtualized";
 import { Paper } from "@material-ui/core";
 import Baptistery from "./Baptistery";
+import FiltresContainer from "./FiltresContainer";
+import { BaptistereContext } from "../contexts/BaptistereContext";
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -47,10 +47,18 @@ function stateReducer(state, action) {
 
 export default function ListContainer() {
   const classes = useStyles();
+  const { baptisteriesList } = useContext(BaptistereContext);
+
+  useEffect(() => {
+    dispatch({ baptisteries: [...baptisteriesList] });
+  }, [baptisteriesList]);
 
   const [state, dispatch] = useReducer(stateReducer, {
     open: false,
     currentBaptistere: {},
+    baptisteries: [...baptisteriesList],
+    currentSortBy: "name",
+    currentSortDirection: undefined,
   });
 
   const handleClickOpen = (selectedBaptistere) => {
@@ -61,86 +69,109 @@ export default function ListContainer() {
     dispatch({ open: false, currentBaptistere: {} });
   };
 
-  const { baptisteriesList } = useContext(BaptistereContext);
   const { language } = useContext(GlobalContext);
-  const nbBaptisteries = baptisteriesList ? baptisteriesList.length : 0;
+  const nbBaptisteries = state.baptisteries ? state.baptisteries.length : 0;
 
   if (nbBaptisteries === 0) return <></>;
 
-  const getData = ({ index }) => baptisteriesList[index];
+  const getData = ({ index }) => state.baptisteries[index];
+
+  const sort = ({ sortBy, sortDirection }) => {
+    let newOrder = state.baptisteries.sort((bapt1, bapt2) =>
+      bapt1[sortBy] > bapt2[sortBy] ? 1 : bapt2[sortBy] > bapt1[sortBy] ? -1 : 0
+    );
+
+    if (sortDirection === "DESC") {
+      newOrder = newOrder.reverse();
+    }
+
+    console.log(sortBy);
+
+    dispatch({
+      baptisteries: newOrder,
+      currentSortBy: sortBy,
+      currentSortDirection: sortDirection,
+    });
+  };
 
   return (
-    <Paper className={classes.body}>
-      <AutoSizer>
-        {({ height, width }) => (
-          <Table
-            height={height}
-            width={width}
-            headerHeight={60}
-            rowCount={nbBaptisteries}
-            rowHeight={60}
-            rowGetter={getData}
-            headerClassName={classes.header}
-            rowClassName={classes.row}
-            onRowClick={(row) => handleClickOpen(row.rowData)}
-          >
-            <Column
-              className={classes.cell}
-              label={locales.labelBaptisteryName[language]}
-              dataKey={"name"}
-              headerClassName={classes.column}
-            />
-            <Column
-              className={classes.cell}
-              label={locales.labelBaptisteryRegion[language]}
-              dataKey={"region"}
-              headerClassName={classes.column}
-            />
-            <Column
-              className={classes.cell}
-              label={locales.labelBaptisteryProvince[language]}
-              dataKey={"province"}
-              headerClassName={classes.column}
-            />
-            <Column
-              className={classes.cell}
-              label={locales.labelBaptisteryDiocese[language]}
-              dataKey={"ecclesiasticalDiocese"}
-              headerClassName={classes.column}
-            />
-            <Column
-              className={classes.cell}
-              label={locales.labelBaptisteryPatriarchy[language]}
-              dataKey={"patriarchy"}
-              headerClassName={classes.column}
-            />
-            <Column
-              className={classes.cell}
-              label={locales.labelBaptisterySettlementContext[language]}
-              dataKey={"settlementContext"}
-              headerClassName={classes.column}
-            />
-            <Column
-              className={classes.cell}
-              label={locales.labelBaptisteryStartingYear[language]}
-              dataKey={"startingYear"}
-              headerClassName={classes.column}
-            />
+    <>
+      <FiltresContainer />
+      <Paper className={classes.body}>
+        <AutoSizer>
+          {({ height, width }) => (
+            <Table
+              height={height}
+              width={width}
+              headerHeight={60}
+              rowCount={nbBaptisteries}
+              rowHeight={60}
+              rowGetter={getData}
+              sort={sort}
+              sortBy={state.currentSortBy}
+              sortDirection={state.currentSortDirection}
+              headerClassName={classes.header}
+              rowClassName={classes.row}
+              onRowClick={(row) => handleClickOpen(row.rowData)}
+            >
+              <Column
+                className={classes.cell}
+                label={locales.labelBaptisteryName[language]}
+                dataKey={"name"}
+                headerClassName={classes.column}
+              />
+              <Column
+                className={classes.cell}
+                label={locales.labelBaptisteryRegion[language]}
+                dataKey={"region"}
+                headerClassName={classes.column}
+              />
+              <Column
+                className={classes.cell}
+                label={locales.labelBaptisteryProvince[language]}
+                dataKey={"province"}
+                headerClassName={classes.column}
+              />
+              <Column
+                className={classes.cell}
+                label={locales.labelBaptisteryDiocese[language]}
+                dataKey={"ecclesiasticalDiocese"}
+                headerClassName={classes.column}
+              />
+              <Column
+                className={classes.cell}
+                label={locales.labelBaptisteryPatriarchy[language]}
+                dataKey={"patriarchy"}
+                headerClassName={classes.column}
+              />
+              <Column
+                className={classes.cell}
+                label={locales.labelBaptisterySettlementContext[language]}
+                dataKey={"settlementContext"}
+                headerClassName={classes.column}
+              />
+              <Column
+                className={classes.cell}
+                label={locales.labelBaptisteryStartingYear[language]}
+                dataKey={"startingYear"}
+                headerClassName={classes.column}
+              />
 
-            <Column
-              className={classes.cell}
-              label={locales.labelBaptisteryFinalYear[language]}
-              dataKey={"finalYear"}
-              headerClassName={classes.column}
-            />
-          </Table>
-        )}
-      </AutoSizer>
-      <Baptistery
-        open={state.open}
-        onClose={handleClose}
-        currentBaptistere={state.currentBaptistere}
-      />
-    </Paper>
+              <Column
+                className={classes.cell}
+                label={locales.labelBaptisteryFinalYear[language]}
+                dataKey={"finalYear"}
+                headerClassName={classes.column}
+              />
+            </Table>
+          )}
+        </AutoSizer>
+        <Baptistery
+          open={state.open}
+          onClose={handleClose}
+          currentBaptistere={state.currentBaptistere}
+        />
+      </Paper>
+    </>
   );
 }
