@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 import { Paper, Grid, Typography } from "@material-ui/core";
 import LanguagePicker from "./LanguagePicker";
 import { makeStyles } from "@material-ui/core/styles";
-import l from '../constants/locales';
+import l from "../constants/locales";
 import { Link } from "react-router-dom";
 import { GlobalContext } from "../contexts/GlobalContext";
-import LogoHumaNum from "../images/humanum.png"
+import LogoHumaNum from "../images/humanum.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,8 +19,8 @@ const useStyles = makeStyles((theme) => ({
     color: "black",
   },
   logoHumaNum: {
-    height: "28px"
-  }
+    height: "28px",
+  },
 }));
 
 export default function Header({ isOnCardView }) {
@@ -31,11 +31,17 @@ export default function Header({ isOnCardView }) {
     <Paper className={classes.root}>
       <Grid container justify={"space-between"} alignItems={"center"}>
         <Grid item xs={2}>
-          <img src={LogoHumaNum} className={classes.logoHumaNum} />
+          <img
+            alt={"logoHumaNum"}
+            src={LogoHumaNum}
+            className={classes.logoHumaNum}
+          />
         </Grid>
         <Grid item>
           <Typography variant={"h6"}>
-            {isOnCardView ? l('labelHomePage', language) : l('labelListPage', language)}
+            {isOnCardView
+              ? l("labelHomePage", language)
+              : l("labelListPage", language)}
           </Typography>
         </Grid>
         <Grid item xs={2}>

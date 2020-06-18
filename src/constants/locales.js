@@ -1,15 +1,3 @@
-export const labelHomePage = {
-  fr: "Carte des baptistères paléochrétiens du bassin méditerranéen",
-  it: "",
-  en: "",
-};
-
-export const labelListPage = {
-  fr: "Liste des baptistères paléochrétiens du bassin méditerranéen",
-  it: "",
-  en: "",
-};
-
 export const locales = {
   labelBaptisteryPreview: {
     fr: "Aperçu",
@@ -19,12 +7,12 @@ export const locales = {
   labelHomePage: {
     fr: "Carte des baptistères paléochrétiens du bassin méditerranéen",
     en: "",
-    it: ""
+    it: "",
   },
   labelListPage: {
     fr: "Liste des baptistères paléochrétiens du bassin méditerranéen",
     en: "",
-    it: ""
+    it: "",
   },
   labelBaptisteryDates: {
     fr: "Dates",
@@ -92,8 +80,8 @@ export const locales = {
     it: "",
   },
   labelBaptisteryTechnicalSpecifications: {
-    fr: "Spécifications techniques",
-    en: "Technical specifications",
+    fr: "Description",
+    en: "Description",
     it: "",
   },
   labelBaptisteryGeography: {
