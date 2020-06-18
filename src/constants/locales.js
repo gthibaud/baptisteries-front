@@ -16,6 +16,16 @@ export const locales = {
     en: "Preview",
     it: "",
   },
+  labelHomePage: {
+    fr: "Carte des baptistères paléochrétiens du bassin méditerranéen",
+    en: "",
+    it: ""
+  },
+  labelListPage: {
+    fr: "Liste des baptistères paléochrétiens du bassin méditerranéen",
+    en: "",
+    it: ""
+  },
   labelBaptisteryDates: {
     fr: "Dates",
     en: "Dates",
@@ -45,6 +55,11 @@ export const locales = {
     fr: "Diocèse ecclésiastique",
     it: "Diocesi",
     en: "Ecclesiastical diocese",
+  },
+  labelBaptisteryDiocesePatriarchial: {
+    fr: "Patriarcat",
+    en: "",
+    it: ""
   },
   labelBaptisteryPatriarchy: {
     fr: "Patriarcat",
@@ -82,7 +97,7 @@ export const locales = {
     it: "",
   },
   labelBaptisteryTechnicalSpecifications: {
-    fr: "Spécifications techniques",
+    fr: "Description",
     en: "",
     it: "",
   },
@@ -92,7 +107,7 @@ export const locales = {
     it: "",
   },
   labelBaptisteryPlans: {
-    fr: "Plans techniques",
+    fr: "Plans",
     en: "",
     it: "",
   },
@@ -117,7 +132,7 @@ export const locales = {
     en: "Settlement context",
   },
   labelBaptisteryNumberBasins: {
-    fr: "Nombre bassins secondaires",
+    fr: "Nombre bassins additionnels",
     it: "Numero vasche accessorie",
     en: "Number of additional basins",
   },
@@ -148,12 +163,12 @@ export const locales = {
   },
   labelBaptisteryOnlyHistoricalSources: {
     fr:
-      "Cette fiche a été constituée sur la base uniquement de sources historiques.",
+      "Baptistère connu uniquement de sources historiques.",
     en: "",
     it: "",
   },
   labelBaptisteryNotAvailable: {
-    fr: "Les plans techniques de cette fiche ne sont pas encore disponibles.",
+    fr: "Le plan n'est pas disponible.",
     en: "",
     it: "",
   },
@@ -203,17 +218,17 @@ export const locales = {
     it: "",
   },
   labelLegendPreciseInterval1: {
-    fr: "201-400 (IIIe/IVe s.)",
+    fr: "201-400 (IIIe – IVe s.)",
     en: "",
     it: "",
   },
   labelLegendPreciseInterval2: {
-    fr: "301-500 (IVe/Ve s.)",
+    fr: "301-500 (IVe – Ve s.)",
     en: "",
     it: "",
   },
   labelLegendPreciseInterval3: {
-    fr: "501-700 (VIe/VIIe s.)",
+    fr: "501-700 (VIe – VIIe s.)",
     en: "",
     it: "",
   },
@@ -243,9 +258,9 @@ export const locales = {
     it: "",
   },
   labelLegendExclusivelyFromHistoricalSources: {
-    fr: "Baptistère connu seulement des sources historiques",
-    it: "Battistero noto esclusivamente da fonti storiche",
-    en: "Baptistery known exclusively from historical sources",
+    fr: "connu uniquement de sources historiques",
+    it: "noto esclusivamente da fonti storiche",
+    en: "known exclusively from historical sources",
   },
   labelLegendRadiusExact: {
     fr: "exacte",

@@ -17,7 +17,7 @@ const Point = ({ data }) => {
 
     const markerSize = () => {
         if (data.exclusivelyFromHistoricalSources) {
-            return 12;
+            return 12
         }
         switch (data.coordinatesAccuracy) {
             case 0:
@@ -28,24 +28,49 @@ const Point = ({ data }) => {
                 return 50;
             case 3:
                 return 60;
+            default:
+                return 0;
         }
-    };
+    }
 
     const pointSize = markerSize();
 
+    const centuryIndex = (year) => Math.round(1 + ((year - 1) / 100))
+
+    const pointColor = (startingDate, endDate) => {
+        const startingIndex = centuryIndex(startingDate)
+        const finalIndex = centuryIndex(endDate)
+        const indexGap = finalIndex - startingIndex
+        console.log(indexGap, startingIndex)
+        if (indexGap === 0) {
+            return "#FF7E79"
+        }
+        if (indexGap === 1 && startingIndex === 3) {
+            return "#76D6FF"
+        }
+        if (indexGap === 1 && startingIndex === 4) {
+            return "#D783FF"
+        }
+        if (indexGap === 1 && startingIndex === 6) {
+            return "#A4FB79"
+        }
+        return "#FFFC79"
+    }
+
     const markerShape = () => {
+        const color = pointColor(data.startingYear, data.finalYear)
         if (data.exclusivelyFromHistoricalSources) {
-            return ReactDOMServer.renderToString(<Dot color="true" />);
+            return ReactDOMServer.renderToString(<Dot fill={color} />);
         }
         switch (data.recordReliability) {
             case 1:
-                return ReactDOMServer.renderToString(<Diamond color="true" size={pointSize} />);
+                return ReactDOMServer.renderToString(<Diamond fill={color} size={pointSize} />);
             case 2:
-                return ReactDOMServer.renderToString(<Circle color="true" size={pointSize} />);
+                return ReactDOMServer.renderToString(<Circle fill={color} size={pointSize} />);
             case 3:
-                return ReactDOMServer.renderToString(<Rectangle color="true" size={pointSize} />);
+                return ReactDOMServer.renderToString(<Rectangle fill={color} size={pointSize} />);
         }
-    };
+    }
 
     const pointIcon = L.divIcon({
         className: "test",
@@ -65,4 +90,3 @@ const Point = ({ data }) => {
 };
 
 export default Point;
-
