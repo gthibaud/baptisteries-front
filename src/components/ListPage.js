@@ -3,7 +3,6 @@ import PageLayout from "./PageLayout";
 import ListContainer from "./ListContainer";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
-import FiltresContainer from "./FiltresContainer";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,7 +18,6 @@ export default function ListPage() {
   return (
     <PageLayout isOnCardView={false}>
       <Container maxWidth={"xl"} className={classes.root}>
-        <FiltresContainer />
         <ListContainer />
       </Container>
     </PageLayout>
