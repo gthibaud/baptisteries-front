@@ -56,11 +56,6 @@ export const locales = {
     it: "Diocesi",
     en: "Ecclesiastical diocese",
   },
-  labelBaptisteryDiocesePatriarchial: {
-    fr: "Patriarcat",
-    en: "",
-    it: ""
-  },
   labelBaptisteryPatriarchy: {
     fr: "Patriarcat",
     it: "Patriarcato",
@@ -93,27 +88,27 @@ export const locales = {
   },
   buttonMoreInformation: {
     fr: "Plus d'informations",
-    en: "",
+    en: "More information",
     it: "",
   },
   labelBaptisteryTechnicalSpecifications: {
-    fr: "Description",
-    en: "",
+    fr: "Spécifications techniques",
+    en: "Technical specifications",
     it: "",
   },
   labelBaptisteryGeography: {
     fr: "Géographie",
-    en: "",
+    en: "Geography",
     it: "",
   },
   labelBaptisteryPlans: {
-    fr: "Plans",
-    en: "",
+    fr: "Plans techniques",
+    en: "Technical plans",
     it: "",
   },
   labelBaptisteryCoordinates: {
     fr: "Coordonnées",
-    en: "",
+    en: "Coordinates",
     it: "",
   },
   labelBaptisteryRegion: {
@@ -162,59 +157,58 @@ export const locales = {
     en: "Bibliography",
   },
   labelBaptisteryOnlyHistoricalSources: {
-    fr:
-      "Baptistère connu uniquement de sources historiques.",
-    en: "",
-    it: "",
+    fr: "Baptistère connu seulement des sources historiques",
+    it: "Battistero noto esclusivamente da fonti storiche",
+    en: "Baptistery known exclusively from historical sources",
   },
   labelBaptisteryNotAvailable: {
     fr: "Le plan n'est pas disponible.",
-    en: "",
+    en: "The plan is not available",
     it: "",
   },
   labelBaptisteryAccuracy0: {
     fr: "précision exacte",
-    en: "",
+    en: "exact accuracy",
     it: "",
   },
   labelBaptisteryAccuracy1: {
-    fr: "rayon < 500 mètres",
-    en: "",
+    fr: "rayon < 500 m",
+    en: "radius < 500 m",
     it: "",
   },
   labelBaptisteryAccuracy2: {
-    fr: "rayon ≃ 1 Km",
-    en: "",
+    fr: "rayon < 1 Km",
+    en: "radius < 1 Km",
     it: "",
   },
   labelBaptisteryAccuracy3: {
-    fr: "rayon ≃ 10 Km",
-    en: "",
+    fr: "rayon < 10 Km",
+    en: "radius < 10 Km",
     it: "",
   },
   labelLegendTitle: {
     fr: "Légende",
-    en: "",
+    en: "Legend",
     it: "",
   },
   labelLegendChronology: {
     fr: "Chronologie",
-    en: "",
+    en: "Chronology",
     it: "",
   },
   labelLegendFiability: {
     fr: "Fiabilité des données",
-    en: "",
+    en: "Coordinates accuracy",
     it: "",
   },
   labelLegendAccurency: {
     fr: "Précision géographique",
-    en: "",
+    en: "Geographic accuracy",
     it: "",
   },
   labelLegendPreciseDate: {
     fr: "Date précise",
-    en: "",
+    en: "Precise date",
     it: "",
   },
   labelLegendPreciseInterval1: {
@@ -233,13 +227,13 @@ export const locales = {
     it: "",
   },
   labelLegendPreciseInterval4: {
-    fr: "incertaine",
-    en: "",
+    fr: "Incertaine",
+    en: "Uncertain",
     it: "",
   },
   labelLegendLow: {
     fr: "faible",
-    en: "",
+    en: "low",
     it: "",
   },
   labelLegendMid: {
@@ -254,32 +248,7 @@ export const locales = {
   },
   labelLegendSource: {
     fr: "Source",
-    en: "",
-    it: "",
-  },
-  labelLegendExclusivelyFromHistoricalSources: {
-    fr: "connu uniquement de sources historiques",
-    it: "noto esclusivamente da fonti storiche",
-    en: "known exclusively from historical sources",
-  },
-  labelLegendRadiusExact: {
-    fr: "exacte",
-    en: "",
-    it: "",
-  },
-  labelLegendRadiusMid: {
-    fr: "rayon < 500 m",
-    en: "",
-    it: "",
-  },
-  labelLegendRadiusLarge: {
-    fr: "rayon < 1 Km",
-    en: "",
-    it: "",
-  },
-  labelLegendRadiusVeryLarge: {
-    fr: "rayon < 10 Km",
-    en: "",
+    en: "Source",
     it: "",
   },
 };

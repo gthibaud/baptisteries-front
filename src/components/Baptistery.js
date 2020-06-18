@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { BaptistereContext } from "../contexts/BaptistereContext";
 import { Dialog, Paper } from "@material-ui/core";
 import l from "../constants/locales";
 import { GlobalContext } from "../contexts/GlobalContext";
