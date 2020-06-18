@@ -48,6 +48,7 @@ function stateReducer(state, action) {
 export default function ListContainer() {
   const classes = useStyles();
   const { baptisteriesList } = useContext(BaptistereContext);
+  const { language } = useContext(GlobalContext);
 
   useEffect(() => {
     dispatch({ baptisteries: [...baptisteriesList] });
@@ -69,7 +70,6 @@ export default function ListContainer() {
     dispatch({ open: false, currentBaptistere: {} });
   };
 
-  const { language } = useContext(GlobalContext);
   const nbBaptisteries = state.baptisteries ? state.baptisteries.length : 0;
 
   if (nbBaptisteries === 0) return <></>;
@@ -84,8 +84,6 @@ export default function ListContainer() {
     if (sortDirection === "DESC") {
       newOrder = newOrder.reverse();
     }
-
-    console.log(sortBy);
 
     dispatch({
       baptisteries: newOrder,

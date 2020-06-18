@@ -18,7 +18,7 @@ function App() {
             <Route exact path={"/list"}>
               <ListPage />
             </Route>
-            <Route path='/:baptisteryId' component={Baptistery} />
+            <Route path="/:baptisteryId" component={Baptistery} />
           </Switch>
         </BrowserRouter>
       </BaptistereContextProvider>
