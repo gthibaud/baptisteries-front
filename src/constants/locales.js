@@ -1,4 +1,14 @@
 export const locales = {
+  labelFilters: {
+    fr: "Filtres",
+    en: "Filters",
+    it: "Filtri",
+  },
+  labelCancelResearch: {
+    fr: "Effacer la recherche",
+    en: "Cancel research",
+    it: "Cancella ricerca",
+  },
   labelBaptisteryPreview: {
     fr: "Aperçu",
     en: "Preview",
@@ -60,7 +70,7 @@ export const locales = {
     en: "Coordinates accuracy",
   },
   labelBaptisteryRecordReliability: {
-    fr: "Fiabilité",
+    fr: "Fiabilité des données",
     it: "Affidabilità",
     en: "Record reliability",
   },
@@ -184,11 +194,6 @@ export const locales = {
     en: "Chronology",
     it: "",
   },
-  labelLegendFiability: {
-    fr: "Fiabilité des données",
-    en: "Coordinates accuracy",
-    it: "",
-  },
   labelLegendAccurency: {
     fr: "Précision géographique",
     en: "Geographic accuracy",
@@ -219,18 +224,18 @@ export const locales = {
     en: "Uncertain",
     it: "",
   },
-  labelLegendLow: {
-    fr: "faible",
-    en: "low",
+  labelLegendReliability1: {
+    fr: "Faible",
+    en: "Low",
     it: "",
   },
-  labelLegendMid: {
-    fr: "moyenne",
+  labelLegendReliability2: {
+    fr: "Moyenne",
     en: "",
     it: "",
   },
-  labelLegendHigh: {
-    fr: "certaine",
+  labelLegendReliability3: {
+    fr: "Certaine",
     en: "",
     it: "",
   },

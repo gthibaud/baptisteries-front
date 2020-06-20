@@ -1,12 +1,40 @@
-import React, { useContext, useReducer } from "react";
-import { FormControl, Paper, InputLabel, Select } from "@material-ui/core";
+import React, { useContext, useEffect, useReducer } from "react";
+import {
+  Button,
+  Chip,
+  FormControl,
+  FormControlLabel,
+  Grid,
+  Paper,
+  InputLabel,
+  Select,
+  TextField,
+  Switch,
+} from "@material-ui/core";
+import CancelIcon from "@material-ui/icons/Cancel";
 import { makeStyles } from "@material-ui/core/styles";
 import { GlobalContext } from "../contexts/GlobalContext";
+import { BaptistereContext } from "../contexts/BaptistereContext";
+import l from "../constants/locales";
+import { FilterContext } from "../contexts/FilterContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: theme.spacing(2, 3),
     marginBottom: theme.spacing(2),
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 300,
+  },
+  container: {
+    margin: theme.spacing(1),
+  },
+  button: {
+    textTransform: "none",
+  },
+  chip: {
+    marginRight: theme.spacing(1),
   },
 }));
 
@@ -17,61 +45,305 @@ function stateReducer(state, action) {
 export default function FiltresContainer() {
   const classes = useStyles();
   const { language } = useContext(GlobalContext);
+  const {
+    filters,
+    handleChange,
+    handleChangeNumber,
+    handleChangeToggle,
+    cancelAllFilters,
+    cancelFilter,
+  } = useContext(FilterContext);
+  const { regions, buildingCategories, settlementContexts } = useContext(
+    BaptistereContext
+  );
 
   const initState = {
-    region: "", // dropdown
-    buildingCategory: "", // dropdown
-    settlementContext: "", //dropdown
-    name: "", // input libre
-    coordinatesAccuracy: "", // 0, 1, 2, 3
-    recordReliability: "", // 1, 2, 3
-    maximumDepth: "", // double
-    maximumPreservedDepth: "", // double
-    exclusivelyFromHistoricalSources: "", // toggle ou checkbox
-    numberOfAdditionalBasins: "", //integer
+    regionLabels: [],
+    buildingLabels: [],
+    settlementLabels: [],
   };
 
   const [state, dispatch] = useReducer(stateReducer, initState);
 
-  // To cancel all filters
-  const cancelAllFilters = () => dispatch(initState);
+  useEffect(() => {
+    loadLabels(language);
+  }, [language]);
 
-  // To cancel a specific filter
-  const cancelFilter = (event) => {
-    const name = event.target.name;
-    dispatch({ [name]: "" });
+  const loadLabels = (language) => {
+    const newRegionsLabels = regions
+      .filter((region) => region.cid === language)
+      ?.map((res) => res.name);
+    const newBuildingCategories = buildingCategories
+      .filter((buildingCat) => buildingCat.cid === language)
+      ?.map((res) => res.name);
+    const newSettlementContexts = settlementContexts
+      .filter((settlementCont) => settlementCont.cid === language)
+      ?.map((res) => res.name);
+
+    dispatch({
+      regionLabels: newRegionsLabels,
+      buildingLabels: newBuildingCategories,
+      settlementLabels: newSettlementContexts,
+    });
   };
 
-  const handleChange = (event) => {
-    const name = event.target.name;
-    dispatch({ [name]: event.target.value });
-  };
-
-  console.log();
+  console.log(filters);
 
   return (
     <Paper className={classes.root}>
-      <h3>Filtres</h3>
-      <div>
-        <FormControl variant="outlined" className={classes.formControl}>
-          <InputLabel htmlFor="outlined-age-native-simple">Age</InputLabel>
-          <Select
-            native
-            value={state.age}
-            onChange={handleChange}
-            label="Age"
-            inputProps={{
-              name: "age",
-              id: "outlined-age-native-simple",
-            }}
-          >
-            <option aria-label="None" value="" />
-            <option value={10}>Ten</option>
-            <option value={20}>Twenty</option>
-            <option value={30}>Thirty</option>
-          </Select>
-        </FormControl>
-      </div>
+      <Grid container>
+        <Grid
+          className={classes.container}
+          container
+          item
+          xs={12}
+          justify={"space-between"}
+          alignItems={"center"}
+        >
+          <Grid item>
+            <h3>{l("labelFilters", language)}</h3>
+          </Grid>
+          <Grid item>
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.button}
+              endIcon={<CancelIcon />}
+              onClick={cancelAllFilters}
+            >
+              {l("labelCancelResearch", language)}
+            </Button>
+          </Grid>
+        </Grid>
+        <Grid item>
+          {state.regionLabels && state.regionLabels.length > 0 && (
+            <FormControl variant="outlined" className={classes.formControl}>
+              <InputLabel htmlFor="input-region">
+                {l("labelBaptisteryRegion", language)}
+              </InputLabel>
+              <Select
+                autoWidth={true}
+                native
+                value={filters.region}
+                onChange={handleChange}
+                label={l("labelBaptisteryRegion", language)}
+                inputProps={{
+                  name: "region",
+                  id: "input-region",
+                }}
+              >
+                <option aria-label="None" value="" />
+                {state.regionLabels.map((region) => (
+                  <option value={region}>{region}</option>
+                ))}
+              </Select>
+            </FormControl>
+          )}
+
+          {state.buildingLabels && state.buildingLabels.length > 0 && (
+            <FormControl variant="outlined" className={classes.formControl}>
+              <InputLabel htmlFor="input-building">
+                {l("labelBaptisteryBuildingCategory", language)}
+              </InputLabel>
+              <Select
+                autoWidth={true}
+                native
+                value={filters.buildingCategory}
+                onChange={handleChange}
+                label={l("labelBaptisteryBuildingCategory", language)}
+                inputProps={{
+                  name: "buildingCategory",
+                  id: "input-building",
+                }}
+              >
+                <option aria-label="None" value="" />
+                {state.buildingLabels.map((building) => (
+                  <option value={building}>{building}</option>
+                ))}
+              </Select>
+            </FormControl>
+          )}
+
+          {state.settlementLabels && state.settlementLabels.length > 0 && (
+            <FormControl variant="outlined" className={classes.formControl}>
+              <InputLabel htmlFor="input-settlement">
+                {l("labelBaptisterySettlementContext", language)}
+              </InputLabel>
+              <Select
+                autoWidth={true}
+                native
+                value={filters.settlementContext}
+                onChange={handleChange}
+                label={l("labelBaptisterySettlementContext", language)}
+                inputProps={{
+                  name: "settlementContext",
+                  id: "input-settlement",
+                }}
+              >
+                <option aria-label="None" value="" />
+                {state.settlementLabels.map((settlement) => (
+                  <option value={settlement}>{settlement}</option>
+                ))}
+              </Select>
+            </FormControl>
+          )}
+
+          <FormControl variant="outlined" className={classes.formControl}>
+            <TextField
+              value={filters.name}
+              onChange={handleChange}
+              variant={"outlined"}
+              label={l("labelBaptisteryName", language)}
+              inputProps={{
+                name: "name",
+                id: "input-name",
+              }}
+            />
+          </FormControl>
+
+          <FormControl variant="outlined" className={classes.formControl}>
+            <InputLabel htmlFor="input-coordinates-accuracy">
+              {l("labelBaptisteryCoordinatesAccuracy", language)}
+            </InputLabel>
+            <Select
+              autoWidth={true}
+              native
+              value={filters.coordinatesAccuracy}
+              onChange={handleChange}
+              label={l("labelBaptisteryCoordinatesAccuracy", language)}
+              inputProps={{
+                name: "coordinatesAccuracy",
+                id: "input-coordinates-accuracy",
+              }}
+            >
+              <option aria-label="None" value="" />
+              <option value={0}>
+                {l("labelBaptisteryAccuracy0", language)}
+              </option>
+              <option value={1}>
+                {l("labelBaptisteryAccuracy1", language)}
+              </option>
+              <option value={2}>
+                {l("labelBaptisteryAccuracy2", language)}
+              </option>
+              <option value={3}>
+                {l("labelBaptisteryAccuracy3", language)}
+              </option>
+            </Select>
+          </FormControl>
+
+          <FormControl variant="outlined" className={classes.formControl}>
+            <InputLabel htmlFor="input-reliability">
+              {l("labelBaptisteryRecordReliability", language)}
+            </InputLabel>
+            <Select
+              autoWidth={true}
+              native
+              value={filters.recordReliability}
+              onChange={handleChange}
+              label={l("labelBaptisteryRecordReliability", language)}
+              inputProps={{
+                name: "recordReliability",
+                id: "input-reliability",
+              }}
+            >
+              <option aria-label="None" value="" />
+              <option value={1}>
+                {l("labelLegendReliability1", language)}
+              </option>
+              <option value={2}>
+                {l("labelLegendReliability2", language)}
+              </option>
+              <option value={3}>
+                {l("labelLegendReliability3", language)}
+              </option>
+            </Select>
+          </FormControl>
+
+          <FormControl variant="outlined" className={classes.formControl}>
+            <TextField
+              value={filters.maximumDepth}
+              onChange={handleChangeNumber}
+              variant={"outlined"}
+              label={l("labelBaptisteryMaximumDepth", language)}
+              inputProps={{
+                name: "maximumDepth",
+                id: "input-max-depth",
+                min: 0,
+              }}
+            />
+          </FormControl>
+
+          <FormControl variant="outlined" className={classes.formControl}>
+            <TextField
+              value={filters.maximumPreservedDepth}
+              onChange={handleChangeNumber}
+              variant={"outlined"}
+              label={l("labelBaptisteryMaximumPreservedDepth", language)}
+              inputProps={{
+                name: "maximumPreservedDepth",
+                id: "input-max-preserved-depth",
+                min: 0,
+              }}
+            />
+          </FormControl>
+
+          <FormControl variant="outlined" className={classes.formControl}>
+            <TextField
+              value={filters.numberOfAdditionalBasins}
+              onChange={handleChangeNumber}
+              variant={"outlined"}
+              label={l("labelBaptisteryNumberBasins", language)}
+              inputProps={{
+                name: "numberOfAdditionalBasins",
+                id: "input-number-add-basins",
+                min: 0,
+              }}
+            />
+          </FormControl>
+
+          <FormControl className={classes.formControl}>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={filters.exclusivelyFromHistoricalSources}
+                  onChange={handleChangeToggle}
+                  color="primary"
+                  name="exclusivelyFromHistoricalSources"
+                  inputProps={{ id: "toggle-only-historical-sources" }}
+                />
+              }
+              label={`${l("labelBaptisteryOnlyHistoricalSources", language)} ?`}
+            />
+          </FormControl>
+        </Grid>
+        <Grid item className={classes.container}>
+          {Object.keys(filters).map((filter) => {
+            if (
+              filters[filter] !== "" &&
+              filter !== "exclusivelyFromHistoricalSources"
+            ) {
+              const label =
+                filter === "coordinatesAccuracy"
+                  ? l(`labelBaptisteryAccuracy${filters[filter]}`, language)
+                  : filter === "recordReliability"
+                  ? l(`labelLegendReliability${filters[filter]}`, language)
+                  : filters[filter];
+              return (
+                <Chip
+                  className={classes.chip}
+                  label={label}
+                  clickable
+                  color="primary"
+                  onDelete={() => cancelFilter(filter)}
+                  onClick={() => cancelFilter(filter)}
+                  deleteIcon={<CancelIcon />}
+                />
+              );
+            }
+          })}
+        </Grid>
+      </Grid>
     </Paper>
   );
 }
