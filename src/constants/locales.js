@@ -4,6 +4,11 @@ export const locales = {
     en: "Filters",
     it: "Filtri",
   },
+  labelNoResult: {
+    fr: "Aucun résultat disponible",
+    en: "No results available",
+    it: "Nessun risultato disponibile",
+  },
   labelCancelResearch: {
     fr: "Effacer la recherche",
     en: "Cancel research",

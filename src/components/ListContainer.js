@@ -1,18 +1,21 @@
 import React, { useContext, useEffect, useReducer } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { GlobalContext } from "../contexts/GlobalContext";
-import { locales } from "../constants/locales";
 import "react-virtualized/styles.css";
 import { AutoSizer, Column, Table } from "react-virtualized";
-import { Paper } from "@material-ui/core";
+import { Paper, Typography } from "@material-ui/core";
 import Baptistery from "./Baptistery";
 import FiltresContainer from "./FiltresContainer";
-import { BaptistereContext } from "../contexts/BaptistereContext";
+import { FilterContext } from "../contexts/FilterContext";
+import l from "../constants/locales";
 
 const useStyles = makeStyles((theme) => ({
   body: {
     width: "100%",
-    height: "82vh",
+    minHeight: "70vh",
+  },
+  bodyNoResult: {
+    padding: theme.spacing(3),
   },
   cell: {
     display: "flex",
@@ -47,17 +50,17 @@ function stateReducer(state, action) {
 
 export default function ListContainer() {
   const classes = useStyles();
-  const { baptisteriesList } = useContext(BaptistereContext);
+  const { baptisteriesFiltered } = useContext(FilterContext);
   const { language } = useContext(GlobalContext);
 
   useEffect(() => {
-    dispatch({ baptisteries: [...baptisteriesList] });
-  }, [baptisteriesList]);
+    dispatch({ baptisteries: [...baptisteriesFiltered] });
+  }, [baptisteriesFiltered]);
 
   const [state, dispatch] = useReducer(stateReducer, {
     open: false,
     currentBaptistere: {},
-    baptisteries: [...baptisteriesList],
+    baptisteries: [...baptisteriesFiltered],
     currentSortBy: "name",
     currentSortDirection: undefined,
   });
@@ -72,21 +75,31 @@ export default function ListContainer() {
 
   const nbBaptisteries = state.baptisteries ? state.baptisteries.length : 0;
 
-  if (nbBaptisteries === 0) return <></>;
+  if (nbBaptisteries === 0)
+    return (
+      <>
+        <FiltresContainer />
+        <Paper className={classes.bodyNoResult}>
+          <Typography variant={"body1"}>
+            {l("labelNoResult", language)}
+          </Typography>
+        </Paper>
+      </>
+    );
 
   const getData = ({ index }) => state.baptisteries[index];
 
   const sort = ({ sortBy, sortDirection }) => {
-    let newOrder = state.baptisteries.sort((bapt1, bapt2) =>
+    let sortedBaptisteries = state.baptisteries.sort((bapt1, bapt2) =>
       bapt1[sortBy] > bapt2[sortBy] ? 1 : bapt2[sortBy] > bapt1[sortBy] ? -1 : 0
     );
 
     if (sortDirection === "DESC") {
-      newOrder = newOrder.reverse();
+      sortedBaptisteries = sortedBaptisteries.reverse();
     }
 
     dispatch({
-      baptisteries: newOrder,
+      baptisteries: sortedBaptisteries,
       currentSortBy: sortBy,
       currentSortDirection: sortDirection,
     });
@@ -114,50 +127,50 @@ export default function ListContainer() {
             >
               <Column
                 className={classes.cell}
-                label={locales.labelBaptisteryName[language]}
+                label={l("labelBaptisteryName", language)}
                 dataKey={"name"}
                 headerClassName={classes.column}
               />
               <Column
                 className={classes.cell}
-                label={locales.labelBaptisteryRegion[language]}
+                label={l("labelBaptisteryRegion", language)}
                 dataKey={"region"}
                 headerClassName={classes.column}
               />
               <Column
                 className={classes.cell}
-                label={locales.labelBaptisteryProvince[language]}
+                label={l("labelBaptisteryProvince", language)}
                 dataKey={"province"}
                 headerClassName={classes.column}
               />
               <Column
                 className={classes.cell}
-                label={locales.labelBaptisteryDiocese[language]}
+                label={l("labelBaptisteryDiocese", language)}
                 dataKey={"ecclesiasticalDiocese"}
                 headerClassName={classes.column}
               />
               <Column
                 className={classes.cell}
-                label={locales.labelBaptisteryPatriarchy[language]}
+                label={l("labelBaptisteryPatriarchy", language)}
                 dataKey={"patriarchy"}
                 headerClassName={classes.column}
               />
               <Column
                 className={classes.cell}
-                label={locales.labelBaptisterySettlementContext[language]}
+                label={l("labelBaptisterySettlementContext", language)}
                 dataKey={"settlementContext"}
                 headerClassName={classes.column}
               />
               <Column
                 className={classes.cell}
-                label={locales.labelBaptisteryStartingYear[language]}
+                label={l("labelBaptisteryStartingYear", language)}
                 dataKey={"startingYear"}
                 headerClassName={classes.column}
               />
 
               <Column
                 className={classes.cell}
-                label={locales.labelBaptisteryFinalYear[language]}
+                label={l("labelBaptisteryFinalYear", language)}
                 dataKey={"finalYear"}
                 headerClassName={classes.column}
               />

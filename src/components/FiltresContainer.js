@@ -45,6 +45,7 @@ function stateReducer(state, action) {
 export default function FiltresContainer() {
   const classes = useStyles();
   const { language } = useContext(GlobalContext);
+
   const {
     filters,
     handleChange,
@@ -67,7 +68,7 @@ export default function FiltresContainer() {
 
   useEffect(() => {
     loadLabels(language);
-  }, [language]);
+  }, [language, regions, buildingCategories, settlementContexts]);
 
   const loadLabels = (language) => {
     const newRegionsLabels = regions
@@ -86,8 +87,6 @@ export default function FiltresContainer() {
       settlementLabels: newSettlementContexts,
     });
   };
-
-  console.log(filters);
 
   return (
     <Paper className={classes.root}>
@@ -134,7 +133,9 @@ export default function FiltresContainer() {
               >
                 <option aria-label="None" value="" />
                 {state.regionLabels.map((region) => (
-                  <option value={region}>{region}</option>
+                  <option key={region} value={region}>
+                    {region}
+                  </option>
                 ))}
               </Select>
             </FormControl>
@@ -158,7 +159,9 @@ export default function FiltresContainer() {
               >
                 <option aria-label="None" value="" />
                 {state.buildingLabels.map((building) => (
-                  <option value={building}>{building}</option>
+                  <option key={building} value={building}>
+                    {building}
+                  </option>
                 ))}
               </Select>
             </FormControl>
@@ -182,7 +185,9 @@ export default function FiltresContainer() {
               >
                 <option aria-label="None" value="" />
                 {state.settlementLabels.map((settlement) => (
-                  <option value={settlement}>{settlement}</option>
+                  <option key={settlement} value={settlement}>
+                    {settlement}
+                  </option>
                 ))}
               </Select>
             </FormControl>
@@ -216,17 +221,17 @@ export default function FiltresContainer() {
                 id: "input-coordinates-accuracy",
               }}
             >
-              <option aria-label="None" value="" />
-              <option value={0}>
+              <option key={"accuracy-none"} aria-label="None" value="" />
+              <option key={"accuracy-0"} value={0}>
                 {l("labelBaptisteryAccuracy0", language)}
               </option>
-              <option value={1}>
+              <option key={"accuracy-1"} value={1}>
                 {l("labelBaptisteryAccuracy1", language)}
               </option>
-              <option value={2}>
+              <option key={"accuracy-2"} value={2}>
                 {l("labelBaptisteryAccuracy2", language)}
               </option>
-              <option value={3}>
+              <option key={"accuracy-3"} value={3}>
                 {l("labelBaptisteryAccuracy3", language)}
               </option>
             </Select>
@@ -247,14 +252,14 @@ export default function FiltresContainer() {
                 id: "input-reliability",
               }}
             >
-              <option aria-label="None" value="" />
-              <option value={1}>
+              <option key={"reliability-none"} aria-label="None" value="" />
+              <option key={"reliability-1"} value={1}>
                 {l("labelLegendReliability1", language)}
               </option>
-              <option value={2}>
+              <option key={"reliability-2"} value={2}>
                 {l("labelLegendReliability2", language)}
               </option>
-              <option value={3}>
+              <option key={"reliability-3"} value={3}>
                 {l("labelLegendReliability3", language)}
               </option>
             </Select>
@@ -331,6 +336,7 @@ export default function FiltresContainer() {
                   : filters[filter];
               return (
                 <Chip
+                  key={filter}
                   className={classes.chip}
                   label={label}
                   clickable
