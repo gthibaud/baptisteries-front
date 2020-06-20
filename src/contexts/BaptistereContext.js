@@ -1,5 +1,6 @@
-import React, { createContext, useEffect, useReducer } from "react";
+import React, { createContext, useContext, useEffect, useReducer } from "react";
 import axios from "axios";
+import { GlobalContext } from "./GlobalContext";
 
 export const BaptistereContext = createContext(null);
 
@@ -9,6 +10,8 @@ function stateReducer(state, action) {
 }
 
 const BaptistereContextProvider = ({ children }) => {
+  const { language } = useContext(GlobalContext);
+
   const initState = {
     baptisteriesData: {},
     baptisteriesList: [],
@@ -33,7 +36,7 @@ const BaptistereContextProvider = ({ children }) => {
   useEffect(() => {
     updateBaptisteriesList();
     // eslint-disable-next-line
-  }, [state.baptisteriesData]);
+  }, [state.baptisteriesData, language]);
 
   // Sets the current baptistere that is focused and map
   const setCurrentFocusedBaptistere = (baptistere) => {
@@ -61,29 +64,44 @@ const BaptistereContextProvider = ({ children }) => {
 
     const baptisteriesFormatted = baptisteriesList.map((baptistere) => {
       baptistere.region = regions.find(
-        (region) => region.id === baptistere.regionId
+        (region) => region.id === baptistere.regionId && region.cid === language
       )?.name;
+
       baptistere.ecclesiasticalDiocese = ecclesiasticalDioceses.find(
         (ecclesiasticalDiocese) =>
-          ecclesiasticalDiocese.id === baptistere.ecclesiasticalDioceseId
+          ecclesiasticalDiocese.id === baptistere.ecclesiasticalDioceseId &&
+          ecclesiasticalDiocese.cid === language
       )?.name;
+
       baptistere.civilDiocese = civilDioceses.find(
-        (civilDiocese) => civilDiocese.id === baptistere.civilDioceseId
+        (civilDiocese) =>
+          civilDiocese.id === baptistere.civilDioceseId &&
+          civilDiocese.cid === language
       )?.name;
+
       baptistere.patriarchy = patriarchies.find(
-        (patriarchy) => patriarchy.id === baptistere.patriarchyId
+        (patriarchy) =>
+          patriarchy.id === baptistere.patriarchyId &&
+          patriarchy.cid === language
       )?.name;
+
       baptistere.province = provinces.find(
-        (province) => province.id === baptistere.provinceId
+        (province) =>
+          province.id === baptistere.provinceId && province.cid === language
       )?.name;
+
       baptistere.buildingCategory = buildingCategories.find(
         (buildingCategory) =>
-          buildingCategory.id === baptistere.buildingCategoryId
+          buildingCategory.id === baptistere.buildingCategoryId &&
+          buildingCategory.cid === language
       )?.name;
+
       baptistere.settlementContext = settlementContexts.find(
         (settlementContext) =>
-          settlementContext.id === baptistere.settlementContextId
+          settlementContext.id === baptistere.settlementContextId &&
+          settlementContext.cid === language
       )?.name;
+
       return baptistere;
     });
 
@@ -124,6 +142,9 @@ const BaptistereContextProvider = ({ children }) => {
   return (
     <BaptistereContext.Provider
       value={{
+        regions: state.regions,
+        buildingCategories: state.buildingCategories,
+        settlementContexts: state.settlementContexts,
         baptisteriesList: state.baptisteriesList,
         currentBaptistere: state.currentBaptistere,
         setCurrentFocusedBaptistere,

@@ -125,19 +125,23 @@ const MapLegend = () => {
             {l("labelBaptisteryOnlyHistoricalSources", language)}
           </p>
         </div>
-        <h4>{l("labelLegendFiability", language)}</h4>
+        <h4>{l("labelBaptisteryRecordReliability", language)}</h4>
         <div className={classes.legendItem}>
           <Diamond color="true" size={24} className={classes.svg} />
-          <p className={classes.description}>{l("labelLegendLow", language)}</p>
+          <p className={classes.description}>
+            {l("labelLegendReliability1", language)}
+          </p>
         </div>
         <div className={classes.legendItem}>
           <Circle color="true" size={24} className={classes.svg} />
-          <p className={classes.description}>{l("labelLegendMid", language)}</p>
+          <p className={classes.description}>
+            {l("labelLegendReliability2", language)}
+          </p>
         </div>
         <div className={classes.legendItem}>
           <Rectangle color="true" size={24} className={classes.svg} />
           <p className={classes.description}>
-            {l("labelLegendHigh", language)}
+            {l("labelLegendReliability3", language)}
           </p>
         </div>
         <h4>{l("labelLegendAccurency", language)}</h4>

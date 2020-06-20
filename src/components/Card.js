@@ -4,9 +4,11 @@ import Point from "./Point";
 import api_key from "./../data/api_key.json";
 import { BaptistereContext } from "../contexts/BaptistereContext";
 import MapLegend from "./MapLegend";
+import { FilterContext } from "../contexts/FilterContext";
 
 const Card = () => {
-  const { detachBaptistere, baptisteriesList } = useContext(BaptistereContext);
+  const { detachBaptistere } = useContext(BaptistereContext);
+  const { baptisteriesFiltered } = useContext(FilterContext);
 
   return (
     <Map
@@ -21,7 +23,7 @@ const Card = () => {
       />
       <ZoomControl position="topright" />
 
-      {baptisteriesList.map((baptistere) => (
+      {baptisteriesFiltered.map((baptistere) => (
         <Point data={baptistere} key={baptistere.id} />
       ))}
 
