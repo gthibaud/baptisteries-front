@@ -48,6 +48,13 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "auto",
     marginTop: "auto",
   },
+  colorOrange: {
+    width: 50,
+    height: 20,
+    backgroundColor: "rgb(240,156,56)",
+    marginBottom: "auto",
+    marginTop: "auto",
+  },
   colorBlue: {
     width: 50,
     height: 20,
@@ -102,6 +109,12 @@ const MapLegend = () => {
           <div className={classes.colorFushia} />
           <p className={classes.description}>
             {l("labelLegendPreciseInterval2", language)}
+          </p>
+        </div>
+        <div className={classes.legendItem}>
+          <div className={classes.colorOrange} />
+          <p className={classes.description}>
+            {l("labelLegendPreciseInterval5", language)}
           </p>
         </div>
         <div className={classes.legendItem}>
