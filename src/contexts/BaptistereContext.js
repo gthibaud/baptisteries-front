@@ -119,10 +119,10 @@ const BaptistereContextProvider = ({ children }) => {
 
   const fetchBaptisteres = () => {
     axios
-      .get("http://localhost:3003/baptisteries-cache")
+      .get("http://baptisteres.huma-num.fr/baptisteries-cache")
       .then((res) => {
         dispatch({ baptisteriesData: res.data });
-
+        /*
         axios
           .get("http://localhost:3003/baptisteries-update")
           .then((res) => {
@@ -133,6 +133,7 @@ const BaptistereContextProvider = ({ children }) => {
           .catch((e) => {
             console.error("error while fetching baptisteries from cache", e);
           });
+          */
       })
       .catch((e) => {
         console.error("error while fetching baptisteries from cache", e);
