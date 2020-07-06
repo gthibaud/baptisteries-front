@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { GlobalContext } from "../contexts/GlobalContext";
 import LogoHumaNum from "../images/humanum.png";
 import LogoResmed from "../images/resmed.jpeg";
+import LogoUMR from "../images/umr.jpg";
 import LogoInvestissement from "../images/investissementdavenir.jpeg";
 
 const useStyles = makeStyles((theme) => ({
@@ -41,6 +42,12 @@ const useStyles = makeStyles((theme) => ({
     top: "8px",
     left: "78px"
   },
+  logoUMR: {
+    height: "44px",
+    position: "absolute",
+    top: "6px",
+    left: "180px"
+  },
 }));
 
 export default function Header({ isOnCardView }) {
@@ -65,6 +72,11 @@ export default function Header({ isOnCardView }) {
             alt={"logoHumaNum"}
             src={LogoHumaNum}
             className={classes.logoHumaNum}
+          />
+          <img
+            alt={"logoUMR"}
+            src={LogoUMR}
+            className={classes.logoUMR}
           />
         </Grid>
         <Grid item>

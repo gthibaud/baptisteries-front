@@ -50,6 +50,9 @@ const Point = ({ data }) => {
     if (indexGap === 1 && startingIndex === 4) {
       return "#D783FF";
     }
+    if (indexGap === 1 && startingIndex === 5) {
+      return "rgb(240,156,56)";
+    }
     if (indexGap === 1 && startingIndex === 6) {
       return "#A4FB79";
     }

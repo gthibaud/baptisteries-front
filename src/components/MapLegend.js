@@ -14,14 +14,14 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: theme.spacing(0.6),
     position: "absolute",
     width: "260px",
-    top: theme.spacing(1.25),
+    top: "65px",
     right: theme.spacing(1.2),
     zIndex: "1000",
     boxShadow: "0px 0px 8px RGBa(0, 0, 0, 0.25)",
     maxWidth: "100%",
-    maxHeight: "85vh",
     overflow: "auto",
     padding: 32,
+    maxHeight: "calc(100% - 250px)"
   },
   legendItem: {
     display: "flex",
@@ -82,6 +82,9 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "auto",
     marginRight: 24,
   },
+  containerBox: {
+    overflow: "scroll"
+  }
 }));
 
 const MapLegend = () => {
@@ -90,6 +93,7 @@ const MapLegend = () => {
 
   return (
     <div className={classes.legend}>
+      <div className={classes.containerBox}>
       <div className={classes.baptistere}>
         <h1>{l("labelLegendTitle", language)}</h1>
         <h4>{l("labelLegendChronology", language)}</h4>
@@ -135,7 +139,7 @@ const MapLegend = () => {
             <Dot color="true" size={12} className={classes.dot} />
           </div>
           <p className={classes.description}>
-            {l("labelBaptisteryOnlyHistoricalSources", language)}
+              {l("labelLegendOnlyHistoricalSources", language)}
           </p>
         </div>
         <h4>{l("labelBaptisteryRecordReliability", language)}</h4>
@@ -182,6 +186,7 @@ const MapLegend = () => {
             {l("labelBaptisteryAccuracy3", language)}
           </p>
         </div>
+      </div>
       </div>
     </div>
   );

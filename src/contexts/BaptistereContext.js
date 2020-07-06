@@ -122,18 +122,6 @@ const BaptistereContextProvider = ({ children }) => {
       .get("http://baptisteres.huma-num.fr/baptisteries-cache")
       .then((res) => {
         dispatch({ baptisteriesData: res.data });
-        /*
-        axios
-          .get("http://localhost:3003/baptisteries-update")
-          .then((res) => {
-            if (res.data.status === "updated") {
-              dispatch({ baptisteriesData: res.data.data });
-            }
-          })
-          .catch((e) => {
-            console.error("error while fetching baptisteries from cache", e);
-          });
-          */
       })
       .catch((e) => {
         console.error("error while fetching baptisteries from cache", e);

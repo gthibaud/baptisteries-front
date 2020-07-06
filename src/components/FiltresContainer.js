@@ -270,7 +270,7 @@ export default function FiltresContainer() {
               value={filters.maximumDepth}
               onChange={handleChangeNumber}
               variant={"outlined"}
-              label={l("labelBaptisteryMaximumDepth", language)}
+              label={l("labelBaptisteryMaximumDepthMeters", language)}
               inputProps={{
                 name: "maximumDepth",
                 id: "input-max-depth",
@@ -284,7 +284,7 @@ export default function FiltresContainer() {
               value={filters.maximumPreservedDepth}
               onChange={handleChangeNumber}
               variant={"outlined"}
-              label={l("labelBaptisteryMaximumPreservedDepth", language)}
+              label={l("labelBaptisteryMaximumPreservedDepthMeters", language)}
               inputProps={{
                 name: "maximumPreservedDepth",
                 id: "input-max-preserved-depth",
@@ -318,7 +318,7 @@ export default function FiltresContainer() {
                   inputProps={{ id: "toggle-only-historical-sources" }}
                 />
               }
-              label={`${l("labelBaptisteryOnlyHistoricalSources", language)} ?`}
+              label={`${l("labelBaptisteryOnlyHistoricalSources", language)}`}
             />
           </FormControl>
         </Grid>

@@ -89,6 +89,11 @@ export const locales = {
     en: "Final year",
     it: "Anno finale",
   },
+  labelDatationCriteria: {
+    fr: "Critères de datation",
+    en: "Dating criteria",
+    it: "Criteri datazione",
+  },
   buttonMoreInformation: {
     fr: "Plus d'informations",
     en: "More information",
@@ -105,7 +110,7 @@ export const locales = {
     it: "Dati geografici",
   },
   labelBaptisteryPlans: {
-    fr: "Repertoire graphique",
+    fr: "Répertoire graphique",
     en: "Plan",
     it: "Immagine",
   },
@@ -139,10 +144,20 @@ export const locales = {
     it: "Profondità massima",
     en: "Maximum depth",
   },
+  labelBaptisteryMaximumDepthMeters: {
+    fr: "Profondeur maximale (mètres)",
+    it: "Profondità massima (metri)",
+    en: "Maximum depth (meters)",
+  },
   labelBaptisteryMaximumPreservedDepth: {
     fr: "Profondeur maximale conservée",
     it: "Profondità massima conservata",
     en: "Maximum preserved depth",
+  },
+  labelBaptisteryMaximumPreservedDepthMeters: {
+    fr: "Profondeur maximale conservée (mètres)",
+    it: "Profondità massima conservata (metri)",
+    en: "Maximum preserved depth (meters)",
   },
   labelBaptisterydescriptionOfMainFontDimensions: {
     fr: "Description dimensions fonds principal",
@@ -164,15 +179,20 @@ export const locales = {
     it: "Battistero noto esclusivamente da fonti storiche",
     en: "Baptistery known exclusively from historical sources",
   },
+  labelLegendOnlyHistoricalSources: {
+    fr: "connu seulement des sources historiques",
+    it: "noto esclusivamente da fonti storiche",
+    en: "known exclusively from historical sources",
+  },
   labelBaptisteryNotAvailable: {
     fr: "Le plan n'est pas disponible.",
     en: "The plan is not available",
     it: "La pianta non è disponibile",
   },
   labelBaptisteryAccuracy0: {
-    fr: "Précision exacte",
-    en: "Exact position",
-    it: "Punto esatto",
+    fr: "précision exacte",
+    en: "exact position",
+    it: "punto esatto",
   },
   labelBaptisteryAccuracy1: {
     fr: "rayon < 500 m",
@@ -208,6 +228,11 @@ export const locales = {
     fr: "Datation au siècle",
     en: "Dating to the century",
     it: "Datazione al secolo",
+  },
+  labelReliability: {
+    fr: "Fiabilité",
+    en: "Record reliability",
+    it: "Affidabilità",
   },
   labelLegendPreciseInterval1: {
     fr: "201-400 (IIIe – IVe s.)",

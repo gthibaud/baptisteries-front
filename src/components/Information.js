@@ -21,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
     body: {
         fontSize: "18px",
         lineHeight: "23px",
-        marginBottom:"16px"
+        marginBottom:"16px",
+        textAlign: "justify"
     },
     title2: {
         color: "black",

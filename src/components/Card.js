@@ -28,9 +28,8 @@ const Card = () => {
         {baptisteriesFiltered.map((baptistere) => (
           <Point data={baptistere} key={baptistere.id} />
         ))}
-
-        <MapLegend />
       </Map>
+      <MapLegend />
       <FiltresContainer />
     </>
   );

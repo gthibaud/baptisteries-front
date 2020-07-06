@@ -39,39 +39,18 @@ const Baptistery = ({ onClose, open, currentBaptistere }) => {
               currentBaptistere.buildingCategory
                 ? `${capitalize(currentBaptistere.buildingCategory)},`
                 : ""
-            } ${currentBaptistere.startingYear}-${
+              } ${currentBaptistere.startingYear}-${
               currentBaptistere.finalYear
-            }, ${currentBaptistere.ecclesiasticalDiocese}.`}</h2>
+              }, ${currentBaptistere.ecclesiasticalDiocese}.`}</h2>
           )}
 
         <h4>{l("labelBaptisteryGeography", language)}</h4>
-
-        {currentBaptistere.latitude &&
-          currentBaptistere.longitude &&
-          currentBaptistere.coordinatesAccuracy !== undefined && (
-            <p>
-              {`${l("labelBaptisteryCoordinates", language)} : Lat. ${
-                currentBaptistere.latitude
-              } - Lon. ${currentBaptistere.longitude} (${l(
-                `labelBaptisteryAccuracy${currentBaptistere.coordinatesAccuracy}`,
-                language
-              )}).`}
-            </p>
-          )}
 
         {currentBaptistere.region && (
           <p>
             {`${l("labelBaptisteryRegion", language)} : ${
               currentBaptistere.region
-            }`}
-          </p>
-        )}
-
-        {currentBaptistere.province && (
-          <p>
-            {`${l("labelBaptisteryProvince", language)} : ${
-              currentBaptistere.province
-            }`}
+              }`}
           </p>
         )}
 
@@ -79,15 +58,7 @@ const Baptistery = ({ onClose, open, currentBaptistere }) => {
           <p>
             {`${l("labelBaptisteryDioceseCivil", language)} : ${
               currentBaptistere.civilDiocese
-            }`}
-          </p>
-        )}
-
-        {currentBaptistere.ecclesiasticalDiocese && (
-          <p>
-            {`${l("labelBaptisteryDiocese", language)} : ${
-              currentBaptistere.ecclesiasticalDiocese
-            }`}
+              }`}
           </p>
         )}
 
@@ -95,43 +66,101 @@ const Baptistery = ({ onClose, open, currentBaptistere }) => {
           <p>
             {`${l("labelBaptisteryPatriarchy", language)} : ${
               currentBaptistere.patriarchy
-            }`}
+              }`}
           </p>
         )}
 
-        <h4>{l("labelBaptisteryTechnicalSpecifications", language)}</h4>
+        {currentBaptistere.province && (
+          <p>
+            {`${l("labelBaptisteryProvince", language)} : ${
+              currentBaptistere.province
+              }`}
+          </p>
+        )}
 
-        {currentBaptistere.labelBaptisterySettlementContext && (
+        {currentBaptistere.ecclesiasticalDiocese && (
+          <p>
+            {`${l("labelBaptisteryDiocese", language)} : ${
+              currentBaptistere.ecclesiasticalDiocese
+              }`}
+          </p>
+        )}
+
+        {currentBaptistere.latitude &&
+          currentBaptistere.longitude &&
+          currentBaptistere.coordinatesAccuracy !== undefined && (
+            <p>
+              {`${l("labelBaptisteryCoordinates", language)} : Lat. ${
+                currentBaptistere.latitude
+                } - Lon. ${currentBaptistere.longitude} (${l(
+                  `labelBaptisteryAccuracy${currentBaptistere.coordinatesAccuracy}`,
+                  language
+                )})`}
+            </p>
+          )}
+
+        {currentBaptistere.recordReliability && (
+          <p>
+            {`${l("labelReliability", language)} : ${
+              currentBaptistere.recordReliability
+              }/3`}
+          </p>
+        )}
+
+        {console.log(currentBaptistere)}
+
+        <h4>{l("labelLegendChronology", language)}</h4>
+
+        {currentBaptistere.startingYear && (
+          <p>
+            {`${l("labelBaptisteryStartingYear", language)} : ${
+              currentBaptistere.startingYear
+              }`}
+          </p>
+        )}
+
+        {currentBaptistere.finalYear && (
+          <p>
+            {`${l("labelBaptisteryFinalYear", language)} : ${
+              currentBaptistere.finalYear
+              }`}
+          </p>
+        )}
+
+        {/* TODO */}
+        {currentBaptistere.datingCriteriaIds && currentBaptistere.datingCriteriaIds.size > 0 && (
+          <p>
+            {`${l("labelDatationCriteria", language)} : ${
+              currentBaptistere.datingCriteriaIds
+              }`}
+          </p>
+        )}
+
+        {currentBaptistere.buildingCategory && (
+          <p>
+            {`${l("labelBaptisteryBuildingCategory", language)} : ${
+              currentBaptistere.buildingCategory
+              }`}
+          </p>
+        )}
+
+        {currentBaptistere.settlementContext && (
           <p>
             {`${l("labelBaptisterySettlementContext", language)} : ${
               currentBaptistere.settlementContext
-            }`}
+              }`}
           </p>
         )}
 
-        {currentBaptistere.numberOfAdditionalBasins !== undefined && (
-          <p>
-            {`${l("labelBaptisteryNumberBasins", language)} : ${
-              currentBaptistere.numberOfAdditionalBasins
-            }`}
+        {currentBaptistere.exclusivelyFromHistoricalSources && (
+          <>
+            <h4>{l("labelLegendSource", language)}</h4>
+            <p>
+              {l("labelBaptisteryOnlyHistoricalSources", language)}.
           </p>
-        )}
+          </>)}
 
-        {currentBaptistere.maximumDepth && (
-          <p>
-            {`${l("labelBaptisteryMaximumDepth", language)} : ${
-              currentBaptistere.maximumDepth
-            }`}
-          </p>
-        )}
-
-        {currentBaptistere.maximumPreservedDepth && (
-          <p>
-            {`${l("labelBaptisteryMaximumPreservedDepth", language)} : ${
-              currentBaptistere.maximumPreservedDepth
-            }`}
-          </p>
-        )}
+        <h4>{l("labelBaptisteryTechnicalSpecifications", language)}</h4>
 
         {currentBaptistere.descriptionOfMainFontDimensions && (
           <p>
@@ -142,16 +171,39 @@ const Baptistery = ({ onClose, open, currentBaptistere }) => {
           </p>
         )}
 
+        {currentBaptistere.maximumDepth && (
+          <p>
+            {`${l("labelBaptisteryMaximumDepth", language)} : ${
+              currentBaptistere.maximumDepth
+              }`}
+          </p>
+        )}
+
+        {currentBaptistere.maximumPreservedDepth && (
+          <p>
+            {`${l("labelBaptisteryMaximumPreservedDepth", language)} : ${
+              currentBaptistere.maximumPreservedDepth
+              }`}
+          </p>
+        )}
+
+        {currentBaptistere.numberOfAdditionalBasins !== undefined && (
+          <p>
+            {`${l("labelBaptisteryNumberBasins", language)} : ${
+              currentBaptistere.numberOfAdditionalBasins
+              }`}
+          </p>
+        )}
+
         {currentBaptistere.adjoiningRoomsDescription && (
           <p>
             {`${l("labelBaptisteryAdjoiningRoomsDescription", language)} : ${
               currentBaptistere.adjoiningRoomsDescription
-            }`}
+              }`}
           </p>
         )}
 
-        {currentBaptistere.exclusivelyFromHistoricalSources &&
-          l("labelBaptisteryOnlyHistoricalSources", language)}
+        {/* {TODO bibliographie} */}
 
         <h4>{l("labelBaptisteryPlans", language)}</h4>
         <p>{`${l("labelBaptisteryNotAvailable", language)}`}</p>
