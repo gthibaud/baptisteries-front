@@ -37,10 +37,10 @@ export default function Header({isOnCardView}) {
 
     return (
         <Paper className={classes.root}>
-            <Grid container justify={"space-between"} alignItems={"center"} >
+            <Grid container justify={"space-between"} alignItems={"center"}>
                 <Grid container item xs={4} alignContent={"center"} spacing={1}>
                     <Grid item>
-                        <a href={"http://www.paris-sorbonne.fr"} target={"_blank"}>
+                        <a href={"https://www.sorbonne-universite.fr/"} target={"_blank"}>
                             <img
                                 alt={"universite paris-sorbonne"}
                                 src={LogoSorbonne}
@@ -67,19 +67,19 @@ export default function Header({isOnCardView}) {
                         </a>
                     </Grid>
                     <Grid item>
-                        <a href={"https://www.huma-num.fr/"} target={"_blank"}>
+                        <a href={"https://www.orient-mediterranee.com/?lang=fr"} target={"_blank"}>
                             <img
-                                alt={"logoHumaNum"}
-                                src={LogoHumaNum}
+                                alt={"logoUMR"}
+                                src={LogoUMR}
                                 className={classes.logo}
                             />
                         </a>
                     </Grid>
                     <Grid item>
-                        <a href={"https://www.orient-mediterranee.com/?lang=fr"} target={"_blank"}>
+                        <a href={"https://www.huma-num.fr/"} target={"_blank"}>
                             <img
-                                alt={"logoUMR"}
-                                src={LogoUMR}
+                                alt={"logoHumaNum"}
+                                src={LogoHumaNum}
                                 className={classes.logo}
                             />
                         </a>
