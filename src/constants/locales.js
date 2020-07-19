@@ -1,4 +1,9 @@
 export const locales = {
+  labelResult: {
+    fr: "résultats",
+    en: "results",
+    it: "risultati"
+  },
   labelFilters: {
     fr: "Filtres",
     en: "Filters",

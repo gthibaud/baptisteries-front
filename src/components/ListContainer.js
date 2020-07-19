@@ -78,7 +78,7 @@ export default function ListContainer() {
   if (nbBaptisteries === 0)
     return (
       <>
-        <FiltresContainer />
+        <FiltresContainer nbResults={baptisteriesFiltered.length} />
         <Paper className={classes.bodyNoResult}>
           <Typography variant={"body1"}>
             {l("labelNoResult", language)}
@@ -107,7 +107,7 @@ export default function ListContainer() {
 
   return (
     <>
-      <FiltresContainer />
+      <FiltresContainer nbResults={baptisteriesFiltered.length} />
       <Paper className={classes.body}>
         <AutoSizer>
           {({ height, width }) => (
