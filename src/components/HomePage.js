@@ -5,7 +5,7 @@ import PageLayout from "./PageLayout";
 
 export default function HomePage() {
   return (
-    <PageLayout isOnCardView={true}>
+    <PageLayout pageType={"Home"}>
       <PointSummaryContainer />
       <Card />
     </PageLayout>

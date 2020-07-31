@@ -30,7 +30,7 @@ const Card = () => {
         ))}
       </Map>
       <MapLegend />
-      <FiltresContainer />
+      <FiltresContainer nbResults={baptisteriesFiltered.length} />
     </>
   );
 };

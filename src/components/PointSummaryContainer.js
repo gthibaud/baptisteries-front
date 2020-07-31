@@ -5,6 +5,7 @@ import { Button } from "@material-ui/core";
 import l from "../constants/locales";
 import { GlobalContext } from "../contexts/GlobalContext";
 import Baptistery from "./Baptistery";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
   menu: {
@@ -63,17 +64,17 @@ const PointSummaryContainer = () => {
     <div className={classes.menu}>
       <div className={classes.menuBox}>
         <div className={classes.baptistere}>
-          <h3>{currentBaptistere.name}</h3>
-          <h4>{l("labelBaptisteryPreview", language)}</h4>
-          <p>{`${l("labelBaptisteryDates", language)} : ${
+          <Typography variant={"h3"}>{currentBaptistere.name}</Typography>
+          <Typography variant={"h4"}>{l("labelBaptisteryPreview", language)}</Typography>
+          <Typography variant={"body1"}>{`${l("labelBaptisteryDates", language)} : ${
             currentBaptistere.startingYear
-          } - ${currentBaptistere.finalYear}`}</p>
-          <p>{`${l("labelBaptisteryProvince", language)} : ${
+          } - ${currentBaptistere.finalYear}`}</Typography>
+          <Typography variant={"body1"}>{`${l("labelBaptisteryProvince", language)} : ${
             currentBaptistere.province
-          }`}</p>
-          <p>{`${l("labelBaptisteryDiocese", language)} : ${
+          }`}</Typography>
+          <Typography variant={"body1"}>{`${l("labelBaptisteryDiocese", language)} : ${
             currentBaptistere.ecclesiasticalDiocese
-          }`}</p>
+          }`}</Typography>
           <Button
             variant="contained"
             disableElevation

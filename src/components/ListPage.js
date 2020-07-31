@@ -16,7 +16,7 @@ export default function ListPage() {
   const classes = useStyles();
 
   return (
-    <PageLayout isOnCardView={false}>
+    <PageLayout pageType={"List"}>
       <Container maxWidth={"xl"} className={classes.root}>
         <ListContainer />
       </Container>
