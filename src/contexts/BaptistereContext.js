@@ -66,7 +66,7 @@ const BaptistereContextProvider = ({children}) => {
 
         const baptisteriesFormatted = baptisteriesList.map((baptistere) => {
             // Use of filter function here because datingCriteria is an array and not just a single value
-            baptistere.datingCriteria = datingCriteria.filter((criteria) => baptistere.datingCriteria.includes(criteria.id) && criteria.cid === language).map((criteria) => criteria.name);
+            baptistere.datingCriteria = datingCriteria.filter((criteria) => baptistere.datingCriteria?.includes(criteria.id) && criteria.cid === language).map((criteria) => criteria.name);
 
             baptistere.region = regions.find(
                 (region) => region.id === baptistere.regionId && region.cid === language

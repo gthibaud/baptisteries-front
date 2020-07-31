@@ -48,6 +48,22 @@ const Baptistery = ({onClose, open, currentBaptistere}) => {
                         }, ${currentBaptistere.ecclesiasticalDiocese}.`}</Typography>
                 )}
 
+                {currentBaptistere.buildingCategory && (
+                    <Typography variant="body1">
+                        {`${l("labelBaptisteryBuildingCategory", language)} : ${
+                            currentBaptistere.buildingCategory
+                            }`}
+                    </Typography>
+                )}
+
+                {currentBaptistere.settlementContext && (
+                    <Typography variant="body1">
+                        {`${l("labelBaptisterySettlementContext", language)} : ${
+                            currentBaptistere.settlementContext
+                            }`}
+                    </Typography>
+                )}
+
                 <hr className={classes.line}/>
                 <Typography variant={"h4"}>{l("labelBaptisteryGeography", language)}</Typography>
 
@@ -97,11 +113,11 @@ const Baptistery = ({onClose, open, currentBaptistere}) => {
                     <Typography variant="body1">
                         {`${l("labelBaptisteryCoordinates", language)} : Lat. ${
                             currentBaptistere.latitude
-                            } - Lon. ${currentBaptistere.longitude} })`}
+                            } - Lon. ${currentBaptistere.longitude}`}
                     </Typography>
                 )}
 
-                {currentBaptistere.coordinatesAccuracy && (
+                {currentBaptistere.coordinatesAccuracy !== undefined && (
                     <Typography variant="body1">
                         {`${l("labelLegendAccurency", language)} : 
                         ${l(`labelBaptisteryAccuracy${currentBaptistere.coordinatesAccuracy}`, language)}`}
@@ -138,22 +154,6 @@ const Baptistery = ({onClose, open, currentBaptistere}) => {
                     <Typography variant="body1">
                         {`${l("labelDatationCriteria", language)} : ${
                             currentBaptistere.datingCriteria.join(", ")
-                            }`}
-                    </Typography>
-                )}
-
-                {currentBaptistere.buildingCategory && (
-                    <Typography variant="body1">
-                        {`${l("labelBaptisteryBuildingCategory", language)} : ${
-                            currentBaptistere.buildingCategory
-                            }`}
-                    </Typography>
-                )}
-
-                {currentBaptistere.settlementContext && (
-                    <Typography variant="body1">
-                        {`${l("labelBaptisterySettlementContext", language)} : ${
-                            currentBaptistere.settlementContext
                             }`}
                     </Typography>
                 )}
