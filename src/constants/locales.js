@@ -117,7 +117,7 @@ export const locales = {
     labelBaptisteryGeography: {
         fr: "Géographie",
         en: "Geography",
-        it: "Dati geografici",
+        it: "Geografia",
     },
     labelBaptisteryPlans: {
         fr: "Répertoire graphique",
@@ -170,7 +170,7 @@ export const locales = {
         en: "Maximum preserved depth (meters)",
     },
     labelBaptisterydescriptionOfMainFontDimensions: {
-        fr: "Description dimensions fonds principal",
+        fr: "Description dimensions fonts principal",
         it: "Descrizione dimensioni fonte",
         en: "Description of main font dimensions",
     },

@@ -10,6 +10,9 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: theme.spacing(0.6),
         padding: 42,
     },
+    line: {
+        margin: theme.spacing(3, 0)
+    }
 }));
 
 const Baptistery = ({onClose, open, currentBaptistere}) => {
@@ -45,6 +48,7 @@ const Baptistery = ({onClose, open, currentBaptistere}) => {
                         }, ${currentBaptistere.ecclesiasticalDiocese}.`}</Typography>
                 )}
 
+                <hr className={classes.line}/>
                 <Typography variant={"h4"}>{l("labelBaptisteryGeography", language)}</Typography>
 
                 {currentBaptistere.region && (
@@ -93,10 +97,14 @@ const Baptistery = ({onClose, open, currentBaptistere}) => {
                     <Typography variant="body1">
                         {`${l("labelBaptisteryCoordinates", language)} : Lat. ${
                             currentBaptistere.latitude
-                            } - Lon. ${currentBaptistere.longitude} (${l(
-                            `labelBaptisteryAccuracy${currentBaptistere.coordinatesAccuracy}`,
-                            language
-                        )})`}
+                            } - Lon. ${currentBaptistere.longitude} })`}
+                    </Typography>
+                )}
+
+                {currentBaptistere.coordinatesAccuracy && (
+                    <Typography variant="body1">
+                        {`${l("labelLegendAccurency", language)} : 
+                        ${l(`labelBaptisteryAccuracy${currentBaptistere.coordinatesAccuracy}`, language)}`}
                     </Typography>
                 )}
 
@@ -107,9 +115,7 @@ const Baptistery = ({onClose, open, currentBaptistere}) => {
                             }/3`}
                     </Typography>
                 )}
-
-                {console.log(currentBaptistere)}
-
+                <hr className={classes.line}/>
                 <Typography variant={"h4"}>{l("labelLegendChronology", language)}</Typography>
 
                 {currentBaptistere.startingYear && (
@@ -128,10 +134,10 @@ const Baptistery = ({onClose, open, currentBaptistere}) => {
                     </Typography>
                 )}
 
-                {currentBaptistere.datingCriteriaIds && currentBaptistere.datingCriteriaIds.size > 0 && (
+                {currentBaptistere.datingCriteria && currentBaptistere.datingCriteria.size > 0 && (
                     <Typography variant="body1">
                         {`${l("labelDatationCriteria", language)} : ${
-                            currentBaptistere.datingCriteriaIds
+                            currentBaptistere.datingCriteria.join(", ")
                             }`}
                     </Typography>
                 )}
@@ -154,12 +160,13 @@ const Baptistery = ({onClose, open, currentBaptistere}) => {
 
                 {currentBaptistere.exclusivelyFromHistoricalSources && (
                     <>
+                        <hr className={classes.line}/>
                         <Typography variant={"h4"}>{l("labelLegendSource", language)}</Typography>
                         <Typography variant="body1">
                             {l("labelBaptisteryOnlyHistoricalSources", language)}.
                         </Typography>
                     </>)}
-
+                <hr className={classes.line}/>
                 <Typography variant={"h4"}>{l("labelBaptisteryTechnicalSpecifications", language)}</Typography>
 
                 {currentBaptistere.descriptionOfMainFontDimensions && (
@@ -203,8 +210,16 @@ const Baptistery = ({onClose, open, currentBaptistere}) => {
                     </Typography>
                 )}
 
-                {/* {TODO bibliographie} */}
+                {currentBaptistere.bibliography && (
+                    <>
+                        <hr className={classes.line}/>
+                        <Typography variant={"h4"}>{l("labelBaptisteryBibliography", language)}</Typography>
+                        <Typography variant="body1">
+                            {currentBaptistere.bibliography}
+                        </Typography>
+                    </>)}
 
+                <hr className={classes.line}/>
                 <Typography variant={"h4"}>{l("labelBaptisteryPlans", language)}</Typography>
                 <Typography variant="body1">{`${l("labelBaptisteryNotAvailable", language)}`}</Typography>
             </Paper>
