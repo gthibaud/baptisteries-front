@@ -11,8 +11,8 @@ import LogoSorbonne from "../images/sorbonneUniversite.png";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        paddingTop: theme.spacing(1.5),
-        paddingBottom: theme.spacing(1.5),
+        paddingTop: theme.spacing(1),
+        paddingBottom: theme.spacing(1),
         paddingLeft: theme.spacing(3),
         paddingRight: theme.spacing(3),
     },
@@ -95,14 +95,14 @@ export default function Header({pageTitle}) {
                         alignItems={"center"}
                     >
                         <Grid item>
-                            <Link to={"/information"} className={classes.marginRight}>
-                                <i className={"fa fa-info-circle " + classes.icon}/>
+                            <Link to={"/"} className={classes.marginRight}>
+                                <i className={"fa fa-map-marked-alt " + classes.icon}/>
                             </Link>
                             <Link to={"/list"} className={classes.marginRight}>
                                 <i className={"fa fa-list-ul " + classes.icon}/>
                             </Link>
-                            <Link to={"/"}>
-                                <i className={"fa fa-map-marked-alt " + classes.icon}/>
+                            <Link to={"/information"}>
+                                <i className={"fa fa-info-circle " + classes.icon}/>
                             </Link>
                         </Grid>
                         <Grid item>

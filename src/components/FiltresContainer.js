@@ -17,6 +17,7 @@ import {GlobalContext} from "../contexts/GlobalContext";
 import {BaptistereContext} from "../contexts/BaptistereContext";
 import l from "../constants/locales";
 import {FilterContext} from "../contexts/FilterContext";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: theme.spacing(2),
     },
     formControl: {
-        margin: theme.spacing(1),
+        margin: theme.spacing(0.2, 1),
         minWidth: 300,
     },
     container: {
@@ -101,7 +102,8 @@ export default function FiltresContainer({nbResults}) {
                     alignItems={"center"}
                 >
                     <Grid item>
-                        <h3>{l("labelFilters", language)} {nbResults && nbResults > 0 && normalizedNbResults}</h3>
+                        <Typography
+                            variant={"h3"}>{l("labelFilters", language)} {nbResults && nbResults > 0 && normalizedNbResults}</Typography>
 
                     </Grid>
                     <Grid item>

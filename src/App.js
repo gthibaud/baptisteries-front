@@ -16,22 +16,44 @@ function App() {
     let theme = createMuiTheme({
         typography: {
             h1: {
-                fontSize: "1.7rem",
+                padding: 0,
+                margin: 0,
+                fontWeight: 500,
+                fontSize: "1.3rem",
+                color: "#0f0f0f"
             },
             h2: {
-                fontSize: "1.5rem",
+                padding: 0,
+                margin: 0,
+                marginBottom: "32px",
+                fontSize: "1.2rem",
+                fontWeight: 500,
+                color: "#a3a3a3"
             },
             h3: {
-                fontSize: "1rem",
+                marginTop: "16px",
+                marginBottom: "4px",
+                fontSize: "1.1rem",
+                fontWeight: 700
             },
             h4: {
-                fontSize: "0.7rem",
+                color: "#a3a3a3",
+                marginTop: "16px",
+                marginBottom: "4px",
+                fontSize: "1rem",
+                fontWeight: 700
             },
             body1: {
-                fontSize: "0.7rem",
+                fontSize: "0.9rem",
+                fontWeight: 400,
+                marginTop: "8px",
+                marginBottom: "8px"
             },
             body2: {
-                fontSize: "0.7rem",
+                fontSize: "0.9rem",
+                fontWeight: 500,
+                marginTop: "8px",
+                marginBottom: "8px"
             }
         }
     });

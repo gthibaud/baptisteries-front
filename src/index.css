@@ -27,39 +27,6 @@ body {
   height: calc(100vh - 150px);
 }
 
-h2 {
-  padding: 0;
-  margin: 0;
-  margin-bottom: 32px;
-  font-size: 18px;
-  font-weight: 600;
-  color: #a3a3a3;
-}
-
-h1 {
-  padding: 0;
-  margin: 0;
-  margin-bottom: 12px;
-  font-weight: 700;
-  font-size: 22px;
-  color: #0f0f0f;
-}
-
-h4 {
-  color: #a3a3a3;
-  margin-top: 16px;
-  margin-bottom: 4px;
-  font-size: 18px;
-  font-weight: 700;
-}
-
-p {
-  font-size: 17px;
-  font-weight: 500;
-  margin-top: 8px;
-  margin-bottom: 8px;
-}
-
 .small-note {
     font-size: 14px;
     font-weight: 600;
