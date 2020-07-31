@@ -12,6 +12,9 @@ const useStyles = makeStyles((theme) => ({
     },
     line: {
         margin: theme.spacing(3, 0)
+    },
+    title: {
+        marginBottom: theme.spacing(3)
     }
 }));
 
@@ -35,18 +38,7 @@ const Baptistery = ({onClose, open, currentBaptistere}) => {
             onClose={handleClose}
         >
             <Paper elevation={0} className={classes.card}>
-                <Typography variant={"h1"}>{currentBaptistere.name}</Typography>
-                {currentBaptistere.startingYear &&
-                currentBaptistere.finalYear &&
-                currentBaptistere.ecclesiasticalDiocese && (
-                    <Typography variant={"h2"}>{`${
-                        currentBaptistere.buildingCategory
-                            ? `${capitalize(currentBaptistere.buildingCategory)},`
-                            : ""
-                        } ${currentBaptistere.startingYear}-${
-                        currentBaptistere.finalYear
-                        }, ${currentBaptistere.ecclesiasticalDiocese}.`}</Typography>
-                )}
+                <Typography variant={"h1"} className={classes.title}>{currentBaptistere.name}</Typography>
 
                 {currentBaptistere.buildingCategory && (
                     <Typography variant="body1">
