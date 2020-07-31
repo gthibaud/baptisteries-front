@@ -1,10 +1,8 @@
-import React, {useContext} from "react";
+import React from "react";
 import {Paper, Grid, Typography} from "@material-ui/core";
 import LanguagePicker from "./LanguagePicker";
 import {makeStyles} from "@material-ui/core/styles";
-import l from "../constants/locales";
 import {Link} from "react-router-dom";
-import {GlobalContext} from "../contexts/GlobalContext";
 import LogoHumaNum from "../images/humanum.png";
 import LogoResmed from "../images/resmed.jpeg";
 import LogoUMR from "../images/umr.jpg";
@@ -31,9 +29,8 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function Header({isOnCardView}) {
+export default function Header({pageTitle}) {
     const classes = useStyles();
-    const {language} = useContext(GlobalContext);
 
     return (
         <Paper className={classes.root}>
@@ -86,10 +83,8 @@ export default function Header({isOnCardView}) {
                     </Grid>
                 </Grid>
                 <Grid xs={6} item>
-                    <Typography variant={"h6"}>
-                        {isOnCardView
-                            ? l("labelHomePage", language)
-                            : l("labelListPage", language)}
+                    <Typography variant={"h1"}>
+                        {pageTitle}
                     </Typography>
                 </Grid>
                 <Grid item xs={2}>
@@ -103,15 +98,12 @@ export default function Header({isOnCardView}) {
                             <Link to={"/information"} className={classes.marginRight}>
                                 <i className={"fa fa-info-circle " + classes.icon}/>
                             </Link>
-                            {isOnCardView ? (
-                                <Link to={"/list"}>
-                                    <i className={"fa fa-list-ul " + classes.icon}/>
-                                </Link>
-                            ) : (
-                                <Link to={"/"}>
-                                    <i className={"fa fa-map-marked-alt " + classes.icon}/>
-                                </Link>
-                            )}
+                            <Link to={"/list"} className={classes.marginRight}>
+                                <i className={"fa fa-list-ul " + classes.icon}/>
+                            </Link>
+                            <Link to={"/"}>
+                                <i className={"fa fa-map-marked-alt " + classes.icon}/>
+                            </Link>
                         </Grid>
                         <Grid item>
                             <LanguagePicker/>

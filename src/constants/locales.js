@@ -34,6 +34,11 @@ export const locales = {
     en: "List of Early Christian Baptisteries in the Mediterranean Basin",
     it: "Elenco dei battisteri paleocristiani del Mediterraneo",
   },
+  labelInfoPage: {
+    fr: "Informations",
+    en: "Information",
+    it: "Informazioni",
+  },
   labelBaptisteryDates: {
     fr: "Chronologie de fondation",
     en: "Chronology of construction",

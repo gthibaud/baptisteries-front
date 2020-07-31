@@ -46,7 +46,7 @@ export default function Information() {
     const { language } = useContext(GlobalContext);
 
     return (
-        <PageLayout isOnCardView={false}>
+        <PageLayout pageType={"Info"}>
             <Container maxWidth={"xl"} className={classes.root}>
                 <Card className={classes.container}>
                     <h1 className={classes.h1}>{l("infosTitle", language)}</h1>

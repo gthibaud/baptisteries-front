@@ -13,7 +13,28 @@ import {
 } from "@material-ui/core/styles";
 
 function App() {
-    let theme = createMuiTheme({});
+    let theme = createMuiTheme({
+        typography: {
+            h1: {
+                fontSize: "1.7rem",
+            },
+            h2: {
+                fontSize: "1.5rem",
+            },
+            h3: {
+                fontSize: "1rem",
+            },
+            h4: {
+                fontSize: "0.7rem",
+            },
+            body1: {
+                fontSize: "0.7rem",
+            },
+            body2: {
+                fontSize: "0.7rem",
+            }
+        }
+    });
     theme = responsiveFontSizes(theme);
 
     return (
