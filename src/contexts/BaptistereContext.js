@@ -125,7 +125,7 @@ const BaptistereContextProvider = ({children}) => {
 
     const fetchBaptisteres = () => {
         axios
-            .get("http://baptisteres.huma-num.fr/baptisteries-cache")
+            .get("https://baptisteres.huma-num.fr/cache")
             .then((res) => {
                 dispatch({baptisteriesData: res.data});
             })
