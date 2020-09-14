@@ -45,18 +45,30 @@ const Point = ({data}) => {
         if (indexGap === 0) {
             return "#FF7E79";
         }
-        if (indexGap === 1 && startingIndex === 3) {
+        if (indexGap === 1 && endDate <= 400) {
             return "#76D6FF";
         }
-        if (indexGap === 1 && startingIndex === 4) {
+        if (indexGap === 1 && startingDate >= 301 && endDate <= 500) {
             return "#D783FF";
         }
-        if (indexGap === 1 && startingIndex === 5) {
+        if (indexGap === 1 && startingDate >= 401 && endDate <= 600) {
             return "rgb(240,156,56)";
         }
-        if (indexGap === 1 && startingIndex === 6) {
+        if (indexGap === 1 && startingDate >= 501 && endDate <= 700) {
             return "#A4FB79";
         }
+        // if (indexGap === 1 && startingIndex === 3) {
+        //     return "#76D6FF";
+        // }
+        // if (indexGap === 1 && startingIndex === 4) {
+        //     return "#D783FF";
+        // }
+        // if (indexGap === 1 && startingIndex === 5) {
+        //     return "rgb(240,156,56)";
+        // }
+        // if (indexGap === 1 && startingIndex === 6) {
+        //     return "#A4FB79";
+        // }
         return "#FFFC79";
     };
 
