@@ -40,21 +40,22 @@ const Point = ({data}) => {
     const pointColor = (startingDate, endDate) => {
         const startingIndex = centuryIndex(startingDate);
         const finalIndex = centuryIndex(endDate);
-        const indexGap = finalIndex - startingIndex;
+        // const indexGap = finalIndex - startingIndex;
+        const indexGap = endDate - startingDate;
 
-        if (indexGap === 0) {
+        if (indexGap < 100) {
             return "#FF7E79";
         }
-        if (indexGap === 1 && endDate <= 400) {
+        if (indexGap > 100 && endDate <= 400) {
             return "#76D6FF";
         }
-        if (indexGap === 1 && startingDate >= 301 && endDate <= 500) {
+        if (indexGap > 100 && startingDate >= 301 && endDate <= 500) {
             return "#D783FF";
         }
-        if (indexGap === 1 && startingDate >= 401 && endDate <= 600) {
+        if (indexGap > 100 && startingDate >= 401 && endDate <= 600) {
             return "rgb(240,156,56)";
         }
-        if (indexGap === 1 && startingDate >= 501 && endDate <= 700) {
+        if (indexGap > 100 && startingDate >= 501 && endDate <= 700) {
             return "#A4FB79";
         }
         // if (indexGap === 1 && startingIndex === 3) {
