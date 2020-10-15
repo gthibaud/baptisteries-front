@@ -18,6 +18,7 @@ import {BaptistereContext} from "../contexts/BaptistereContext";
 import l from "../constants/locales";
 import {FilterContext} from "../contexts/FilterContext";
 import Typography from "@material-ui/core/Typography";
+import {FiltresFormSelect} from "./FiltresFormSelect";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -119,83 +120,41 @@ export default function FiltresContainer({nbResults}) {
                     </Grid>
                 </Grid>
                 <Grid item>
-                    {state.regionLabels && state.regionLabels.length > 0 && (
-                        <FormControl variant="outlined" className={classes.formControl}>
-                            <InputLabel htmlFor="input-region">
-                                {l("labelBaptisteryRegion", language)}
-                            </InputLabel>
-                            <Select
-                                autoWidth={true}
-                                native
-                                value={filters.region}
-                                onChange={handleChange}
-                                label={l("labelBaptisteryRegion", language)}
-                                inputProps={{
-                                    name: "region",
-                                    id: "input-region",
-                                }}
-                            >
-                                <option aria-label="None" value=""/>
-                                {state.regionLabels.map((region) => (
-                                    <option key={region} value={region}>
-                                        {region}
-                                    </option>
-                                ))}
-                            </Select>
-                        </FormControl>
-                    )}
+                    {state.regionLabels && state.regionLabels.length > 0 &&
+                        <FiltresFormSelect
+                            className={classes.formControl}
+                            label={"labelBaptisteryRegion"}
+                            selectOptions={state.regionLabels}
+                            inputProps={{name: "region", id: "input-region"}}
+                            handleChange={handleChange}
+                            initValue={filters.region}
+                            language={language}
+                        />
+                    }
 
-                    {state.buildingLabels && state.buildingLabels.length > 0 && (
-                        <FormControl variant="outlined" className={classes.formControl}>
-                            <InputLabel htmlFor="input-building">
-                                {l("labelBaptisteryBuildingCategory", language)}
-                            </InputLabel>
-                            <Select
-                                autoWidth={true}
-                                native
-                                value={filters.buildingCategory}
-                                onChange={handleChange}
-                                label={l("labelBaptisteryBuildingCategory", language)}
-                                inputProps={{
-                                    name: "buildingCategory",
-                                    id: "input-building",
-                                }}
-                            >
-                                <option aria-label="None" value=""/>
-                                {state.buildingLabels.map((building) => (
-                                    <option key={building} value={building}>
-                                        {building}
-                                    </option>
-                                ))}
-                            </Select>
-                        </FormControl>
-                    )}
+                    {state.buildingLabels && state.buildingLabels.length > 0 &&
+                        <FiltresFormSelect
+                            className={classes.formControl}
+                            label={"labelBaptisteryBuildingCategory"}
+                            selectOptions={state.buildingLabels}
+                            inputProps={{name: "buildingCategory", id: "input-building"}}
+                            handleChange={handleChange}
+                            initValue={filters.buildingCategory}
+                            language={language}
+                        />
+                    }
 
-                    {state.settlementLabels && state.settlementLabels.length > 0 && (
-                        <FormControl variant="outlined" className={classes.formControl}>
-                            <InputLabel htmlFor="input-settlement">
-                                {l("labelBaptisterySettlementContext", language)}
-                            </InputLabel>
-                            <Select
-                                autoWidth={true}
-                                native
-                                value={filters.settlementContext}
-                                onChange={handleChange}
-                                label={l("labelBaptisterySettlementContext", language)}
-                                inputProps={{
-                                    name: "settlementContext",
-                                    id: "input-settlement",
-                                }}
-                            >
-                                <option aria-label="None" value=""/>
-                                {state.settlementLabels.map((settlement) => (
-                                    <option key={settlement} value={settlement}>
-                                        {settlement}
-                                    </option>
-                                ))}
-                            </Select>
-                        </FormControl>
-                    )}
+                    {state.settlementLabels && state.settlementLabels.length > 0 &&
+                        <FiltresFormSelect
+                            className={classes.formControl}
+                            label={"labelBaptisterySettlementContext"}
+                            selectOptions={state.settlementLabels}
+                            inputProps={{name: "settlementContext", id: "input-settlement"}}
+                            handleChange={handleChange}
+                            initValue={filters.settlementContext}
+                            language={language}
+                        />
+                    }
 
                     <FormControl variant="outlined" className={classes.formControl}>
                         <TextField
