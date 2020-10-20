@@ -20,11 +20,13 @@ export default function FilterContextProvider({ children }) {
       name: "",
       coordinatesAccuracy: "",
       recordReliability: "",
+      years: [],
       maximumDepth: "",
       maximumPreservedDepth: "",
       exclusivelyFromHistoricalSources: false,
       numberOfAdditionalBasins: "",
     },
+    dateRange: [],
     baptisteriesFiltered: baptisteriesList || [],
   };
 
@@ -36,7 +38,37 @@ export default function FilterContextProvider({ children }) {
 
   useEffect(() => {
     dispatch({ baptisteriesFiltered: baptisteriesList });
+    searchAndSaveMinMaxDate(baptisteriesList);
   }, [baptisteriesList]);
+
+  // Save the min and max of the dates for dates filter
+  const searchAndSaveMinMaxDate = (baptisteriesList) => {
+    const minMax = baptisteriesList
+      .map((baptistery) => ({
+        startingYear: baptistery.startingYear,
+        finalYear: baptistery.finalYear,
+      }))
+      .reduce((actualMinMax, newValuesToCheck) => {
+        // Check for the min year
+        actualMinMax[0] =
+          actualMinMax[0] === undefined ||
+          newValuesToCheck.startingYear < actualMinMax[0]
+            ? newValuesToCheck.startingYear
+            : actualMinMax[0];
+        // Check for the max year
+        actualMinMax[1] =
+          actualMinMax[1] === undefined ||
+          newValuesToCheck.finalYear > actualMinMax[1]
+            ? newValuesToCheck.finalYear
+            : actualMinMax[1];
+        return actualMinMax;
+      }, []);
+
+    dispatch({
+      dateRange: minMax,
+      filters: { ...state.filters, years: minMax },
+    });
+  };
 
   // Input fields that require a number validation with a regex
   const numberInput = ["maximumDepth", "maximumPreservedDepth"];
@@ -81,8 +113,22 @@ export default function FilterContextProvider({ children }) {
     }
   };
 
+  // Save slider filters
+  const handleRangeNumber = (event, newValues) => {
+    event.preventDefault();
+
+    dispatch({ filters: { ...state.filters, ...newValues } });
+  };
+
   // To cancel all filters
-  const cancelAllFilters = () => dispatch(initState);
+  const cancelAllFilters = () => {
+    const actualRange = state.dateRange;
+    dispatch({
+      ...initState,
+      dateRange: actualRange,
+      filters: { years: actualRange },
+    });
+  };
 
   // To cancel a specific filter
   const cancelFilter = (name) => {
@@ -105,6 +151,13 @@ export default function FilterContextProvider({ children }) {
             baptistery[filter] !== undefined &&
             baptistery[filter] !== null &&
             baptistery[filter] === state.filters[filter]
+          );
+        }
+
+        if (filter === "years") {
+          return (
+            baptistery.startingYear >= state.filters.years[0] &&
+            baptistery.finalYear <= state.filters.years[1]
           );
         }
 
@@ -140,9 +193,11 @@ export default function FilterContextProvider({ children }) {
       value={{
         filters: state.filters,
         baptisteriesFiltered: state.baptisteriesFiltered,
+        dateRange: state.dateRange,
         handleChange,
         handleChangeNumber,
         handleChangeToggle,
+        handleRangeNumber,
         cancelAllFilters,
         cancelFilter,
       }}

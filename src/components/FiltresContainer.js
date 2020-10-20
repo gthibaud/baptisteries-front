@@ -9,6 +9,7 @@ import {
     InputLabel,
     Select,
     TextField,
+    Slider,
     Switch,
 } from "@material-ui/core";
 import CancelIcon from "@material-ui/icons/Cancel";
@@ -50,10 +51,12 @@ export default function FiltresContainer({nbResults}) {
     const normalizedNbResults = `(${nbResults} ${l("labelResult", language)})`;
 
     const {
+        dateRange,
         filters,
         handleChange,
         handleChangeNumber,
         handleChangeToggle,
+        handleRangeNumber,
         cancelAllFilters,
         cancelFilter,
     } = useContext(FilterContext);
@@ -68,6 +71,11 @@ export default function FiltresContainer({nbResults}) {
     };
 
     const [state, dispatch] = useReducer(stateReducer, initState);
+
+    const dateMarks = [
+        { value: dateRange[0], label: dateRange[0] },
+        { value: dateRange[1], label: dateRange[1] }
+    ];
 
     useEffect(() => {
         loadLabels(language);
@@ -271,6 +279,22 @@ export default function FiltresContainer({nbResults}) {
                     </FormControl>
 
                     <FormControl className={classes.formControl}>
+                        <Typography variant={"body1"}>
+                            {l("labelLegendChronology", language)}
+                        </Typography>
+                        <Slider
+                            value={[filters.years[0], filters.years[1]]}
+                            aria-labelledby="date-slider"
+                            onChange={(event, newValues) => handleRangeNumber(event, {years: newValues})}
+                            getAriaValueText={(value) => value}
+                            valueLabelDisplay={"auto"}
+                            marks={dateMarks}
+                            min={dateRange[0]}
+                            max={dateRange[1]}
+                        />
+                    </FormControl>
+
+                    <FormControl className={classes.formControl}>
                         <FormControlLabel
                             control={
                                 <Switch
@@ -289,7 +313,8 @@ export default function FiltresContainer({nbResults}) {
                     {Object.keys(filters).map((filter) => {
                         if (
                             filters[filter] !== "" &&
-                            filter !== "exclusivelyFromHistoricalSources"
+                            filter !== "exclusivelyFromHistoricalSources" &&
+                            filter !== "years"
                         ) {
                             const label =
                                 filter === "coordinatesAccuracy"
