@@ -65,7 +65,7 @@ export default function FiltresContainer({nbResults}) {
         cancelAllFilters,
         cancelFilter,
     } = useContext(FilterContext);
-    const {regions, buildingCategories, settlementContexts} = useContext(
+    const {regions, buildingCategories, settlementContexts, ecclesiasticalDioceses, civilDioceses, patriarchies, provinces} = useContext(
         BaptistereContext
     );
 
@@ -73,13 +73,17 @@ export default function FiltresContainer({nbResults}) {
         regionLabels: [],
         buildingLabels: [],
         settlementLabels: [],
+        ecclesiasticalDiocesesLabels: [],
+        civilDiocesesLabels: [],
+        patriarchiesLabels: [],
+        provincesLabels: []
     };
 
     const filterChipNotDisplay = ["exclusivelyFromHistoricalSources", "years", "maximumDepth", "maximumPreservedDepth"];
 
     const [state, dispatch] = useReducer(stateReducer, initState);
 
-    // To display marks under Slider component
+    // To display custom marks under Slider components
     const dateMarks = [
         {value: dateRange[0], label: dateRange[0]},
         {value: dateRange[1], label: dateRange[1]}
@@ -90,14 +94,12 @@ export default function FiltresContainer({nbResults}) {
         label: maxDepthRange[1]
     }];
 
-    console.log("maxDepth = " + maxDepthRange[0] + " - " + maxDepthRange[1])
-
-
     const maxPreservedDepthMarks = [{
         value: maxPreservedDepthRange[0],
         label: maxPreservedDepthRange[0]
     }, {value: maxPreservedDepthRange[1], label: maxPreservedDepthRange[1]}];
 
+    // Loads the correct labels for the dropdown lists (regarding the current language)
     useEffect(() => {
         loadLabels(language);
     }, [language, regions, buildingCategories, settlementContexts]);
@@ -106,17 +108,33 @@ export default function FiltresContainer({nbResults}) {
         const newRegionsLabels = regions
             .filter((region) => region.cid === language)
             ?.map((res) => res.name);
-        const newBuildingCategories = buildingCategories
+        const newBuildingCategoriesLabels = buildingCategories
             .filter((buildingCat) => buildingCat.cid === language)
             ?.map((res) => res.name);
-        const newSettlementContexts = settlementContexts
+        const newSettlementContextsLabels = settlementContexts
             .filter((settlementCont) => settlementCont.cid === language)
+            ?.map((res) => res.name);
+        const newEcclesiasticalDiocesesLabels = ecclesiasticalDioceses
+            .filter((eccleDiocese) => eccleDiocese.cid === language)
+            ?.map((res) => res.name);
+        const newCivilDiocesesLabels = civilDioceses
+            .filter((civilDiocese) => civilDiocese.cid === language)
+            ?.map((res) => res.name);
+        const newPatriarchiesLabels = patriarchies
+            .filter((patriarchy) => patriarchy.cid === language)
+            ?.map((res) => res.name);
+        const newProvincesLabels = provinces
+            .filter((province) => province.cid === language)
             ?.map((res) => res.name);
 
         dispatch({
             regionLabels: newRegionsLabels,
-            buildingLabels: newBuildingCategories,
-            settlementLabels: newSettlementContexts,
+            buildingLabels: newBuildingCategoriesLabels,
+            settlementLabels: newSettlementContextsLabels,
+            ecclesiasticalDiocesesLabels: newEcclesiasticalDiocesesLabels,
+            civilDiocesesLabels: newCivilDiocesesLabels,
+            patriarchiesLabels: newPatriarchiesLabels,
+            provincesLabels: newProvincesLabels
         });
     };
 
@@ -158,8 +176,51 @@ export default function FiltresContainer({nbResults}) {
                         handleChange={handleChange}
                         initValue={filters.region}
                         language={language}
-                    />
-                    }
+                    />}
+
+                    {state.ecclesiasticalDiocesesLabels && state.ecclesiasticalDiocesesLabels.length > 0 &&
+                    <FiltresFormSelect
+                        className={classes.formControl}
+                        label={"labelBaptisteryDiocese"}
+                        selectOptions={state.ecclesiasticalDiocesesLabels}
+                        inputProps={{name: "ecclesiasticalDiocese", id: "input-ecclesiastical-diocese"}}
+                        handleChange={handleChange}
+                        initValue={filters.ecclesiasticalDiocese}
+                        language={language}
+                    />}
+
+                    {state.civilDiocesesLabels && state.civilDiocesesLabels.length > 0 &&
+                    <FiltresFormSelect
+                        className={classes.formControl}
+                        label={"labelBaptisteryDioceseCivil"}
+                        selectOptions={state.civilDiocesesLabels}
+                        inputProps={{name: "civilDiocese", id: "input-civil-diocese"}}
+                        handleChange={handleChange}
+                        initValue={filters.civilDiocese}
+                        language={language}
+                    />}
+
+                    {state.patriarchiesLabels && state.patriarchiesLabels.length > 0 &&
+                    <FiltresFormSelect
+                        className={classes.formControl}
+                        label={"labelBaptisteryPatriarchy"}
+                        selectOptions={state.patriarchiesLabels}
+                        inputProps={{name: "patriarchy", id: "input-patriarchy"}}
+                        handleChange={handleChange}
+                        initValue={filters.patriarchy}
+                        language={language}
+                    />}
+
+                    {state.provincesLabels && state.provincesLabels.length > 0 &&
+                    <FiltresFormSelect
+                        className={classes.formControl}
+                        label={"labelBaptisteryProvince"}
+                        selectOptions={state.provincesLabels}
+                        inputProps={{name: "province", id: "input-province"}}
+                        handleChange={handleChange}
+                        initValue={filters.province}
+                        language={language}
+                    />}
 
                     {state.buildingLabels && state.buildingLabels.length > 0 &&
                     <FiltresFormSelect
@@ -170,8 +231,7 @@ export default function FiltresContainer({nbResults}) {
                         handleChange={handleChange}
                         initValue={filters.buildingCategory}
                         language={language}
-                    />
-                    }
+                    />}
 
                     {state.settlementLabels && state.settlementLabels.length > 0 &&
                     <FiltresFormSelect
@@ -182,8 +242,7 @@ export default function FiltresContainer({nbResults}) {
                         handleChange={handleChange}
                         initValue={filters.settlementContext}
                         language={language}
-                    />
-                    }
+                    />}
 
                     <FormControl variant="outlined" className={classes.formControl}>
                         <TextField

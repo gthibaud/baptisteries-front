@@ -146,6 +146,10 @@ const BaptistereContextProvider = ({children}) => {
             value={{
                 datingCriteria: state.datingCriteria,
                 regions: state.regions,
+                ecclesiasticalDioceses: state.ecclesiasticalDioceses,
+                civilDioceses: state.civilDioceses,
+                patriarchies: state.patriarchies,
+                provinces: state.provinces,
                 buildingCategories: state.buildingCategories,
                 settlementContexts: state.settlementContexts,
                 baptisteriesList: state.baptisteriesList,
