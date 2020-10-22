@@ -39,6 +39,9 @@ const useStyles = makeStyles((theme) => ({
     chip: {
         marginRight: theme.spacing(1),
     },
+    slider: {
+        width: "90%"
+    }
 }));
 
 function stateReducer(state, action) {
@@ -52,6 +55,8 @@ export default function FiltresContainer({nbResults}) {
 
     const {
         dateRange,
+        maxDepthRange,
+        maxPreservedDepthRange,
         filters,
         handleChange,
         handleChangeNumber,
@@ -70,12 +75,28 @@ export default function FiltresContainer({nbResults}) {
         settlementLabels: [],
     };
 
+    const filterChipNotDisplay = ["exclusivelyFromHistoricalSources", "years", "maximumDepth", "maximumPreservedDepth"];
+
     const [state, dispatch] = useReducer(stateReducer, initState);
 
+    // To display marks under Slider component
     const dateMarks = [
-        { value: dateRange[0], label: dateRange[0] },
-        { value: dateRange[1], label: dateRange[1] }
+        {value: dateRange[0], label: dateRange[0]},
+        {value: dateRange[1], label: dateRange[1]}
     ];
+
+    const maxDepthMarks = [{value: maxDepthRange[0], label: maxDepthRange[0]}, {
+        value: maxDepthRange[1],
+        label: maxDepthRange[1]
+    }];
+
+    console.log("maxDepth = " + maxDepthRange[0] + " - " + maxDepthRange[1])
+
+
+    const maxPreservedDepthMarks = [{
+        value: maxPreservedDepthRange[0],
+        label: maxPreservedDepthRange[0]
+    }, {value: maxPreservedDepthRange[1], label: maxPreservedDepthRange[1]}];
 
     useEffect(() => {
         loadLabels(language);
@@ -129,39 +150,39 @@ export default function FiltresContainer({nbResults}) {
                 </Grid>
                 <Grid item>
                     {state.regionLabels && state.regionLabels.length > 0 &&
-                        <FiltresFormSelect
-                            className={classes.formControl}
-                            label={"labelBaptisteryRegion"}
-                            selectOptions={state.regionLabels}
-                            inputProps={{name: "region", id: "input-region"}}
-                            handleChange={handleChange}
-                            initValue={filters.region}
-                            language={language}
-                        />
+                    <FiltresFormSelect
+                        className={classes.formControl}
+                        label={"labelBaptisteryRegion"}
+                        selectOptions={state.regionLabels}
+                        inputProps={{name: "region", id: "input-region"}}
+                        handleChange={handleChange}
+                        initValue={filters.region}
+                        language={language}
+                    />
                     }
 
                     {state.buildingLabels && state.buildingLabels.length > 0 &&
-                        <FiltresFormSelect
-                            className={classes.formControl}
-                            label={"labelBaptisteryBuildingCategory"}
-                            selectOptions={state.buildingLabels}
-                            inputProps={{name: "buildingCategory", id: "input-building"}}
-                            handleChange={handleChange}
-                            initValue={filters.buildingCategory}
-                            language={language}
-                        />
+                    <FiltresFormSelect
+                        className={classes.formControl}
+                        label={"labelBaptisteryBuildingCategory"}
+                        selectOptions={state.buildingLabels}
+                        inputProps={{name: "buildingCategory", id: "input-building"}}
+                        handleChange={handleChange}
+                        initValue={filters.buildingCategory}
+                        language={language}
+                    />
                     }
 
                     {state.settlementLabels && state.settlementLabels.length > 0 &&
-                        <FiltresFormSelect
-                            className={classes.formControl}
-                            label={"labelBaptisterySettlementContext"}
-                            selectOptions={state.settlementLabels}
-                            inputProps={{name: "settlementContext", id: "input-settlement"}}
-                            handleChange={handleChange}
-                            initValue={filters.settlementContext}
-                            language={language}
-                        />
+                    <FiltresFormSelect
+                        className={classes.formControl}
+                        label={"labelBaptisterySettlementContext"}
+                        selectOptions={state.settlementLabels}
+                        inputProps={{name: "settlementContext", id: "input-settlement"}}
+                        handleChange={handleChange}
+                        initValue={filters.settlementContext}
+                        language={language}
+                    />
                     }
 
                     <FormControl variant="outlined" className={classes.formControl}>
@@ -238,34 +259,6 @@ export default function FiltresContainer({nbResults}) {
 
                     <FormControl variant="outlined" className={classes.formControl}>
                         <TextField
-                            value={filters.maximumDepth}
-                            onChange={handleChangeNumber}
-                            variant={"outlined"}
-                            label={l("labelBaptisteryMaximumDepthMeters", language)}
-                            inputProps={{
-                                name: "maximumDepth",
-                                id: "input-max-depth",
-                                min: 0,
-                            }}
-                        />
-                    </FormControl>
-
-                    <FormControl variant="outlined" className={classes.formControl}>
-                        <TextField
-                            value={filters.maximumPreservedDepth}
-                            onChange={handleChangeNumber}
-                            variant={"outlined"}
-                            label={l("labelBaptisteryMaximumPreservedDepthMeters", language)}
-                            inputProps={{
-                                name: "maximumPreservedDepth",
-                                id: "input-max-preserved-depth",
-                                min: 0,
-                            }}
-                        />
-                    </FormControl>
-
-                    <FormControl variant="outlined" className={classes.formControl}>
-                        <TextField
                             value={filters.numberOfAdditionalBasins}
                             onChange={handleChangeNumber}
                             variant={"outlined"}
@@ -280,12 +273,49 @@ export default function FiltresContainer({nbResults}) {
 
                     <FormControl className={classes.formControl}>
                         <Typography variant={"body1"}>
+                            {l("labelBaptisteryMaximumDepthMeters", language)}
+                        </Typography>
+                        <Slider
+                            className={classes.slider}
+                            value={[filters.maximumDepth[0], filters.maximumDepth[1]]}
+                            aria-labelledby="max-depth-slider"
+                            onChange={(event, newValues) => handleRangeNumber(event, "maximumDepth", newValues)}
+                            getAriaValueText={(value) => value}
+                            valueLabelDisplay={"auto"}
+                            step={0.01}
+                            marks={maxDepthMarks}
+                            min={maxDepthRange[0]}
+                            max={maxDepthRange[1]}
+                        />
+                    </FormControl>
+
+                    <FormControl className={classes.formControl}>
+                        <Typography variant={"body1"}>
+                            {l("labelBaptisteryMaximumPreservedDepthMeters", language)}
+                        </Typography>
+                        <Slider
+                            className={classes.slider}
+                            value={[filters.maximumPreservedDepth[0], filters.maximumPreservedDepth[1]]}
+                            aria-labelledby="max-pres-depth-slider"
+                            onChange={(event, newValues) => handleRangeNumber(event, "maximumPreservedDepth", newValues)}
+                            getAriaValueText={(value) => value}
+                            valueLabelDisplay={"auto"}
+                            step={0.01}
+                            marks={maxPreservedDepthMarks}
+                            min={maxPreservedDepthRange[0]}
+                            max={maxPreservedDepthRange[1]}
+                        />
+                    </FormControl>
+
+                    <FormControl className={classes.formControl}>
+                        <Typography variant={"body1"}>
                             {l("labelLegendChronology", language)}
                         </Typography>
                         <Slider
+                            className={classes.slider}
                             value={[filters.years[0], filters.years[1]]}
                             aria-labelledby="date-slider"
-                            onChange={(event, newValues) => handleRangeNumber(event, {years: newValues})}
+                            onChange={(event, newValues) => handleRangeNumber(event, "years", newValues)}
                             getAriaValueText={(value) => value}
                             valueLabelDisplay={"auto"}
                             marks={dateMarks}
@@ -313,8 +343,7 @@ export default function FiltresContainer({nbResults}) {
                     {Object.keys(filters).map((filter) => {
                         if (
                             filters[filter] !== "" &&
-                            filter !== "exclusivelyFromHistoricalSources" &&
-                            filter !== "years"
+                            !filterChipNotDisplay.includes(filter)
                         ) {
                             const label =
                                 filter === "coordinatesAccuracy"

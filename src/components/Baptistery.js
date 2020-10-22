@@ -170,19 +170,19 @@ const Baptistery = ({onClose, open, currentBaptistere}) => {
                     </Typography>
                 )}
 
-                {currentBaptistere.maximumDepth && (
+                {currentBaptistere.maximumDepth !== "" && (
                     <Typography variant="body1">
                         {`${l("labelBaptisteryMaximumDepth", language)} : ${
                             currentBaptistere.maximumDepth
-                            }`}
+                            } m`}
                     </Typography>
                 )}
 
-                {currentBaptistere.maximumPreservedDepth && (
+                {currentBaptistere.maximumPreservedDepth !== "" && (
                     <Typography variant="body1">
                         {`${l("labelBaptisteryMaximumPreservedDepth", language)} : ${
                             currentBaptistere.maximumPreservedDepth
-                            }`}
+                            } m`}
                     </Typography>
                 )}
 
