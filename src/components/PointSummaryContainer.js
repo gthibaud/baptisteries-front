@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
   menuBox: {
     margin: "32px",
   },
+  list: {
+    display: "flexbox",
+  },
   baptistere: {
     "& p": {
       marginTop: 0,
@@ -47,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
 
 const PointSummaryContainer = () => {
   const { language } = useContext(GlobalContext);
-  const { currentBaptistere, currentBaptisteres } = useContext(BaptistereContext);
+  const { currentBaptisteres } = useContext(BaptistereContext);
   const classes = useStyles();
 
   console.log("liste", currentBaptisteres)
@@ -62,36 +65,37 @@ const PointSummaryContainer = () => {
     setOpen(false);
   };
 
-  return currentBaptistere.id ? (
-    <div className={classes.menu}>
-      <div className={classes.menuBox}>
-        <div className={classes.baptistere}>
-          <Typography variant={"h3"}>{currentBaptistere.name}</Typography>
-          <Typography variant={"h4"}>{l("labelBaptisteryPreview", language)}</Typography>
-          <Typography variant={"body1"}>{`${l("labelBaptisteryDates", language)} : ${
-            currentBaptistere.startingYear
-          } - ${currentBaptistere.finalYear}`}</Typography>
-          <Typography variant={"body1"}>{`${l("labelBaptisteryProvince", language)} : ${
-            currentBaptistere.province
-          }`}</Typography>
-          <Typography variant={"body1"}>{`${l("labelBaptisteryDiocese", language)} : ${
-            currentBaptistere.ecclesiasticalDiocese
-          }`}</Typography>
-          <Button
-            variant="contained"
-            disableElevation
-            className={classes.button}
-            onClick={handleClickOpen}
-          >
-            {l("buttonMoreInformation", language)}
-          </Button>
-          <Baptistery
-            open={open}
-            onClose={handleClose}
-            currentBaptistere={currentBaptistere}
-          />
-        </div>
-      </div>
+  return currentBaptisteres.length > 0 ? (
+    <div className={classes.list}>
+      {currentBaptisteres.map(currentBaptistere => {
+        return (<div className={classes.menu}>
+          <div className={classes.menuBox}>
+            <div className={classes.baptistere}>
+              <Typography variant={"h3"}>{currentBaptistere.name}</Typography>
+              <Typography variant={"h4"}>{l("labelBaptisteryPreview", language)}</Typography>
+              <Typography variant={"body1"}>{`${l("labelBaptisteryDates", language)} : ${currentBaptistere.startingYear
+                } - ${currentBaptistere.finalYear}`}</Typography>
+              <Typography variant={"body1"}>{`${l("labelBaptisteryProvince", language)} : ${currentBaptistere.province
+                }`}</Typography>
+              <Typography variant={"body1"}>{`${l("labelBaptisteryDiocese", language)} : ${currentBaptistere.ecclesiasticalDiocese
+                }`}</Typography>
+              <Button
+                variant="contained"
+                disableElevation
+                className={classes.button}
+                onClick={handleClickOpen}
+              >
+                {l("buttonMoreInformation", language)}
+              </Button>
+              <Baptistery
+                open={open}
+                onClose={handleClose}
+                currentBaptistere={currentBaptistere}
+              />
+            </div>
+          </div>
+        </div>)
+      })}
     </div>
   ) : null;
 };

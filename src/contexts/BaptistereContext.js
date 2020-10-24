@@ -48,17 +48,15 @@ const BaptistereContextProvider = ({ children }) => {
 
     // Sets the current baptisteres that is focused and map
     const setCurrentFocusedBaptisteres = (data) => {
-        console.log("appel?")
         const lng = data.longitude;
         const lat = data.latitude;
-        console.log(lat, lng, "cacaboudin ?")
-        const positionnedBaptisteriesList = initState.baptisteriesList.filter(bp => bp.longitude === lng && bp.latitude === lat)
+        const positionnedBaptisteriesList = state.baptisteriesList.filter(bp => bp.longitude === lng && bp.latitude === lat)
         dispatch({ currentBaptisteres: positionnedBaptisteriesList });
     };
 
     // Resets the current baptistere that is focused on the map view
     const detachBaptistere = () => {
-        dispatch({ currentBaptistere: {} });
+        dispatch({ currentBaptisteres: {} });
     };
 
     // Updates the lists after data have changed
