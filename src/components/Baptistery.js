@@ -4,6 +4,7 @@ import {Dialog, Paper} from "@material-ui/core";
 import l from "../constants/locales";
 import {GlobalContext} from "../contexts/GlobalContext";
 import Typography from "@material-ui/core/Typography";
+import ReactMarkdown from "react-markdown";
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -207,7 +208,7 @@ const Baptistery = ({onClose, open, currentBaptistere}) => {
                         <hr className={classes.line}/>
                         <Typography variant={"h4"}>{l("labelBaptisteryBibliography", language)}</Typography>
                         <Typography variant="body1">
-                            {currentBaptistere.bibliography}
+                            <ReactMarkdown linkTarget="_blank" source={currentBaptistere.bibliography}/>
                         </Typography>
                     </>)}
 
