@@ -11,21 +11,23 @@ const useStyles = makeStyles((theme) => ({
   menu: {
     backgroundColor: "white",
     borderRadius: theme.spacing(0.6),
-    position: "absolute",
     width: "300px",
-    top: theme.spacing(9.3),
-    left: theme.spacing(2),
-    zIndex: "1000",
     boxShadow: "0px 0px 8px RGBa(0, 0, 0, 0.25)",
     maxWidth: "100%",
     maxHeight: "85vh",
     overflow: "auto",
+    marginBottom: "12px"
   },
   menuBox: {
     margin: "32px",
   },
   list: {
-    display: "flexbox",
+    top: "58px",
+    zIndex: "1000",
+    position: "absolute",
+    padding: "16px",
+    overflow: "scroll",
+    height: "calc(100vh - 194px)"
   },
   baptistere: {
     "& p": {
