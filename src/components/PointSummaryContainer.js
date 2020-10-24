@@ -47,8 +47,10 @@ const useStyles = makeStyles((theme) => ({
 
 const PointSummaryContainer = () => {
   const { language } = useContext(GlobalContext);
-  const { currentBaptistere } = useContext(BaptistereContext);
+  const { currentBaptistere, currentBaptisteres } = useContext(BaptistereContext);
   const classes = useStyles();
+
+  console.log("liste", currentBaptisteres)
 
   const [open, setOpen] = React.useState(false);
 

@@ -10,7 +10,7 @@ import ReactDOMServer from "react-dom/server";
 import Typography from "@material-ui/core/Typography";
 
 const Point = ({ data }) => {
-    const { setCurrentFocusedBaptistere } = useContext(BaptistereContext);
+    const { setCurrentFocusedBaptisteres } = useContext(BaptistereContext);
 
     const long = parseFloat(data.longitude.replace(",", "."));
     const lat = parseFloat(data.latitude.replace(",", "."));
@@ -101,7 +101,7 @@ const Point = ({ data }) => {
         <Marker
             icon={pointIcon}
             position={[lat, long]}
-            onClick={() => setCurrentFocusedBaptistere(data)}
+            onClick={() => setCurrentFocusedBaptisteres(data)}
         >
             <Popup>
                 <Typography variant={"h3"}>{data.name}</Typography>
