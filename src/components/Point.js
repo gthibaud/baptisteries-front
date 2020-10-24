@@ -35,8 +35,6 @@ const Point = ({ data }) => {
 
     const pointSize = markerSize();
 
-    const centuryIndex = (year) => Math.round(1 + (year - 1) / 100);
-
     const pointColor = (startingDate, endDate) => {
         const res = {
             index: "",
