@@ -49,12 +49,14 @@ body {
 
 @media screen and (min-width: 1200px)  {
   .MuiDialog-paperWidthSm {
-    width: 50% !important;
+    max-width: 50% !important;
+    min-width: 50% !important;
   }
 }
 
 @media screen and (max-width: 1200px)  {
   .MuiDialog-paperWidthSm {
-    width: 70% !important;
+    max-width: 70% !important;
+    min-width: 70% !important;
   }
 }
