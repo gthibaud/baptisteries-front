@@ -73,6 +73,13 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: "auto",
         marginTop: "auto",
     },
+    colorBlack: {
+        width: 50,
+        height: 20,
+        backgroundColor: "rgb(100,100,100)",
+        marginBottom: "auto",
+        marginTop: "auto",
+    },
     description: {
         marginTop: 2,
         marginBottom: 2,
@@ -106,7 +113,7 @@ const MapLegend = () => {
                         </Typography>
                     </div>
                     <div className={classes.legendItem}>
-                        <div className={classes.colorBlue}/>
+                        <div className={classes.colorOrange}/>
                         <Typography variant={"body1"} className={classes.description}>
                             {l("labelLegendPreciseInterval1", language)}
                         </Typography>
@@ -118,7 +125,7 @@ const MapLegend = () => {
                         </Typography>
                     </div>
                     <div className={classes.legendItem}>
-                        <div className={classes.colorOrange}/>
+                        <div className={classes.colorBlue}/>
                         <Typography variant={"body1"} className={classes.description}>
                             {l("labelLegendPreciseInterval5", language)}
                         </Typography>
@@ -127,6 +134,12 @@ const MapLegend = () => {
                         <div className={classes.colorGreen}/>
                         <Typography variant={"body1"} className={classes.description}>
                             {l("labelLegendPreciseInterval3", language)}
+                        </Typography>
+                    </div>
+                    <div className={classes.legendItem}>
+                        <div className={classes.colorBlack} />
+                        <Typography variant={"body1"} className={classes.description}>
+                            {l("labelLegendPreciseInterval6", language)}
                         </Typography>
                     </div>
                     <div className={classes.legendItem}>
