@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography";
 const useStyles = makeStyles((theme) => ({
     card: {
         borderRadius: theme.spacing(0.6),
-        padding: 42,
+        padding: 42
     },
     line: {
         margin: theme.spacing(3, 0)
