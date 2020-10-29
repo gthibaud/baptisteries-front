@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     },
     formControl: {
         margin: theme.spacing(0.2, 1),
-        minWidth: 300,
+        minWidth: 330,
     },
     container: {
         margin: theme.spacing(1),
@@ -151,7 +151,7 @@ export default function FiltresContainer({nbResults}) {
                 >
                     <Grid item>
                         <Typography
-                            variant={"h3"}>{l("labelFilters", language)} {nbResults && nbResults > 0 && normalizedNbResults}</Typography>
+                            variant={"h3"}>{l("labelFilters", language)} {normalizedNbResults}</Typography>
 
                     </Grid>
                     <Grid item>
@@ -166,7 +166,7 @@ export default function FiltresContainer({nbResults}) {
                         </Button>
                     </Grid>
                 </Grid>
-                <Grid item>
+                <Grid item container alignItems={"center"}>
                     {state.regionLabels && state.regionLabels.length > 0 &&
                     <FiltresFormSelect
                         className={classes.formControl}
@@ -330,6 +330,36 @@ export default function FiltresContainer({nbResults}) {
                         />
                     </FormControl>
 
+                    <FormControl variant="outlined" className={classes.formControl}>
+                        <TextField
+                            value={filters.descriptionOfMainFontDimensions}
+                            onChange={handleChange}
+                            variant={"outlined"}
+                            label={l("labelBaptisteryDescriptionOfMainFontDimensions", language)}
+                            inputProps={{
+                                name: "descriptionOfMainFontDimensions",
+                                id: "input-description",
+                            }}
+                        />
+                    </FormControl>
+
+                    <FormControl className={classes.formControl}>
+                        <FormControlLabel
+                            control={
+                                <Switch
+                                    checked={filters.exclusivelyFromHistoricalSources}
+                                    onChange={handleChangeToggle}
+                                    color="primary"
+                                    name="exclusivelyFromHistoricalSources"
+                                    inputProps={{id: "toggle-only-historical-sources"}}
+                                />
+                            }
+                            label={`${l("labelBaptisteryOnlyHistoricalSources", language)}`}
+                        />
+                    </FormControl>
+                </Grid>
+
+                <Grid item className={classes.container}>
                     <FormControl className={classes.formControl}>
                         <Typography variant={"body1"}>
                             {l("labelBaptisteryMaximumDepthMeters", language)}
@@ -383,22 +413,8 @@ export default function FiltresContainer({nbResults}) {
                         />
                     </FormControl>
 
-                    <FormControl className={classes.formControl}>
-                        <FormControlLabel
-                            control={
-                                <Switch
-                                    checked={filters.exclusivelyFromHistoricalSources}
-                                    onChange={handleChangeToggle}
-                                    color="primary"
-                                    name="exclusivelyFromHistoricalSources"
-                                    inputProps={{id: "toggle-only-historical-sources"}}
-                                />
-                            }
-                            label={`${l("labelBaptisteryOnlyHistoricalSources", language)}`}
-                        />
-                    </FormControl>
                 </Grid>
-                <Grid item className={classes.container}>
+                <Grid item container className={classes.container}>
                     {Object.keys(filters).map((filter) => {
                         if (
                             filters[filter] !== "" &&

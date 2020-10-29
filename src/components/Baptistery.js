@@ -164,7 +164,7 @@ const Baptistery = ({onClose, open, currentBaptistere}) => {
                 {currentBaptistere.descriptionOfMainFontDimensions && (
                     <Typography variant="body1">
                         {`${l(
-                            "labelBaptisterydescriptionOfMainFontDimensions",
+                            "labelBaptisteryDescriptionOfMainFontDimensions",
                             language
                         )} : ${currentBaptistere.descriptionOfMainFontDimensions}`}
                     </Typography>

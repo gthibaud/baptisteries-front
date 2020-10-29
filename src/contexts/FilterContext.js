@@ -14,9 +14,14 @@ export default function FilterContextProvider({ children }) {
   const initState = {
     filters: {
       region: "",
+      ecclesiasticalDiocese: "",
+      civilDiocese: "",
+      patriarchy: "",
+      province: "",
       buildingCategory: "",
       settlementContext: "",
       name: "",
+      descriptionOfMainFontDimensions: "",
       coordinatesAccuracy: "",
       recordReliability: "",
       years: [],
@@ -93,7 +98,7 @@ export default function FilterContextProvider({ children }) {
   };
 
   // Filters that does not have to be strictly equal (not an exact search but contains)
-  const filterContainsString = ["name"];
+  const filterContainsString = ["name", "descriptionOfMainFontDimensions"];
 
   // Save string filters
   const handleChange = (event) => {
@@ -148,6 +153,7 @@ export default function FilterContextProvider({ children }) {
       maxDepthRange: actualMaxDepthRange,
       maxPreservedDepthRange: actualMaxPresDepthRange,
       filters: {
+        ...initState.filters,
         years: actualDateRange,
         maximumDepth: actualMaxDepthRange,
         maximumPreservedDepth: actualMaxPresDepthRange,

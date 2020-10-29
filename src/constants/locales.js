@@ -169,7 +169,7 @@ export const locales = {
         it: "Profondità massima conservata (metri)",
         en: "Maximum preserved depth (meters)",
     },
-    labelBaptisterydescriptionOfMainFontDimensions: {
+    labelBaptisteryDescriptionOfMainFontDimensions: {
         fr: "Description dimensions fonts principal",
         it: "Descrizione dimensioni fonte",
         en: "Description of main font dimensions",
