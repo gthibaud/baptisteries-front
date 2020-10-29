@@ -1,4 +1,9 @@
 export const locales = {
+    labelAvailableOnlyItalian: {
+      fr: "(italien)",
+      en: "(italian)",
+      it: "(italiano)"
+    },
     labelResult: {
         fr: "résultats",
         en: "results",

@@ -335,7 +335,7 @@ export default function FiltresContainer({nbResults}) {
                             value={filters.descriptionOfMainFontDimensions}
                             onChange={handleChange}
                             variant={"outlined"}
-                            label={l("labelBaptisteryDescriptionOfMainFontDimensions", language)}
+                            label={`${l("labelBaptisteryDescriptionOfMainFontDimensions", language)} ${l("labelAvailableOnlyItalian", language)} `}
                             inputProps={{
                                 name: "descriptionOfMainFontDimensions",
                                 id: "input-description",
