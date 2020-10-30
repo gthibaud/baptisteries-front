@@ -46,3 +46,17 @@ body {
   right: 334px;
   box-shadow: 0 1px 5px rgba(0,0,0,0.40);
 }
+
+@media screen and (min-width: 1200px)  {
+  .MuiDialog-paperWidthSm {
+    max-width: 50% !important;
+    min-width: 50% !important;
+  }
+}
+
+@media screen and (max-width: 1200px)  {
+  .MuiDialog-paperWidthSm {
+    max-width: 70% !important;
+    min-width: 70% !important;
+  }
+}

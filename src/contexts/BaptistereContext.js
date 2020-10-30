@@ -1,21 +1,23 @@
-import React, {createContext, useContext, useEffect, useReducer} from "react";
+import React, { createContext, useContext, useEffect, useReducer } from "react";
 import axios from "axios";
-import {GlobalContext} from "./GlobalContext";
+import { GlobalContext } from "./GlobalContext";
+import { ContactSupportOutlined } from "@material-ui/icons";
 
 export const BaptistereContext = createContext(null);
 
 // Fuses the previous state object with the new elements
 function stateReducer(state, action) {
-    return {...state, ...action};
+    return { ...state, ...action };
 }
 
-const BaptistereContextProvider = ({children}) => {
-    const {language} = useContext(GlobalContext);
+const BaptistereContextProvider = ({ children }) => {
+    const { language } = useContext(GlobalContext);
 
     const initState = {
         baptisteriesData: {},
         baptisteriesList: [],
         currentBaptistere: {},
+        currentBaptisteres: [],
         datingCriteria: [],
         regions: [],
         ecclesiasticalDioceses: [],
@@ -41,17 +43,25 @@ const BaptistereContextProvider = ({children}) => {
 
     // Sets the current baptistere that is focused and map
     const setCurrentFocusedBaptistere = (baptistere) => {
-        dispatch({currentBaptistere: baptistere});
+        dispatch({ currentBaptistere: baptistere });
+    };
+
+    // Sets the current baptisteres that is focused and map
+    const setCurrentFocusedBaptisteres = (data) => {
+        const lng = data.longitude;
+        const lat = data.latitude;
+        const positionnedBaptisteriesList = state.baptisteriesList.filter(bp => bp.longitude === lng && bp.latitude === lat)
+        dispatch({ currentBaptisteres: positionnedBaptisteriesList });
     };
 
     // Resets the current baptistere that is focused on the map view
     const detachBaptistere = () => {
-        dispatch({currentBaptistere: {}});
+        dispatch({ currentBaptisteres: {} });
     };
 
     // Updates the lists after data have changed
     const updateBaptisteriesList = () => {
-        const {baptisteriesData} = state;
+        const { baptisteriesData } = state;
 
         const baptisteriesList = baptisteriesData.baptisteries || [];
         const datingCriteria = baptisteriesData.datingCriteria || [];
@@ -108,11 +118,11 @@ const BaptistereContextProvider = ({children}) => {
             )?.name;
 
             baptistere.maximumDepth = baptistere.maximumDepth !== "" && baptistere.maximumDepth !== null ?
-                                        parseFloat(baptistere.maximumDepth.toString().replace(",", "."))
-                                        : 0;
+                parseFloat(baptistere.maximumDepth.toString().replace(",", "."))
+                : 0;
             baptistere.maximumPreservedDepth = baptistere.maximumPreservedDepth !== "" && baptistere.maximumPreservedDepth !== null ?
-                                        parseFloat(baptistere.maximumPreservedDepth.toString().replace(",", "."))
-                                        : 0;
+                parseFloat(baptistere.maximumPreservedDepth.toString().replace(",", "."))
+                : 0;
 
             return baptistere;
         });
@@ -134,7 +144,7 @@ const BaptistereContextProvider = ({children}) => {
         axios
             .get("https://baptisteres.huma-num.fr/cache")
             .then((res) => {
-                dispatch({baptisteriesData: res.data});
+                dispatch({ baptisteriesData: res.data });
             })
             .catch((e) => {
                 console.error("error while fetching baptisteries from cache", e);
@@ -154,7 +164,9 @@ const BaptistereContextProvider = ({children}) => {
                 settlementContexts: state.settlementContexts,
                 baptisteriesList: state.baptisteriesList,
                 currentBaptistere: state.currentBaptistere,
+                currentBaptisteres: state.currentBaptisteres,
                 setCurrentFocusedBaptistere,
+                setCurrentFocusedBaptisteres,
                 detachBaptistere,
             }}
         >
