@@ -63,7 +63,7 @@ export default function LanguagePicker() {
   const countriesList = countryCodes.map((country) => {
     if (country !== language) {
       return (
-        <div key={country} onClick={() => onLanguageChange(country)}>
+        <div key={country + Math.random().toString(36).substring(7)} onClick={() => onLanguageChange(country)}>
           <img
             className={classes.img}
             alt={`${country}Flag`}

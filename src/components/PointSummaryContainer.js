@@ -62,7 +62,7 @@ const PointSummaryContainer = () => {
   };
 
   const handleClose = () => {
-    setOpen({ open: false, baptistery: "" });
+    setOpen({ open: false, baptistery: openBaptistery.baptistery });
   };
 
   return currentBaptisteres.length > 0 ? (
