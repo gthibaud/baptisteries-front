@@ -164,25 +164,25 @@ const Baptistery = ({onClose, open, currentBaptistere}) => {
                 {currentBaptistere.descriptionOfMainFontDimensions && (
                     <Typography variant="body1">
                         {`${l(
-                            "labelBaptisterydescriptionOfMainFontDimensions",
+                            "labelBaptisteryDescriptionOfMainFontDimensions",
                             language
                         )} : ${currentBaptistere.descriptionOfMainFontDimensions}`}
                     </Typography>
                 )}
 
-                {currentBaptistere.maximumDepth && (
+                {currentBaptistere.maximumDepth !== "" && (
                     <Typography variant="body1">
                         {`${l("labelBaptisteryMaximumDepth", language)} : ${
                             currentBaptistere.maximumDepth
-                            }`}
+                            } m`}
                     </Typography>
                 )}
 
-                {currentBaptistere.maximumPreservedDepth && (
+                {currentBaptistere.maximumPreservedDepth !== "" && (
                     <Typography variant="body1">
                         {`${l("labelBaptisteryMaximumPreservedDepth", language)} : ${
                             currentBaptistere.maximumPreservedDepth
-                            }`}
+                            } m`}
                     </Typography>
                 )}
 

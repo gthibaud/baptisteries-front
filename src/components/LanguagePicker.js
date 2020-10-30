@@ -16,10 +16,14 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     boxShadow: "0px 8px 8px RGBa(0, 0, 0, 0.25)",
   },
+  clickable: {
+    cursor: "pointer",
+  },
   img: {
     width: "25px",
     height: "25px",
     borderRadius: "50%",
+    cursor: "pointer",
   },
 }));
 
@@ -76,7 +80,7 @@ export default function LanguagePicker() {
 
   return (
     <React.Fragment>
-      <div onClick={handleClick}>
+      <div className={classes.clickable} onClick={handleClick}>
         <img
           className={classes.img}
           alt={`${language}Flag`}

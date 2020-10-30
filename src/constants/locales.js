@@ -1,4 +1,9 @@
 export const locales = {
+    labelAvailableOnlyItalian: {
+      fr: "(italien)",
+      en: "(italian)",
+      it: "(italiano)"
+    },
     labelResult: {
         fr: "résultats",
         en: "results",
@@ -60,9 +65,9 @@ export const locales = {
         it: "Latitudine",
     },
     labelBaptisteryProvince: {
-        fr: "Province",
-        en: "Province",
-        it: "Provincia",
+        fr: "Province / Circonscription régionale / Territoire soumis",
+        en: "Province / Regional circumscription / Subject territory",
+        it: "Provincia / Circoscrizione regionale / Territorio soggetto",
     },
     labelBaptisteryDiocese: {
         fr: "Diocèse ecclésiastique",
@@ -75,9 +80,9 @@ export const locales = {
         it: "Patriarcato",
     },
     labelBaptisteryDioceseCivil: {
-        fr: "Diocèse civil",
-        en: "Civil diocese",
-        it: "Diocesi civile",
+        fr: "Diocèse civile / Circonscription administrative / Entité souveraine",
+        en: "Civil Diocese / Administrative division / Sovereign entity",
+        it: "Diocesi civile / Amministrazione sovraregionale / Entità sovrana",
     },
     labelBaptisteryCoordinatesAccuracy: {
         fr: "Précision des coordonnées",
@@ -169,7 +174,7 @@ export const locales = {
         it: "Profondità massima conservata (metri)",
         en: "Maximum preserved depth (meters)",
     },
-    labelBaptisterydescriptionOfMainFontDimensions: {
+    labelBaptisteryDescriptionOfMainFontDimensions: {
         fr: "Description dimensions fonts principal",
         it: "Descrizione dimensioni fonte",
         en: "Description of main font dimensions",

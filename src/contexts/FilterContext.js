@@ -6,7 +6,6 @@ export const FilterContext = createContext(null);
 function stateReducer(state, action) {
   return { ...state, ...action };
 }
-const regexFloatPositiveNumber = new RegExp(/^[+]?\d+,?\d*$/);
 const regexPositiveNumber = new RegExp(/^[+]?\d*$/);
 
 export default function FilterContextProvider({ children }) {
@@ -15,16 +14,25 @@ export default function FilterContextProvider({ children }) {
   const initState = {
     filters: {
       region: "",
+      ecclesiasticalDiocese: "",
+      civilDiocese: "",
+      patriarchy: "",
+      province: "",
       buildingCategory: "",
       settlementContext: "",
       name: "",
+      descriptionOfMainFontDimensions: "",
       coordinatesAccuracy: "",
       recordReliability: "",
-      maximumDepth: "",
-      maximumPreservedDepth: "",
+      years: [],
+      maximumDepth: [],
+      maximumPreservedDepth: [],
       exclusivelyFromHistoricalSources: false,
       numberOfAdditionalBasins: "",
     },
+    dateRange: [],
+    maxDepthRange: [],
+    maxPreservedDepthRange: [],
     baptisteriesFiltered: baptisteriesList || [],
   };
 
@@ -35,14 +43,62 @@ export default function FilterContextProvider({ children }) {
   }, [state.filters]);
 
   useEffect(() => {
-    dispatch({ baptisteriesFiltered: baptisteriesList });
+    const minMaxDate = searchMinMaxFields(baptisteriesList, [
+      "startingYear",
+      "finalYear",
+    ]);
+    const minMaxDepth = searchMinMaxFields(baptisteriesList, [
+      "maximumDepth",
+      "maximumDepth",
+    ]);
+    const minMaxPreservedDepth = searchMinMaxFields(baptisteriesList, [
+      "maximumPreservedDepth",
+      "maximumPreservedDepth",
+    ]);
+
+    dispatch({
+      baptisteriesFiltered: baptisteriesList,
+      dateRange: minMaxDate,
+      maxDepthRange: minMaxDepth,
+      maxPreservedDepthRange: minMaxPreservedDepth,
+      filters: {
+        ...state.filters,
+        years: minMaxDate,
+        maximumDepth: minMaxDepth,
+        maximumPreservedDepth: minMaxPreservedDepth,
+      },
+    });
   }, [baptisteriesList]);
 
-  // Input fields that require a number validation with a regex
-  const numberInput = ["maximumDepth", "maximumPreservedDepth"];
+  // Retrieve the min and max for the baptistery fields given
+  const searchMinMaxFields = (baptisteriesList, fieldsToCheck) => {
+    const minMax = baptisteriesList
+      .map((baptistery) => ({
+        firstField: baptistery[fieldsToCheck[0]],
+        secondField: baptistery[fieldsToCheck[1]],
+      }))
+      .reduce((actualMinMax, newValuesToCheck) => {
+        // Check for the min element
+        actualMinMax[0] =
+          actualMinMax[0] === undefined ||
+          newValuesToCheck.firstField < actualMinMax[0]
+            ? newValuesToCheck.firstField
+            : actualMinMax[0];
+
+        // Check for the max element
+        actualMinMax[1] =
+          actualMinMax[1] === undefined ||
+          newValuesToCheck.secondField > actualMinMax[1]
+            ? newValuesToCheck.secondField
+            : actualMinMax[1];
+        return actualMinMax;
+      }, []);
+
+    return minMax;
+  };
 
   // Filters that does not have to be strictly equal (not an exact search but contains)
-  const filterContainsString = [...numberInput, "name"];
+  const filterContainsString = ["name", "descriptionOfMainFontDimensions"];
 
   // Save string filters
   const handleChange = (event) => {
@@ -73,16 +129,37 @@ export default function FilterContextProvider({ children }) {
       regexPositiveNumber.test(value)
     ) {
       dispatch({ filters: { ...state.filters, [name]: value } });
-    } else if (
-      value === "" ||
-      (numberInput.includes(name) && regexFloatPositiveNumber.test(value))
-    ) {
+    } else if (value === "") {
       dispatch({ filters: { ...state.filters, [name]: value } });
     }
   };
 
-  // To cancel all filters
-  const cancelAllFilters = () => dispatch(initState);
+  // Save range filters
+  const handleRangeNumber = (event, label, newValues) => {
+    event.preventDefault();
+
+    dispatch({ filters: { ...state.filters, [label]: newValues } });
+  };
+
+  // To cancel all filters but keep the default range filters
+  const cancelAllFilters = () => {
+    const actualDateRange = state.dateRange;
+    const actualMaxDepthRange = state.maxDepthRange;
+    const actualMaxPresDepthRange = state.maxPreservedDepthRange;
+
+    dispatch({
+      ...initState,
+      dateRange: actualDateRange,
+      maxDepthRange: actualMaxDepthRange,
+      maxPreservedDepthRange: actualMaxPresDepthRange,
+      filters: {
+        ...initState.filters,
+        years: actualDateRange,
+        maximumDepth: actualMaxDepthRange,
+        maximumPreservedDepth: actualMaxPresDepthRange,
+      },
+    });
+  };
 
   // To cancel a specific filter
   const cancelFilter = (name) => {
@@ -105,6 +182,29 @@ export default function FilterContextProvider({ children }) {
             baptistery[filter] !== undefined &&
             baptistery[filter] !== null &&
             baptistery[filter] === state.filters[filter]
+          );
+        }
+
+        if (filter === "years") {
+          return (
+            baptistery.startingYear >= state.filters.years[0] &&
+            baptistery.finalYear <= state.filters.years[1]
+          );
+        }
+
+        if (filter === "maximumDepth") {
+          const baptMaxDepth = baptistery.maximumDepth;
+          return (
+            baptMaxDepth >= state.filters.maximumDepth[0] &&
+            baptMaxDepth <= state.filters.maximumDepth[1]
+          );
+        }
+
+        if (filter === "maximumPreservedDepth") {
+          const baptMaxPresDepth = baptistery.maximumPreservedDepth;
+          return (
+            baptMaxPresDepth >= state.filters.maximumPreservedDepth[0] &&
+            baptMaxPresDepth <= state.filters.maximumPreservedDepth[1]
           );
         }
 
@@ -140,9 +240,13 @@ export default function FilterContextProvider({ children }) {
       value={{
         filters: state.filters,
         baptisteriesFiltered: state.baptisteriesFiltered,
+        dateRange: state.dateRange,
+        maxDepthRange: state.maxDepthRange,
+        maxPreservedDepthRange: state.maxPreservedDepthRange,
         handleChange,
         handleChangeNumber,
         handleChangeToggle,
+        handleRangeNumber,
         cancelAllFilters,
         cancelFilter,
       }}
