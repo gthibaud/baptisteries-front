@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     zIndex: "1000",
     position: "absolute",
     padding: "16px",
-    overflow: "scroll",
+    overflow: "auto",
     height: "calc(100vh - 194px)"
   },
   baptistere: {
@@ -55,16 +55,14 @@ const PointSummaryContainer = () => {
   const { currentBaptisteres } = useContext(BaptistereContext);
   const classes = useStyles();
 
-  console.log("liste", currentBaptisteres)
+  const [openBaptistery, setOpen] = React.useState({ open: false, baptistery: "" });
 
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
+  const handleClickOpen = (baptistereId) => {
+    setOpen({ open: true, baptistery: baptistereId });
   };
 
-  const handleClose = (value) => {
-    setOpen(false);
+  const handleClose = () => {
+    setOpen({ open: false, baptistery: "" });
   };
 
   return currentBaptisteres.length > 0 ? (
@@ -85,14 +83,14 @@ const PointSummaryContainer = () => {
                 variant="contained"
                 disableElevation
                 className={classes.button}
-                onClick={handleClickOpen}
+                onClick={() => handleClickOpen(currentBaptistere)}
               >
                 {l("buttonMoreInformation", language)}
               </Button>
               <Baptistery
-                open={open}
+                open={openBaptistery.open}
                 onClose={handleClose}
-                currentBaptistere={currentBaptistere}
+                currentBaptistere={openBaptistery.baptistery}
               />
             </div>
           </div>
