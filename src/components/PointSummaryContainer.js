@@ -65,39 +65,45 @@ const PointSummaryContainer = () => {
     setOpen({ open: false, baptistery: openBaptistery.baptistery });
   };
 
-  return currentBaptisteres.length > 0 ? (
-    <div className={classes.list}>
-      {currentBaptisteres.map(currentBaptistere => {
-        return (<div className={classes.menu}>
-          <div className={classes.menuBox}>
-            <div className={classes.baptistere}>
-              <Typography variant={"h3"}>{currentBaptistere.name}</Typography>
-              <Typography variant={"h4"}>{l("labelBaptisteryPreview", language)}</Typography>
-              <Typography variant={"body1"}>{`${l("labelBaptisteryDates", language)} : ${currentBaptistere.startingYear
-                } - ${currentBaptistere.finalYear}`}</Typography>
-              <Typography variant={"body1"}>{`${l("labelBaptisteryProvince", language)} : ${currentBaptistere.province
-                }`}</Typography>
-              <Typography variant={"body1"}>{`${l("labelBaptisteryDiocese", language)} : ${currentBaptistere.ecclesiasticalDiocese
-                }`}</Typography>
-              <Button
-                variant="contained"
-                disableElevation
-                className={classes.button}
-                onClick={() => handleClickOpen(currentBaptistere)}
-              >
-                {l("buttonMoreInformation", language)}
-              </Button>
-              <Baptistery
-                open={openBaptistery.open}
-                onClose={handleClose}
-                currentBaptistere={openBaptistery.baptistery}
-              />
+  const baptisteriesRender = () => {
+    return currentBaptisteres.length > 0 ? (
+      <div className={classes.list}>
+        {currentBaptisteres.map(currentBaptistere => {
+          return (<div className={classes.menu}>
+            <div className={classes.menuBox}>
+              <div className={classes.baptistere}>
+                <Typography variant={"h3"}>{currentBaptistere.name}</Typography>
+                <Typography variant={"h4"}>{l("labelBaptisteryPreview", language)}</Typography>
+                <Typography variant={"body1"}>{`${l("labelBaptisteryDates", language)} : ${currentBaptistere.startingYear
+                  } - ${currentBaptistere.finalYear}`}</Typography>
+                <Typography variant={"body1"}>{`${l("labelBaptisteryProvince", language)} : ${currentBaptistere.province
+                  }`}</Typography>
+                <Typography variant={"body1"}>{`${l("labelBaptisteryDiocese", language)} : ${currentBaptistere.ecclesiasticalDiocese
+                  }`}</Typography>
+                <Button
+                  variant="contained"
+                  disableElevation
+                  className={classes.button}
+                  onClick={() => handleClickOpen(currentBaptistere)}
+                >
+                  {l("buttonMoreInformation", language)}
+                </Button>
+              </div>
             </div>
-          </div>
-        </div>)
-      })}
-    </div>
-  ) : null;
-};
+          </div>)
+        })}
+      </div>
+    ) : null;
+  };
+
+  return (<div>
+    {baptisteriesRender()}
+    <Baptistery
+      open={openBaptistery.open}
+      onClose={handleClose}
+      currentBaptistere={openBaptistery.baptistery}
+    />
+  </div>)
+}
 
 export default PointSummaryContainer;
