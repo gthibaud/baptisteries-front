@@ -14,17 +14,28 @@ const useStyles = makeStyles((theme) => ({
   popperContent: {
     backgroundColor: "white",
     padding: theme.spacing(2),
+    paddingBottom: "4px",
     boxShadow: "0px 8px 8px RGBa(0, 0, 0, 0.25)",
+  },
+  popperItem: {
+    marginBottom: "8px"
   },
   clickable: {
     cursor: "pointer",
+    display: "flex"
   },
   img: {
-    width: "25px",
-    height: "25px",
+    width: "36px",
+    height: "36px",
     borderRadius: "50%",
     cursor: "pointer",
   },
+  centerDiv: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    marginLeft: "4px"
+  }
 }));
 
 const getLanguageImage = (language) => {
@@ -63,7 +74,7 @@ export default function LanguagePicker() {
   const countriesList = countryCodes.map((country) => {
     if (country !== language) {
       return (
-        <div key={country + Math.random().toString(36).substring(7)} onClick={() => onLanguageChange(country)}>
+        <div key={country + Math.random().toString(36).substring(7)} onClick={() => onLanguageChange(country)} className={classes.popperItem}>
           <img
             className={classes.img}
             alt={`${country}Flag`}
@@ -86,7 +97,9 @@ export default function LanguagePicker() {
           alt={`${language}Flag`}
           src={getLanguageImage(language)}
         />
-        <ExpandMoreIcon />
+        <div className={classes.centerDiv}>
+          <ExpandMoreIcon />
+        </div>
       </div>
       <Popper
         className={classes.popper}
