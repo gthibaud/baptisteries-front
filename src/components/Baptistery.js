@@ -27,11 +27,6 @@ const Baptistery = ({onClose, open, currentBaptistere}) => {
         onClose();
     };
 
-    const capitalize = (str) => {
-        str = str || "  ";
-        return str.charAt(0).toUpperCase() + str.slice(1);
-    };
-
     return (
         <Dialog
             aria-labelledby="simple-dialog-title"

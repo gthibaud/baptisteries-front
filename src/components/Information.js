@@ -1,11 +1,13 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import PageLayout from "./PageLayout";
 import Container from "@material-ui/core/Container";
-import {makeStyles} from "@material-ui/core/styles";
-import {Card} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { Button, Card, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@material-ui/core";
 import l from "../constants/locales";
-import {GlobalContext} from "../contexts/GlobalContext";
+import { GlobalContext } from "../contexts/GlobalContext";
 import Typography from "@material-ui/core/Typography";
+import { MenuBook } from "@material-ui/icons";
+import { Link, animateScroll as scroll } from "react-scroll";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -18,11 +20,13 @@ const useStyles = makeStyles((theme) => ({
         padding: "42px 74px",
         marginLeft: "auto",
         marginRight: "auto",
+        cursor: "default"
     },
     body: {
         lineHeight: "20px",
         marginBottom: "16px",
-        textAlign: "justify"
+        textAlign: "justify",
+        cursor: "default"
     },
     footNote: {
         fontSize: "0.7rem",
@@ -42,23 +46,122 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: "24px"
     },
     line: {
-        margin: theme.spacing(4,0)
+        margin: theme.spacing(4, 0)
+    },
+    buttonContainer: {
+        position: "fixed",
+        bottom: "0",
+        width: "100%",
+        display: "flex",
+
+    },
+    menuButton: {
+        marginLeft: "auto",
+        marginRight: "auto",
+        marginBottom: "24px",
+        width: "200px",
+        boxShadow: "0px 0px 62px rgba(0,0,0,0.3)"
+    },
+    menuLink: {
+        cursor: "pointer",
+        textDecoration: "underline",
+        color: "blue"
+    },
+    menuLi: {
+        marginBottom: "12px"
     }
 }));
 
 export default function Information() {
     const classes = useStyles();
-    const {language} = useContext(GlobalContext);
+    const { language } = useContext(GlobalContext);
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return (
         <PageLayout pageType={"Info"}>
+            <div className={classes.buttonContainer}>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    className={classes.menuButton}
+                    onClick={handleClickOpen}
+                    boxShadow={80}
+                    startIcon={<MenuBook />}>
+                    Menu
+                </Button>
+            </div>
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">{l("menuTitle", language)}</DialogTitle>
+                <DialogContent>
+                    <ul>
+                        <li className={classes.menuLi}>
+                            <Link
+                                activeClass="active"
+                                to={l("infosTitle", language)}
+                                spy={true}
+                                onClick={handleClose}
+                                smooth={true}
+                                offset={-70}
+                                className={classes.menuLink}
+                                duration={500}>
+                                {l("infosTitle", language)}
+                            </Link>
+                        </li>
+                        <li className={classes.menuLi}>
+                            <Link
+                                activeClass="active"
+                                to={l("infosTitle2", language)}
+                                spy={true}
+                                onClick={handleClose}
+                                smooth={true}
+                                offset={-70}
+                                className={classes.menuLink}
+                                duration={500}>
+                                {l("infosTitle2", language)}
+                            </Link>
+                        </li>
+                        <li className={classes.menuLi}>
+                            <Link
+                                activeClass="active"
+                                to={l("infosTitle3", language)}
+                                spy={true}
+                                onClick={handleClose}
+                                smooth={true}
+                                offset={-70}
+                                className={classes.menuLink}
+                                duration={500}>
+                                {l("infosTitle3", language)}
+                            </Link>
+                        </li>
+                    </ul>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose} color="primary" autoFocus>
+                        {l("actionClose", language)}
+                    </Button>
+                </DialogActions>
+            </Dialog>
             <Container maxWidth={"xl"} className={classes.root}>
                 <Card className={classes.container}>
-                    <Typography variant={"h1"} className={classes.h1}>{l("infosTitle", language)}</Typography>
+                    <Typography variant={"h1"} className={classes.h1} id={l("infosTitle", language)}>{l("infosTitle", language)}</Typography>
                     <Typography variant={"body1"} className={classes.body}>{l("infosP1", language)}</Typography>
                     <Typography variant={"body1"} className={classes.body}>{l("infosP2", language)}</Typography>
                     <Typography variant={"body1"} className={classes.body}>{l("infosP3", language)}</Typography>
-                    <Typography variant={"h2"} className={classes.title2}>{l("infosTitle2", language)}</Typography>
+                    <Typography variant={"h2"} className={classes.title2} id={l("infosTitle2", language)}>{l("infosTitle2", language)}</Typography>
                     <Typography variant={"body1"} className={classes.body}>{l("infosP4", language)}</Typography>
                     <ul>
                         <li><Typography variant={"body1"}>{l("infosL1", language)}</Typography>
@@ -112,10 +215,10 @@ export default function Information() {
                         </li>
                     </ul>
                     <Typography variant={"body1"} className={classes.body}>{l("infosP8", language)}</Typography>
-                    <Typography variant={"h2"} className={classes.title2}>{l("infosTitle3", language)}</Typography>
+                    <Typography variant={"h2"} className={classes.title2} id={l("infosTitle3", language)}>{l("infosTitle3", language)}</Typography>
                     <Typography variant={"body1"} className={classes.body}>{l("infosP9", language)}</Typography>
                     <Typography variant={"body1"} className={classes.body}>{l("infosP10", language)}</Typography>
-                    <hr className={classes.line}/>
+                    <hr className={classes.line} />
                     <Typography variant={"body1"} className={classes.footNote}>{l("footNote1", language)}</Typography>
                     <Typography variant={"body1"} className={classes.footNote}>{l("footNote2", language)}</Typography>
                     <Typography variant={"body1"} className={classes.footNote}>{l("footNote3", language)}</Typography>

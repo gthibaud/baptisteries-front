@@ -488,8 +488,17 @@ export const locales = {
         fr: "³ https://www.openstreetmap.org dernier accès le 15/06/2020.",
         en: "", // Not provided
         it: "" // Not provided
+    },
+    menuTitle: {
+        fr: "Menu",
+        en: "Menu",
+        it: "Menu"
+    },
+    actionClose: {
+        fr: "Fermer",
+        en: "Close",
+        it: "Chiudere"
     }
-
 };
 
 const l = (value, langage) => {
