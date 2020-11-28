@@ -1,8 +1,8 @@
 import React from "react";
-import {Paper, Grid, Typography} from "@material-ui/core";
+import { Paper, Grid, Typography } from "@material-ui/core";
 import LanguagePicker from "./LanguagePicker";
-import {makeStyles} from "@material-ui/core/styles";
-import {Link} from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 import LogoHumaNum from "../images/humanum.png";
 import LogoResmed from "../images/resmed.jpeg";
 import LogoUMR from "../images/umr.jpg";
@@ -26,16 +26,37 @@ const useStyles = makeStyles((theme) => ({
     logo: {
         height: "40px",
         width: "auto"
+    },
+    leftContainer: {
+        width: "300px",
+        display: "flex",
+        flexWrap: "wrap",
+    },
+    rightContainer: {
+        width: "300px",
+        display: "flex",
+        flexWrap: "wrap",
+        margin: "-12px",
+        alignItems: "center",
+        justifyContent: "flex-end"
+    },
+    centerContainer: {
+        height: "42px",
+        display: "flex",
+        alignItems: "center"
+    },
+    langagePicker: {
+        marginLeft: "16px"
     }
 }));
 
-export default function Header({pageTitle}) {
+export default function Header({ pageTitle }) {
     const classes = useStyles();
 
     return (
         <Paper className={classes.root}>
             <Grid container justify={"space-between"} alignItems={"center"}>
-                <Grid container item xs={4} alignContent={"center"} spacing={1}>
+                <div className={classes.leftContainer}>
                     <Grid item>
                         <a href={"https://www.sorbonne-universite.fr/"} target={"_blank"}>
                             <img
@@ -81,35 +102,25 @@ export default function Header({pageTitle}) {
                             />
                         </a>
                     </Grid>
-                </Grid>
-                <Grid xs={6} item>
+                </div>
+                <div className={classes.centerContainer}>
                     <Typography variant={"h1"}>
                         {pageTitle}
                     </Typography>
-                </Grid>
-                <Grid item xs={2}>
-                    <Grid
-                        container
-                        justify={"flex-end"}
-                        spacing={3}
-                        alignItems={"center"}
-                    >
-                        <Grid item>
-                            <Link to={"/"} className={classes.marginRight}>
-                                <i className={"fa fa-map-marked-alt " + classes.icon}/>
-                            </Link>
-                            <Link to={"/list"} className={classes.marginRight}>
-                                <i className={"fa fa-list-ul " + classes.icon}/>
-                            </Link>
-                            <Link to={"/information"}>
-                                <i className={"fa fa-info-circle " + classes.icon}/>
-                            </Link>
-                        </Grid>
-                        <Grid item>
-                            <LanguagePicker/>
-                        </Grid>
-                    </Grid>
-                </Grid>
+                </div>
+                <div className={classes.rightContainer}>
+                    <Link to={"/"} className={classes.marginRight}>
+                        <i className={"fa fa-map-marked-alt " + classes.icon} />
+                    </Link>
+                    <Link to={"/list"} className={classes.marginRight}>
+                        <i className={"fa fa-list-ul " + classes.icon} />
+                    </Link>
+                    <Link to={"/information"}>
+                        <i className={"fa fa-info-circle " + classes.icon} />
+                    </Link>
+                    <div className={classes.langagePicker}></div>
+                    <LanguagePicker />
+                </div>
             </Grid>
         </Paper>
     );

@@ -2,12 +2,12 @@ import React, { useContext } from "react";
 import PageLayout from "./PageLayout";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, Card, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@material-ui/core";
+import { Button, Card, Dialog, DialogActions, DialogContent, DialogTitle } from "@material-ui/core";
 import l from "../constants/locales";
 import { GlobalContext } from "../contexts/GlobalContext";
 import Typography from "@material-ui/core/Typography";
 import { MenuBook } from "@material-ui/icons";
-import { Link, animateScroll as scroll } from "react-scroll";
+import { Link, animateScroll } from "react-scroll";
 
 const useStyles = makeStyles((theme) => ({
     root: {
