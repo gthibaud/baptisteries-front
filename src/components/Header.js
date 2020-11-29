@@ -38,7 +38,8 @@ const useStyles = makeStyles((theme) => ({
         flexWrap: "wrap",
         margin: "-12px",
         alignItems: "center",
-        justifyContent: "flex-end"
+        justifyContent: "flex-end",
+        height: "66px"
     },
     centerContainer: {
         height: "42px",
@@ -47,6 +48,9 @@ const useStyles = makeStyles((theme) => ({
     },
     langagePicker: {
         marginLeft: "16px"
+    },
+    logoItem: {
+        marginRight: "8px"
     }
 }));
 
@@ -57,7 +61,7 @@ export default function Header({ pageTitle }) {
         <Paper className={classes.root}>
             <Grid container justify={"space-between"} alignItems={"center"}>
                 <div className={classes.leftContainer}>
-                    <Grid item>
+                    <Grid item className={classes.logoItem}>
                         <a href={"https://www.sorbonne-universite.fr/"} target={"_blank"}>
                             <img
                                 alt={"universite paris-sorbonne"}
@@ -66,7 +70,7 @@ export default function Header({ pageTitle }) {
                             />
                         </a>
                     </Grid>
-                    <Grid item>
+                    <Grid item className={classes.logoItem}>
                         <a href={"#"} target={"_blank"}>
                             <img
                                 alt={"logoInvestissementAvenir"}
@@ -75,7 +79,7 @@ export default function Header({ pageTitle }) {
                             />
                         </a>
                     </Grid>
-                    <Grid item>
+                    <Grid item className={classes.logoItem}>
                         <a href={"http://www.labex-resmed.fr/?lang=fr"} target={"_blank"}>
                             <img
                                 alt={"logoResmed"}
@@ -84,7 +88,7 @@ export default function Header({ pageTitle }) {
                             />
                         </a>
                     </Grid>
-                    <Grid item>
+                    <Grid item className={classes.logoItem}>
                         <a href={"https://www.orient-mediterranee.com/?lang=fr"} target={"_blank"}>
                             <img
                                 alt={"logoUMR"}
@@ -93,7 +97,7 @@ export default function Header({ pageTitle }) {
                             />
                         </a>
                     </Grid>
-                    <Grid item>
+                    <Grid item className={classes.logoItem}>
                         <a href={"https://www.huma-num.fr/"} target={"_blank"}>
                             <img
                                 alt={"logoHumaNum"}
