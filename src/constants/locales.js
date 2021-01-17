@@ -275,9 +275,9 @@ export const locales = {
         it: "401-600 (VI – VI s.)",
     },
     labelLegendPreciseInterval6: {
-        fr: "601-800 (VIIe – IVe s.)",
-        en: "601-800 (7th – 9th s.)",
-        it: "601-800 (VII – IV s.)",
+        fr: "601-800 (VIIe – VIIIe s.)",
+        en: "601-800 (7th – 8th s.)",
+        it: "601-800 (VII – VIII s.)",
     },
     labelLegendReliability1: {
         fr: "Faible",
