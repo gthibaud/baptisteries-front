@@ -234,36 +234,3 @@ const Baptistery = ({ onClose, open, currentBaptistere }) => {
 };
 
 export default Baptistery;
-
-const gutter = 2;
-
-const Gallery = (props) => (
-    <div
-        css={{
-            overflow: 'hidden',
-            marginLeft: -gutter,
-            marginRight: -gutter,
-        }}
-        {...props}
-    />
-);
-
-const Image = (props) => (
-    <div
-        css={{
-            backgroundColor: '#eee',
-            boxSizing: 'border-box',
-            float: 'left',
-            margin: gutter,
-            overflow: 'hidden',
-            paddingBottom: '16%',
-            position: 'relative',
-            width: 100,
-
-            ':hover': {
-                opacity: 0.9,
-            },
-        }}
-        {...props}
-    />
-);

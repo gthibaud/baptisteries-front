@@ -70,6 +70,7 @@ body {
   height: 80vh !important;
   width: auto;    
   max-width: 100%!important;
+  object-fit: contain;
 }
 
 .gallery-grid {
