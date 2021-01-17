@@ -6,7 +6,6 @@ import { GlobalContext } from "../contexts/GlobalContext";
 import Typography from "@material-ui/core/Typography";
 import ReactMarkdown from "react-markdown";
 import Carousel, { Modal, ModalGateway } from "react-images";
-import Zoom from 'react-medium-image-zoom';
 
 const useStyles = makeStyles((theme) => ({
     card: {
