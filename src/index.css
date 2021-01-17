@@ -60,3 +60,25 @@ body {
     min-width: 70% !important;
   }
 }
+
+.MuiDialog-root {
+  z-index: 1100 !important;
+}
+
+.react-images__view-image {
+  background-color: white;
+  height: 80vh !important;
+  width: auto;    
+  max-width: 100%!important;
+}
+
+.gallery-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.gallery-image {
+  height: 240px;
+  margin-right: 12px;
+}

@@ -1,10 +1,12 @@
-import React, {useContext} from "react";
-import {makeStyles} from "@material-ui/core/styles";
-import {Dialog, Paper} from "@material-ui/core";
+import React, { useContext, useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { Dialog, Paper } from "@material-ui/core";
 import l from "../constants/locales";
-import {GlobalContext} from "../contexts/GlobalContext";
+import { GlobalContext } from "../contexts/GlobalContext";
 import Typography from "@material-ui/core/Typography";
 import ReactMarkdown from "react-markdown";
+import Carousel, { Modal, ModalGateway } from "react-images";
+import Zoom from 'react-medium-image-zoom';
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -19,9 +21,16 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Baptistery = ({onClose, open, currentBaptistere}) => {
-    const {language} = useContext(GlobalContext);
+const Baptistery = ({ onClose, open, currentBaptistere }) => {
+    const { language } = useContext(GlobalContext);
     const classes = useStyles();
+    const [selectedIndex, setSelectedIndex] = useState(0);
+    const [lightBoxIsOpen, setLightBoxIsOpen] = useState(false);
+
+    const toggleLightbox = (index) => {
+        setLightBoxIsOpen(!lightBoxIsOpen);
+        setSelectedIndex(index);
+    }
 
     const handleClose = () => {
         onClose();
@@ -38,72 +47,64 @@ const Baptistery = ({onClose, open, currentBaptistere}) => {
 
                 {currentBaptistere.buildingCategory && (
                     <Typography variant="body1">
-                        {`${l("labelBaptisteryBuildingCategory", language)} : ${
-                            currentBaptistere.buildingCategory
+                        {`${l("labelBaptisteryBuildingCategory", language)} : ${currentBaptistere.buildingCategory
                             }`}
                     </Typography>
                 )}
 
                 {currentBaptistere.settlementContext && (
                     <Typography variant="body1">
-                        {`${l("labelBaptisterySettlementContext", language)} : ${
-                            currentBaptistere.settlementContext
+                        {`${l("labelBaptisterySettlementContext", language)} : ${currentBaptistere.settlementContext
                             }`}
                     </Typography>
                 )}
 
-                <hr className={classes.line}/>
+                <hr className={classes.line} />
                 <Typography variant={"h4"}>{l("labelBaptisteryGeography", language)}</Typography>
 
                 {currentBaptistere.region && (
                     <Typography variant="body1">
-                        {`${l("labelBaptisteryRegion", language)} : ${
-                            currentBaptistere.region
+                        {`${l("labelBaptisteryRegion", language)} : ${currentBaptistere.region
                             }`}
                     </Typography>
                 )}
 
                 {currentBaptistere.civilDiocese && (
                     <Typography variant="body1">
-                        {`${l("labelBaptisteryDioceseCivil", language)} : ${
-                            currentBaptistere.civilDiocese
+                        {`${l("labelBaptisteryDioceseCivil", language)} : ${currentBaptistere.civilDiocese
                             }`}
                     </Typography>
                 )}
 
                 {currentBaptistere.patriarchy && (
                     <Typography variant="body1">
-                        {`${l("labelBaptisteryPatriarchy", language)} : ${
-                            currentBaptistere.patriarchy
+                        {`${l("labelBaptisteryPatriarchy", language)} : ${currentBaptistere.patriarchy
                             }`}
                     </Typography>
                 )}
 
                 {currentBaptistere.province && (
                     <Typography variant="body1">
-                        {`${l("labelBaptisteryProvince", language)} : ${
-                            currentBaptistere.province
+                        {`${l("labelBaptisteryProvince", language)} : ${currentBaptistere.province
                             }`}
                     </Typography>
                 )}
 
                 {currentBaptistere.ecclesiasticalDiocese && (
                     <Typography variant="body1">
-                        {`${l("labelBaptisteryDiocese", language)} : ${
-                            currentBaptistere.ecclesiasticalDiocese
+                        {`${l("labelBaptisteryDiocese", language)} : ${currentBaptistere.ecclesiasticalDiocese
                             }`}
                     </Typography>
                 )}
 
                 {currentBaptistere.latitude &&
-                currentBaptistere.longitude &&
-                currentBaptistere.coordinatesAccuracy !== undefined && (
-                    <Typography variant="body1">
-                        {`${l("labelBaptisteryCoordinates", language)} : Lat. ${
-                            currentBaptistere.latitude
-                            } - Lon. ${currentBaptistere.longitude}`}
-                    </Typography>
-                )}
+                    currentBaptistere.longitude &&
+                    currentBaptistere.coordinatesAccuracy !== undefined && (
+                        <Typography variant="body1">
+                            {`${l("labelBaptisteryCoordinates", language)} : Lat. ${currentBaptistere.latitude
+                                } - Lon. ${currentBaptistere.longitude}`}
+                        </Typography>
+                    )}
 
                 {currentBaptistere.coordinatesAccuracy !== undefined && (
                     <Typography variant="body1">
@@ -114,47 +115,43 @@ const Baptistery = ({onClose, open, currentBaptistere}) => {
 
                 {currentBaptistere.recordReliability && (
                     <Typography variant="body1">
-                        {`${l("labelReliability", language)} : ${
-                            currentBaptistere.recordReliability
+                        {`${l("labelReliability", language)} : ${currentBaptistere.recordReliability
                             }/3`}
                     </Typography>
                 )}
-                <hr className={classes.line}/>
+                <hr className={classes.line} />
                 <Typography variant={"h4"}>{l("labelLegendChronology", language)}</Typography>
 
                 {currentBaptistere.startingYear && (
                     <Typography variant="body1">
-                        {`${l("labelBaptisteryStartingYear", language)} : ${
-                            currentBaptistere.startingYear
+                        {`${l("labelBaptisteryStartingYear", language)} : ${currentBaptistere.startingYear
                             }`}
                     </Typography>
                 )}
 
                 {currentBaptistere.finalYear && (
                     <Typography variant="body1">
-                        {`${l("labelBaptisteryFinalYear", language)} : ${
-                            currentBaptistere.finalYear
+                        {`${l("labelBaptisteryFinalYear", language)} : ${currentBaptistere.finalYear
                             }`}
                     </Typography>
                 )}
 
                 {currentBaptistere.datingCriteria && currentBaptistere.datingCriteria.size > 0 && (
                     <Typography variant="body1">
-                        {`${l("labelDatationCriteria", language)} : ${
-                            currentBaptistere.datingCriteria.join(", ")
+                        {`${l("labelDatationCriteria", language)} : ${currentBaptistere.datingCriteria.join(", ")
                             }`}
                     </Typography>
                 )}
 
                 {currentBaptistere.exclusivelyFromHistoricalSources && (
                     <>
-                        <hr className={classes.line}/>
+                        <hr className={classes.line} />
                         <Typography variant={"h4"}>{l("labelLegendSource", language)}</Typography>
                         <Typography variant="body1">
                             {l("labelBaptisteryOnlyHistoricalSources", language)}.
                         </Typography>
                     </>)}
-                <hr className={classes.line}/>
+                <hr className={classes.line} />
                 <Typography variant={"h4"}>{l("labelBaptisteryTechnicalSpecifications", language)}</Typography>
 
                 {currentBaptistere.descriptionOfMainFontDimensions && (
@@ -168,51 +165,106 @@ const Baptistery = ({onClose, open, currentBaptistere}) => {
 
                 {currentBaptistere.maximumDepth !== "" && (
                     <Typography variant="body1">
-                        {`${l("labelBaptisteryMaximumDepth", language)} : ${
-                            currentBaptistere.maximumDepth
+                        {`${l("labelBaptisteryMaximumDepth", language)} : ${currentBaptistere.maximumDepth
                             } m`}
                     </Typography>
                 )}
 
                 {currentBaptistere.maximumPreservedDepth !== "" && (
                     <Typography variant="body1">
-                        {`${l("labelBaptisteryMaximumPreservedDepth", language)} : ${
-                            currentBaptistere.maximumPreservedDepth
+                        {`${l("labelBaptisteryMaximumPreservedDepth", language)} : ${currentBaptistere.maximumPreservedDepth
                             } m`}
                     </Typography>
                 )}
 
                 {currentBaptistere.numberOfAdditionalBasins !== undefined && (
                     <Typography variant="body1">
-                        {`${l("labelBaptisteryNumberBasins", language)} : ${
-                            currentBaptistere.numberOfAdditionalBasins
+                        {`${l("labelBaptisteryNumberBasins", language)} : ${currentBaptistere.numberOfAdditionalBasins
                             }`}
                     </Typography>
                 )}
 
                 {currentBaptistere.adjoiningRoomsDescription && (
                     <Typography variant="body1">
-                        {`${l("labelBaptisteryAdjoiningRoomsDescription", language)} : ${
-                            currentBaptistere.adjoiningRoomsDescription
+                        {`${l("labelBaptisteryAdjoiningRoomsDescription", language)} : ${currentBaptistere.adjoiningRoomsDescription
                             }`}
                     </Typography>
                 )}
 
                 {currentBaptistere.bibliography && (
                     <>
-                        <hr className={classes.line}/>
+                        <hr className={classes.line} />
                         <Typography variant={"h4"}>{l("labelBaptisteryBibliography", language)}</Typography>
                         <Typography variant="body1">
-                            <ReactMarkdown linkTarget="_blank" source={currentBaptistere.bibliography}/>
+                            <ReactMarkdown linkTarget="_blank" source={currentBaptistere.bibliography} />
                         </Typography>
                     </>)}
 
-                <hr className={classes.line}/>
+                <hr className={classes.line} />
                 <Typography variant={"h4"}>{l("labelBaptisteryPlans", language)}</Typography>
-                <Typography variant="body1">{`${l("labelBaptisteryNotAvailable", language)}`}</Typography>
+                {currentBaptistere.imageURLs && currentBaptistere.imageURLs.length > 0 ? (
+                    <>
+                        <Typography variant="body1">{l("labelClickToEnlarge", language)}</Typography>
+                        <div className='gallery-grid'>
+                            {currentBaptistere.imageURLs.map(j => (<>
+                                <img
+                                    onClick={() => toggleLightbox(j.index)}
+                                    key={j.index}
+                                    alt={j.caption}
+                                    src={j.source}
+                                    className='gallery-image'
+                                />
+                            </>
+                            ))}
+                        </div>
+                        <ModalGateway>
+                            {lightBoxIsOpen ? (
+                                <Modal onClose={toggleLightbox}>
+                                    <Carousel
+                                        currentIndex={selectedIndex}
+                                        views={currentBaptistere.imageURLs}
+                                    />
+                                </Modal>
+                            ) : null}
+                        </ModalGateway>
+                    </>)
+                    : <Typography variant="body1">{`${l("labelBaptisteryNotAvailable", language)}`}</Typography>}
             </Paper>
         </Dialog>
     );
 };
 
 export default Baptistery;
+
+const gutter = 2;
+
+const Gallery = (props) => (
+    <div
+        css={{
+            overflow: 'hidden',
+            marginLeft: -gutter,
+            marginRight: -gutter,
+        }}
+        {...props}
+    />
+);
+
+const Image = (props) => (
+    <div
+        css={{
+            backgroundColor: '#eee',
+            boxSizing: 'border-box',
+            float: 'left',
+            margin: gutter,
+            overflow: 'hidden',
+            paddingBottom: '16%',
+            position: 'relative',
+            width: 100,
+
+            ':hover': {
+                opacity: 0.9,
+            },
+        }}
+        {...props}
+    />
+);

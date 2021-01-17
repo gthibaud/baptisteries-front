@@ -75,6 +75,9 @@ function App() {
                                 <Route exact path={"/information"}>
                                     <Information/>
                                 </Route>
+                                <Route exact path={"/:id"}>
+                                    <HomePage />
+                                </Route>
                             </Switch>
                         </BrowserRouter>
                     </FilterContextProvider>

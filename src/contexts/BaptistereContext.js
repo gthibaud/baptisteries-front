@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useEffect, useReducer } from "react";
 import axios from "axios";
 import { GlobalContext } from "./GlobalContext";
-import { ContactSupportOutlined } from "@material-ui/icons";
 
 export const BaptistereContext = createContext(null);
 
@@ -124,6 +123,14 @@ const BaptistereContextProvider = ({ children }) => {
                 parseFloat(baptistere.maximumPreservedDepth.toString().replace(",", "."))
                 : 0;
 
+            const plans = [];
+            let i = 0;
+            baptistere.imageURLs = [];
+            baptistere.planUrls && baptistere.planUrls.map(u => {
+                baptistere.imageURLs.push({ source: u, caption: baptistere.name, index: i });
+                i++;
+            });
+
             return baptistere;
         });
 
@@ -167,7 +174,7 @@ const BaptistereContextProvider = ({ children }) => {
                 currentBaptisteres: state.currentBaptisteres,
                 setCurrentFocusedBaptistere,
                 setCurrentFocusedBaptisteres,
-                detachBaptistere,
+                detachBaptistere
             }}
         >
             {children}

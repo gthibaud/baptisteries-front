@@ -484,6 +484,11 @@ export const locales = {
         en: "² S. Ristow, Frühchristiliche Baptisterien, Münster 1998; this corpus has been recently transferred on a digital and interactive web-platform (RISTOW, S., A. MERTEL, H. HOŘÍNKOVÁ, D. ZBÍRAL (2017). Christian baptisteries: interactive map (version 1.0.2). Online : http://hde.geogr.muni.cz/baptisteries, last access 26/04/2019), that follows more or less the same classification criteria of the data of Ristow’s publication.",
         it: "² S. Ristow, Frühchristiliche Baptisterien, Münster 1998 ; questo corpus è stato recentemente traslato su una piattaforma digitale e interattiva (RISTOW, S., A. MERTEL, H. HOŘÍNKOVÁ, D. ZBÍRAL (2017). Christian baptisteries: interactive map (version 1.0.2). Online : http://hde.geogr.muni.cz/baptisteries, ultimo accesso 26/04/2019), che segue più o meno gli stessi criteri di classificazione dei dati del volume a stampa."
     },
+    labelClickToEnlarge: {
+        fr: "Cliquez sur l'image pour l'agrandir.",
+        en: "Click on the image to enlarge it.",
+        it: "Clicca sull'immagine per ingrandirla.",
+    },
     footNote3: {
         fr: "³ https://www.openstreetmap.org dernier accès le 15/06/2020.",
         en: "", // Not provided
