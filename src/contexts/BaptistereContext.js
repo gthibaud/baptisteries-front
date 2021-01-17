@@ -9,6 +9,16 @@ function stateReducer(state, action) {
     return { ...state, ...action };
 }
 
+// Add data names in meta markup in the html page
+const addMetadataToHtml = (data) => {
+    data.map((baptistere) => {
+        const nodeMeta = document.createElement("meta");
+        nodeMeta.content = baptistere.name;
+        nodeMeta.setAttribute('property', 'dc:title');
+        document.head.appendChild(nodeMeta);
+    });
+};
+
 const BaptistereContextProvider = ({ children }) => {
     const { language } = useContext(GlobalContext);
 
@@ -152,6 +162,7 @@ const BaptistereContextProvider = ({ children }) => {
             .get("https://baptisteres.huma-num.fr/cache")
             .then((res) => {
                 dispatch({ baptisteriesData: res.data });
+                addMetadataToHtml(res.data.baptisteries);
             })
             .catch((e) => {
                 console.error("error while fetching baptisteries from cache", e);
