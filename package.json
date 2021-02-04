@@ -20,6 +20,7 @@
     "react-scripts": "3.4.1",
     "react-scroll": "^1.8.1",
     "react-virtualized": "^9.21.2",
+    "remark-breaks": "^2.0.1",
     "styled-components": "^5.1.1"
   },
   "scripts": {

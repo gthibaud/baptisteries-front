@@ -29,7 +29,7 @@ export default function Footer() {
       <Grid container justify={"space-between"} alignItems={"center"}>
         <Grid item>
           <Typography className={classes.copyright} variant={"body1"}>
-            © Lucia Orlandi - 2020
+            © Lucia Maria Orlandi - 2020
           </Typography>
         </Grid>
         <Grid item>
