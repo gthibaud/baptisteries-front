@@ -126,12 +126,8 @@ const BaptistereContextProvider = ({ children }) => {
                     settlementContext.cid === language
             )?.name;
 
-            baptistere.maximumDepth = baptistere.maximumDepth !== "" && baptistere.maximumDepth !== null ?
-                parseFloat(baptistere.maximumDepth.toString().replace(",", "."))
-                : 0;
-            baptistere.maximumPreservedDepth = baptistere.maximumPreservedDepth !== "" && baptistere.maximumPreservedDepth !== null ?
-                parseFloat(baptistere.maximumPreservedDepth.toString().replace(",", "."))
-                : 0;
+            baptistere.maximumDepth = baptistere.maximumDepth || "";
+            baptistere.maximumPreservedDepth = baptistere.maximumPreservedDepth || "";
 
             const plans = [];
             let i = 0;
