@@ -83,9 +83,12 @@ const BaptistereContextProvider = ({ children }) => {
         const buildingCategories = baptisteriesData.buildingCategories || [];
         const settlementContexts = baptisteriesData.settlementContexts || [];
 
-        const baptisteriesFormatted = baptisteriesList.map((baptistere) => {
+        const baptisteriesFormatted = baptisteriesList.map(baptistere => {
             // Use of filter function here because datingCriteria is an array and not just a single value
-            baptistere.datingCriteria = datingCriteria.filter((criteria) => baptistere.datingCriteria?.includes(criteria.id) && criteria.cid === language).map((criteria) => criteria.name);
+            baptistere.datingCriteria = baptistere.datingCriteriaIds.map(d => {
+                const criteria = datingCriteria.filter(c => c.id === d && c.cid === language);
+                return criteria.length > 0 ? criteria[0].name : undefined;
+            });
 
             baptistere.region = regions.find(
                 (region) => region.id === baptistere.regionId && region.cid === language

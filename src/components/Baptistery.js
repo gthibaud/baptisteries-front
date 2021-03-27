@@ -135,9 +135,11 @@ const Baptistery = ({ onClose, open, currentBaptistere }) => {
                     </Typography>
                 )}
 
-                {currentBaptistere.datingCriteria && currentBaptistere.datingCriteria.size > 0 && (
+             {   console.log("datation crrr", currentBaptistere.datingCriteria)}
+
+                {currentBaptistere.datingCriteria && currentBaptistere.datingCriteria.length > 0 && currentBaptistere.datingCriteria[0] && (
                     <Typography variant="body1">
-                        {`${l("labelDatationCriteria", language)} : ${currentBaptistere.datingCriteria.join(", ")
+                        {`${l("labelDatationCriteria", language)} : ${currentBaptistere.datingCriteria.join(", ") + '.'
                             }`}
                     </Typography>
                 )}

@@ -76,8 +76,8 @@ const PointSummaryContainer = () => {
                 <Typography variant={"h4"}>{l("labelBaptisteryPreview", language)}</Typography>
                 <Typography variant={"body1"}>{`${l("labelBaptisteryDates", language)} : ${currentBaptistere.startingYear
                   } - ${currentBaptistere.finalYear}`}</Typography>
-                <Typography variant={"body1"}>{`${l("labelBaptisteryProvince", language)} : ${currentBaptistere.province
-                  }`}</Typography>
+                {currentBaptistere.province && <Typography variant={"body1"}>{`${l("labelBaptisteryProvince", language)} : ${currentBaptistere.province
+                  }`}</Typography>}
                 <Typography variant={"body1"}>{`${l("labelBaptisteryDiocese", language)} : ${currentBaptistere.ecclesiasticalDiocese
                   }`}</Typography>
                 <Button
