@@ -793,6 +793,11 @@ Il database e il sito non esisterebbero senza il prezioso supporto tecnico dei c
         fr: "Fermer",
         en: "Close",
         it: "Chiudere"
+    },
+    labelCopyrightBaptistery: {
+        fr: "Veuillez citer les enregistrements et la ou les images associées en faisant référence à leur auteur, au nom de la base de données, au nom de l'enregistrement et, si possible, à l'URL stable : Lucia Maria Orlandi, Baptistères paléochrétiens - [https://baptisteres.huma-num.fr/](https://baptisteres.huma-num.fr/)",
+        en: "Please quote this record and related image(s) referring to their author, database name, record name, and, if possible, stable URL: Lucia Maria Orlandi, Baptistères paléochrétiens - [https://baptisteres.huma-num.fr/](https://baptisteres.huma-num.fr/)",
+        it: "Per citare i record e/o le immagini associate, fare riferimento all’autore, al nome della base dati, al nome del record e, se possibile, all’URL: Lucia Maria Orlandi, Baptistères paléochrétiens - [https://baptisteres.huma-num.fr/](https://baptisteres.huma-num.fr/)"
     }
 };
 

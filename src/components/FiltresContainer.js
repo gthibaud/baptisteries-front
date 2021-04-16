@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useReducer} from "react";
+import React, { useContext, useEffect, useReducer } from "react";
 import {
     Button,
     Chip,
@@ -13,13 +13,13 @@ import {
     Switch,
 } from "@material-ui/core";
 import CancelIcon from "@material-ui/icons/Cancel";
-import {makeStyles} from "@material-ui/core/styles";
-import {GlobalContext} from "../contexts/GlobalContext";
-import {BaptistereContext} from "../contexts/BaptistereContext";
+import { makeStyles } from "@material-ui/core/styles";
+import { GlobalContext } from "../contexts/GlobalContext";
+import { BaptistereContext } from "../contexts/BaptistereContext";
 import l from "../constants/locales";
-import {FilterContext} from "../contexts/FilterContext";
+import { FilterContext } from "../contexts/FilterContext";
 import Typography from "@material-ui/core/Typography";
-import {FiltresFormSelect} from "./FiltresFormSelect";
+import { FiltresFormSelect } from "./FiltresFormSelect";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -45,12 +45,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function stateReducer(state, action) {
-    return {...state, ...action};
+    return { ...state, ...action };
 }
 
-export default function FiltresContainer({nbResults}) {
+export default function FiltresContainer({ nbResults }) {
     const classes = useStyles();
-    const {language} = useContext(GlobalContext);
+    const { language } = useContext(GlobalContext);
     const normalizedNbResults = `(${nbResults} ${l("labelResult", language)})`;
 
     const {
@@ -65,9 +65,16 @@ export default function FiltresContainer({nbResults}) {
         cancelAllFilters,
         cancelFilter,
     } = useContext(FilterContext);
-    const {regions, buildingCategories, settlementContexts, ecclesiasticalDioceses, civilDioceses, patriarchies, provinces} = useContext(
-        BaptistereContext
-    );
+
+    const {
+        regions,
+        buildingCategories,
+        settlementContexts,
+        ecclesiasticalDioceses,
+        civilDioceses,
+        patriarchies,
+        provinces
+    } = useContext(BaptistereContext);
 
     const initState = {
         regionLabels: [],
@@ -85,19 +92,25 @@ export default function FiltresContainer({nbResults}) {
 
     // To display custom marks under Slider components
     const dateMarks = [
-        {value: dateRange[0], label: dateRange[0]},
-        {value: dateRange[1], label: dateRange[1]}
+        { value: dateRange[0], label: dateRange[0] },
+        { value: dateRange[1], label: dateRange[1] }
     ];
 
-    const maxDepthMarks = [{value: maxDepthRange[0], label: maxDepthRange[0]}, {
-        value: maxDepthRange[1],
-        label: maxDepthRange[1]
-    }];
+    const maxDepthMarks = [
+        {
+            value: maxDepthRange[0],
+            label: maxDepthRange[0]
+        },
+        {
+            value: maxDepthRange[1],
+            label: maxDepthRange[1]
+        }
+    ];
 
     const maxPreservedDepthMarks = [{
         value: maxPreservedDepthRange[0],
         label: maxPreservedDepthRange[0]
-    }, {value: maxPreservedDepthRange[1], label: maxPreservedDepthRange[1]}];
+    }, { value: maxPreservedDepthRange[1], label: maxPreservedDepthRange[1] }];
 
     // Loads the correct labels for the dropdown lists (regarding the current language)
     useEffect(() => {
@@ -159,7 +172,7 @@ export default function FiltresContainer({nbResults}) {
                             variant="contained"
                             color="secondary"
                             className={classes.button}
-                            endIcon={<CancelIcon/>}
+                            endIcon={<CancelIcon />}
                             onClick={cancelAllFilters}
                         >
                             {l("labelCancelResearch", language)}
@@ -168,81 +181,81 @@ export default function FiltresContainer({nbResults}) {
                 </Grid>
                 <Grid item container alignItems={"center"}>
                     {state.regionLabels && state.regionLabels.length > 0 &&
-                    <FiltresFormSelect
-                        className={classes.formControl}
-                        label={"labelBaptisteryRegion"}
-                        selectOptions={state.regionLabels}
-                        inputProps={{name: "region", id: "input-region"}}
-                        handleChange={handleChange}
-                        initValue={filters.region}
-                        language={language}
-                    />}
+                        <FiltresFormSelect
+                            className={classes.formControl}
+                            label={"labelBaptisteryRegion"}
+                            selectOptions={state.regionLabels}
+                            inputProps={{ name: "region", id: "input-region" }}
+                            handleChange={handleChange}
+                            initValue={filters.region}
+                            language={language}
+                        />}
 
                     {state.ecclesiasticalDiocesesLabels && state.ecclesiasticalDiocesesLabels.length > 0 &&
-                    <FiltresFormSelect
-                        className={classes.formControl}
-                        label={"labelBaptisteryDiocese"}
-                        selectOptions={state.ecclesiasticalDiocesesLabels}
-                        inputProps={{name: "ecclesiasticalDiocese", id: "input-ecclesiastical-diocese"}}
-                        handleChange={handleChange}
-                        initValue={filters.ecclesiasticalDiocese}
-                        language={language}
-                    />}
+                        <FiltresFormSelect
+                            className={classes.formControl}
+                            label={"labelBaptisteryDiocese"}
+                            selectOptions={state.ecclesiasticalDiocesesLabels}
+                            inputProps={{ name: "ecclesiasticalDiocese", id: "input-ecclesiastical-diocese" }}
+                            handleChange={handleChange}
+                            initValue={filters.ecclesiasticalDiocese}
+                            language={language}
+                        />}
 
                     {state.civilDiocesesLabels && state.civilDiocesesLabels.length > 0 &&
-                    <FiltresFormSelect
-                        className={classes.formControl}
-                        label={"labelBaptisteryDioceseCivil"}
-                        selectOptions={state.civilDiocesesLabels}
-                        inputProps={{name: "civilDiocese", id: "input-civil-diocese"}}
-                        handleChange={handleChange}
-                        initValue={filters.civilDiocese}
-                        language={language}
-                    />}
+                        <FiltresFormSelect
+                            className={classes.formControl}
+                            label={"labelBaptisteryDioceseCivil"}
+                            selectOptions={state.civilDiocesesLabels}
+                            inputProps={{ name: "civilDiocese", id: "input-civil-diocese" }}
+                            handleChange={handleChange}
+                            initValue={filters.civilDiocese}
+                            language={language}
+                        />}
 
                     {state.patriarchiesLabels && state.patriarchiesLabels.length > 0 &&
-                    <FiltresFormSelect
-                        className={classes.formControl}
-                        label={"labelBaptisteryPatriarchy"}
-                        selectOptions={state.patriarchiesLabels}
-                        inputProps={{name: "patriarchy", id: "input-patriarchy"}}
-                        handleChange={handleChange}
-                        initValue={filters.patriarchy}
-                        language={language}
-                    />}
+                        <FiltresFormSelect
+                            className={classes.formControl}
+                            label={"labelBaptisteryPatriarchy"}
+                            selectOptions={state.patriarchiesLabels}
+                            inputProps={{ name: "patriarchy", id: "input-patriarchy" }}
+                            handleChange={handleChange}
+                            initValue={filters.patriarchy}
+                            language={language}
+                        />}
 
                     {state.provincesLabels && state.provincesLabels.length > 0 &&
-                    <FiltresFormSelect
-                        className={classes.formControl}
-                        label={"labelBaptisteryProvince"}
-                        selectOptions={state.provincesLabels}
-                        inputProps={{name: "province", id: "input-province"}}
-                        handleChange={handleChange}
-                        initValue={filters.province}
-                        language={language}
-                    />}
+                        <FiltresFormSelect
+                            className={classes.formControl}
+                            label={"labelBaptisteryProvince"}
+                            selectOptions={state.provincesLabels}
+                            inputProps={{ name: "province", id: "input-province" }}
+                            handleChange={handleChange}
+                            initValue={filters.province}
+                            language={language}
+                        />}
 
                     {state.buildingLabels && state.buildingLabels.length > 0 &&
-                    <FiltresFormSelect
-                        className={classes.formControl}
-                        label={"labelBaptisteryBuildingCategory"}
-                        selectOptions={state.buildingLabels}
-                        inputProps={{name: "buildingCategory", id: "input-building"}}
-                        handleChange={handleChange}
-                        initValue={filters.buildingCategory}
-                        language={language}
-                    />}
+                        <FiltresFormSelect
+                            className={classes.formControl}
+                            label={"labelBaptisteryBuildingCategory"}
+                            selectOptions={state.buildingLabels}
+                            inputProps={{ name: "buildingCategory", id: "input-building" }}
+                            handleChange={handleChange}
+                            initValue={filters.buildingCategory}
+                            language={language}
+                        />}
 
                     {state.settlementLabels && state.settlementLabels.length > 0 &&
-                    <FiltresFormSelect
-                        className={classes.formControl}
-                        label={"labelBaptisterySettlementContext"}
-                        selectOptions={state.settlementLabels}
-                        inputProps={{name: "settlementContext", id: "input-settlement"}}
-                        handleChange={handleChange}
-                        initValue={filters.settlementContext}
-                        language={language}
-                    />}
+                        <FiltresFormSelect
+                            className={classes.formControl}
+                            label={"labelBaptisterySettlementContext"}
+                            selectOptions={state.settlementLabels}
+                            inputProps={{ name: "settlementContext", id: "input-settlement" }}
+                            handleChange={handleChange}
+                            initValue={filters.settlementContext}
+                            language={language}
+                        />}
 
                     <FormControl variant="outlined" className={classes.formControl}>
                         <TextField
@@ -272,7 +285,7 @@ export default function FiltresContainer({nbResults}) {
                                 id: "input-coordinates-accuracy",
                             }}
                         >
-                            <option key={"accuracy-none"} aria-label="None" value=""/>
+                            <option key={"accuracy-none"} aria-label="None" value="" />
                             <option key={"accuracy-0"} value={0}>
                                 {l("labelBaptisteryAccuracy0", language)}
                             </option>
@@ -303,7 +316,7 @@ export default function FiltresContainer({nbResults}) {
                                 id: "input-reliability",
                             }}
                         >
-                            <option key={"reliability-none"} aria-label="None" value=""/>
+                            <option key={"reliability-none"} aria-label="None" value="" />
                             <option key={"reliability-1"} value={1}>
                                 {l("labelLegendReliability1", language)}
                             </option>
@@ -351,7 +364,7 @@ export default function FiltresContainer({nbResults}) {
                                     onChange={handleChangeToggle}
                                     color="primary"
                                     name="exclusivelyFromHistoricalSources"
-                                    inputProps={{id: "toggle-only-historical-sources"}}
+                                    inputProps={{ id: "toggle-only-historical-sources" }}
                                 />
                             }
                             label={`${l("labelBaptisteryOnlyHistoricalSources", language)}`}
@@ -424,8 +437,8 @@ export default function FiltresContainer({nbResults}) {
                                 filter === "coordinatesAccuracy"
                                     ? l(`labelBaptisteryAccuracy${filters[filter]}`, language)
                                     : filter === "recordReliability"
-                                    ? l(`labelLegendReliability${filters[filter]}`, language)
-                                    : filters[filter];
+                                        ? l(`labelLegendReliability${filters[filter]}`, language)
+                                        : filters[filter];
                             return (
                                 <Chip
                                     key={filter}
@@ -435,7 +448,7 @@ export default function FiltresContainer({nbResults}) {
                                     color="primary"
                                     onDelete={() => cancelFilter(filter)}
                                     onClick={() => cancelFilter(filter)}
-                                    deleteIcon={<CancelIcon/>}
+                                    deleteIcon={<CancelIcon />}
                                 />
                             );
                         }

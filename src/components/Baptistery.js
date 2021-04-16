@@ -135,8 +135,6 @@ const Baptistery = ({ onClose, open, currentBaptistere }) => {
                     </Typography>
                 )}
 
-             {   console.log("datation crrr", currentBaptistere.datingCriteria)}
-
                 {currentBaptistere.datingCriteria && currentBaptistere.datingCriteria.length > 0 && currentBaptistere.datingCriteria[0] && (
                     <Typography variant="body1">
                         {`${l("labelDatationCriteria", language)} : ${currentBaptistere.datingCriteria.join(", ") + '.'
@@ -230,6 +228,11 @@ const Baptistery = ({ onClose, open, currentBaptistere }) => {
                         </ModalGateway>
                     </>)
                     : <Typography variant="body1">{`${l("labelBaptisteryNotAvailable", language)}`}</Typography>}
+
+                <hr className={classes.line} />
+                <Typography variant="body1">
+                    <ReactMarkdown linkTarget="_blank" source={l('labelCopyrightBaptistery', language)} />
+                </Typography>
             </Paper>
         </Dialog>
     );

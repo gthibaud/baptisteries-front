@@ -129,8 +129,8 @@ const BaptistereContextProvider = ({ children }) => {
                     settlementContext.cid === language
             )?.name;
 
-            baptistere.maximumDepth = baptistere.maximumDepth || "";
-            baptistere.maximumPreservedDepth = baptistere.maximumPreservedDepth || "";
+            baptistere.maximumDepth = typeof (baptistere.maximumDepth) === "string" && parseFloat(baptistere.maximumDepth.replace(/,/g, '.')) || null;
+            baptistere.maximumPreservedDepth = typeof (baptistere.maximumPreservedDepth) === "string" && parseFloat(baptistere.maximumPreservedDepth.replace(/,/g, '.')) || null;
 
             const plans = [];
             let i = 0;
