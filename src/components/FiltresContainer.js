@@ -184,7 +184,7 @@ export default function FiltresContainer({ nbResults }) {
                         <FiltresFormSelect
                             className={classes.formControl}
                             label={"labelBaptisteryRegion"}
-                            selectOptions={state.regionLabels}
+                            selectOptions={state.regionLabels.sort((a, b) => a.localeCompare(b))}
                             inputProps={{ name: "region", id: "input-region" }}
                             handleChange={handleChange}
                             initValue={filters.region}
@@ -195,7 +195,7 @@ export default function FiltresContainer({ nbResults }) {
                         <FiltresFormSelect
                             className={classes.formControl}
                             label={"labelBaptisteryDiocese"}
-                            selectOptions={state.ecclesiasticalDiocesesLabels}
+                            selectOptions={state.ecclesiasticalDiocesesLabels.sort((a, b) => a.localeCompare(b))}
                             inputProps={{ name: "ecclesiasticalDiocese", id: "input-ecclesiastical-diocese" }}
                             handleChange={handleChange}
                             initValue={filters.ecclesiasticalDiocese}
@@ -206,7 +206,7 @@ export default function FiltresContainer({ nbResults }) {
                         <FiltresFormSelect
                             className={classes.formControl}
                             label={"labelBaptisteryDioceseCivil"}
-                            selectOptions={state.civilDiocesesLabels}
+                            selectOptions={state.civilDiocesesLabels.sort((a, b) => a.localeCompare(b))}
                             inputProps={{ name: "civilDiocese", id: "input-civil-diocese" }}
                             handleChange={handleChange}
                             initValue={filters.civilDiocese}
@@ -217,7 +217,7 @@ export default function FiltresContainer({ nbResults }) {
                         <FiltresFormSelect
                             className={classes.formControl}
                             label={"labelBaptisteryPatriarchy"}
-                            selectOptions={state.patriarchiesLabels}
+                            selectOptions={state.patriarchiesLabels.sort((a, b) => a.localeCompare(b))}
                             inputProps={{ name: "patriarchy", id: "input-patriarchy" }}
                             handleChange={handleChange}
                             initValue={filters.patriarchy}
@@ -228,7 +228,7 @@ export default function FiltresContainer({ nbResults }) {
                         <FiltresFormSelect
                             className={classes.formControl}
                             label={"labelBaptisteryProvince"}
-                            selectOptions={state.provincesLabels}
+                            selectOptions={state.provincesLabels.sort((a, b) => a.localeCompare(b))}
                             inputProps={{ name: "province", id: "input-province" }}
                             handleChange={handleChange}
                             initValue={filters.province}
@@ -239,7 +239,7 @@ export default function FiltresContainer({ nbResults }) {
                         <FiltresFormSelect
                             className={classes.formControl}
                             label={"labelBaptisteryBuildingCategory"}
-                            selectOptions={state.buildingLabels}
+                            selectOptions={state.buildingLabels.sort((a, b) => a.localeCompare(b)).map(a => a.charAt(0).toUpperCase() + a.substr(1))}
                             inputProps={{ name: "buildingCategory", id: "input-building" }}
                             handleChange={handleChange}
                             initValue={filters.buildingCategory}
@@ -250,7 +250,7 @@ export default function FiltresContainer({ nbResults }) {
                         <FiltresFormSelect
                             className={classes.formControl}
                             label={"labelBaptisterySettlementContext"}
-                            selectOptions={state.settlementLabels}
+                            selectOptions={state.settlementLabels.sort((a, b) => a.localeCompare(b)).map(a => a.charAt(0).toUpperCase() + a.substr(1))}
                             inputProps={{ name: "settlementContext", id: "input-settlement" }}
                             handleChange={handleChange}
                             initValue={filters.settlementContext}
@@ -287,16 +287,16 @@ export default function FiltresContainer({ nbResults }) {
                         >
                             <option key={"accuracy-none"} aria-label="None" value="" />
                             <option key={"accuracy-0"} value={0}>
-                                {l("labelBaptisteryAccuracy0", language)}
+                                {l("labelBaptisteryAccuracy0", language)[0].toUpperCase() + l("labelBaptisteryAccuracy0", language).substr(1)}
                             </option>
                             <option key={"accuracy-1"} value={1}>
-                                {l("labelBaptisteryAccuracy1", language)}
+                                {l("labelBaptisteryAccuracy1", language)[0].toUpperCase() + l("labelBaptisteryAccuracy1", language).substr(1)}
                             </option>
                             <option key={"accuracy-2"} value={2}>
-                                {l("labelBaptisteryAccuracy2", language)}
+                                {l("labelBaptisteryAccuracy2", language)[0].toUpperCase() + l("labelBaptisteryAccuracy2", language).substr(1)}
                             </option>
                             <option key={"accuracy-3"} value={3}>
-                                {l("labelBaptisteryAccuracy3", language)}
+                                {l("labelBaptisteryAccuracy3", language)[0].toUpperCase() + l("labelBaptisteryAccuracy3", language).substr(1)}
                             </option>
                         </Select>
                     </FormControl>
@@ -318,13 +318,13 @@ export default function FiltresContainer({ nbResults }) {
                         >
                             <option key={"reliability-none"} aria-label="None" value="" />
                             <option key={"reliability-1"} value={1}>
-                                {l("labelLegendReliability1", language)}
+                                {l("labelLegendReliability1", language)[0].toUpperCase() + l("labelLegendReliability1", language).substr(1)}
                             </option>
                             <option key={"reliability-2"} value={2}>
-                                {l("labelLegendReliability2", language)}
+                                {l("labelLegendReliability2", language)[0].toUpperCase() + l("labelLegendReliability2", language).substr(1)}
                             </option>
                             <option key={"reliability-3"} value={3}>
-                                {l("labelLegendReliability3", language)}
+                                {l("labelLegendReliability3", language)[0].toUpperCase() + l("labelLegendReliability3", language).substr(1)}
                             </option>
                         </Select>
                     </FormControl>
