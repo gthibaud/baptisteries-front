@@ -239,7 +239,7 @@ export default function FiltresContainer({ nbResults }) {
                         <FiltresFormSelect
                             className={classes.formControl}
                             label={"labelBaptisteryBuildingCategory"}
-                            selectOptions={state.buildingLabels.sort((a, b) => a.localeCompare(b)).map(a => a.charAt(0).toUpperCase() + a.substr(1))}
+                            selectOptions={state.buildingLabels.sort((a, b) => a.localeCompare(b))}
                             inputProps={{ name: "buildingCategory", id: "input-building" }}
                             handleChange={handleChange}
                             initValue={filters.buildingCategory}
@@ -250,7 +250,7 @@ export default function FiltresContainer({ nbResults }) {
                         <FiltresFormSelect
                             className={classes.formControl}
                             label={"labelBaptisterySettlementContext"}
-                            selectOptions={state.settlementLabels.sort((a, b) => a.localeCompare(b)).map(a => a.charAt(0).toUpperCase() + a.substr(1))}
+                            selectOptions={state.settlementLabels.sort((a, b) => a.localeCompare(b))}
                             inputProps={{ name: "settlementContext", id: "input-settlement" }}
                             handleChange={handleChange}
                             initValue={filters.settlementContext}
